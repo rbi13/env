@@ -20,4 +20,5 @@ alias gkb='git checkout -b'
 alias gkk='git checkout --'
 alias gt='git stash'
 alias gta='git stash apply'
-
+alias gl='git log --oneline --color'
+alias gd='git diff'
