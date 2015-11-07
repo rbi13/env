@@ -6,6 +6,7 @@ alias nho='sudo nano /etc/hosts'
 alias nrc='nano ~/.bashrc'
 alias src='source ~/.bashrc'
 alias r='reset'
+alias e='exit'
 alias ag='sudo apt-get install'
 
 # git alias
