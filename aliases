@@ -3,6 +3,8 @@ alias al='cat ~/env/aliases | grep "^alias"'
 alias nal='nano ~/env/aliases'
 alias ho='cat /etc/hosts'
 alias nho='sudo nano /etc/hosts'
+alias nrc='nano ~/.bashrc'
+alias src='source ~/.bashrc'
 alias r='reset'
 alias ag='sudo apt-get install'
 
