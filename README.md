@@ -1,7 +1,7 @@
 Use apply script:
 
 ```sh
-curl https://raw.githubusercontent.com/rbi13/env/master/apply.sh | sh
+curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh
 ```
 
 which will perform the following:
