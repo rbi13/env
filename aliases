@@ -8,6 +8,7 @@ alias src='source ~/.bashrc'
 alias r='reset'
 alias e='exit'
 alias sag='sudo apt-get install'
+alias envapply='sh ~/env/apply.sh'
 
 # git alias
 alias ga='git add'

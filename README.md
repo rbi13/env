@@ -1,4 +1,4 @@
-Use apply apply script:
+Use apply script:
 
 ```sh
 curl https://raw.githubusercontent.com/rbi13/env/master/apply.sh | sh
