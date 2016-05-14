@@ -1,32 +1,23 @@
 # general alias
 alias al='cat ~/env/aliases | grep "^alias"'
 alias nrca='nano ~/env/aliases'
-alias nrco='nano ~/env/opt_al'
-alias ho='cat /etc/hosts'
-alias nho='sudo nano /etc/hosts'
+alias nrco='nano ~/env/opt.al'
+alias nrcf='nano ~/env/func.al'
 alias nrc='nano ~/.bashrc'
 alias src='source ~/.bashrc'
 alias r='reset'
 alias e='exit'
+alias ho='cat /etc/hosts'
+alias nho='sudo nano /etc/hosts'
+
+# env installation
 alias sag='sudo apt-get install'
 alias envapply='sh ~/env/apply.sh'
 
-# git alias
-alias ga='git add'
-alias gaa='git add .'
-alias gs='git status'
-alias gc='git commit -m'
-alias gp='git push origin'
-alias gpm='git push origin master'
-alias gu='git pull origin'
-alias gum='git pull origin master'
-alias gk='git checkout'
-alias gkb='git checkout -b'
-alias gkk='git checkout --'
-alias gt='git stash'
-alias gta='git stash apply'
-alias gl='git log --oneline --color'
-alias gd='git diff'
-alias grh='git reset --hard'
+# source all '.al', used as plugin system for env
+function srcCustom {
+	for al in $(find ~/env -name '*.al'); do source $al; done
+}
 
-source ~/env/opt_al
+
+srcCustom
