@@ -1,6 +1,7 @@
 # general alias
 alias al='cat ~/env/aliases | grep "^alias"'
-alias nal='nano ~/env/aliases'
+alias nrca='nano ~/env/aliases'
+alias nrco='nano ~/env/opt_al'
 alias ho='cat /etc/hosts'
 alias nho='sudo nano /etc/hosts'
 alias nrc='nano ~/.bashrc'
@@ -26,3 +27,6 @@ alias gt='git stash'
 alias gta='git stash apply'
 alias gl='git log --oneline --color'
 alias gd='git diff'
+alias grh='git reset --hard'
+
+source ~/env/opt_al
