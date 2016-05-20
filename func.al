@@ -2,8 +2,9 @@
 
 ## TODO 
 # - implement auto-complete
-# - implement camel Case Matching
-# - implement 'favs' inefence
+# - implement inference to automatically suggests shortcuts for frequently accessed dirs  
+# - implement acd no arg which infers current dir name as shortcut name
+# - expand shortcut to other functions mv, cp, etc... by exporting instead of funcion localized lookup 
 ##
 
 # eval to resolve tilde
