@@ -48,3 +48,19 @@ function acd {
 	else sed -i '/^name:/c\$name:$path' $cdafile;
 	fi
 }
+
+## other functions
+
+# install from deb files
+function deb {
+	# abort on any error
+	# eval to resolve
+	eval debFile=$1
+	# validate file
+	if [ -f "$debFile" ]; then
+		# dpkg and install, return on failure 
+		sudo dpkg -i $debFile || return;
+		sudo apt-get install -f
+	else echo "'$debFile' does not exist"; 
+	fi
+}

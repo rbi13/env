@@ -1,5 +1,5 @@
 # general alias
-alias al='cat ~/env/aliases | grep "^alias"'
+alias al='alias | grep "^alias"'
 alias nrca='nano ~/env/aliases'
 alias nrco='nano ~/env/opt.al'
 alias nrcf='nano ~/env/func.al'
