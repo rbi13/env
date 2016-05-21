@@ -10,6 +10,7 @@ alias r='reset'
 alias e='exit'
 alias ho='cat /etc/hosts'
 alias nho='sudo nano /etc/hosts'
+alias chc='ping 8.8.8.8'
 
 # env installation
 alias sag='sudo apt-get install'
