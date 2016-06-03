@@ -14,7 +14,7 @@ eval cdafile=$cdafile
 # override 'builtin cd' for 'smart cd'
 alias cd='scd'
 alias lcd='cat $cdafile'
-alias nscd='nano $cdafile'
+alias ncd='nano $cdafile'
 
 function scd {
 	# params
