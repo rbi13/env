@@ -13,6 +13,9 @@ alias nt='nautilus'
 alias ho='cat /etc/hosts'
 alias nho='sudo nano /etc/hosts'
 alias chc='ping 8.8.8.8'
+alias .='cd ..'
+alias ..='cd ../..'
+alias ...='cd ../../../'
 
 # env installation
 alias sag='sudo apt-get install'
