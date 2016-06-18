@@ -25,6 +25,5 @@ alias envapply='sh ~/env/apply.sh'
 function srcCustom {
 	for al in $(find ~/env -name '*.al'); do source $al; done
 }
-
-
+# activated on source call
 srcCustom
