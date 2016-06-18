@@ -10,12 +10,12 @@ The 'aliases' file is sourced by the user's .rc file. This file lists a set of g
  - a folder should be created using the `mkdiropt` command for each individual software, the different versions of the   particular software is kept in this folder,
  - the version currently in use is defined by using the `verset <version-subfolder>` command which will create a softlink `cur` pointing to the 'current' version. The corresponding alias used to use the software in `opt.al` should point to this softlink for easy version switching/updating.
 
-The plan is to include a few more functions that will automate the referecing and downloading of software like java, python, etc, to replace the use of package managers. Not relying on package managers has the advantage (if done right) of getting the latest versions straight from the source as well as being distro-independant.
+The plan is to include a few more functions that will automate the referencing and downloading of software like java, python, etc, to replace the use of package managers. Not relying on package managers has the advantage (if done right) of getting the latest versions straight from the source as well as being distro-independant.
 
 ### func.al
 `func.al` is a set of custom functions to simplify common operations on the command line:
 #### smart cd
-- `cd` has been overrided to allow 'jumping'. It works by holding a map of 'directory alaises' in the `cdas` file. Users can add a directory alias using `acd <alias-name>` while in the directory they want to alias.
+- `cd` has been overridden to allow 'jumping'. It works by holding a map of 'directory alaises' in the `cdas` file. Users can add a directory alias using `acd <alias-name>` while in the directory they want to alias.
 - once an alias is set the user can use `cd <alias-name>` from any directory. Note that current sub-directories take presidence over aliases; if a current sub-directory has the same name as an alias then your cd command will bring you to the sub-dir.
 - the `cdas` map is in the format `<alias-name>:<absolute-path>` and can be edited manually using the `ncd` command.
 
