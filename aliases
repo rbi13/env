@@ -23,7 +23,13 @@ alias envapply='sh ~/env/apply.sh'
 
 # source all '.al', used as plugin system for env
 function srcCustom {
-	for al in $(find ~/env -name '*.al'); do source $al; done
+  for al in $(find ~/env -name '*.al'); do source $al; done
 }
 # activated on source call
 srcCustom
+
+function add_profile {
+  if [ ! -f ~/.profile ]; then
+    echo "if [ ! -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi" >> ~/.profile
+  fi	
+}
