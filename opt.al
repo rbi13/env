@@ -1,8 +1,8 @@
 export opt_root='/opt'
 
 # launchers
-alias teli='$opt_root/teli/cur/bin/idea.sh'
-alias eclipse='$opt_root/eclipse/cur/eclipse'
+alias teli='$opt_root/teli/cur/bin/idea.sh &'
+alias eclipse='$opt_root/eclipse/cur/eclipse &'
 alias java='$opt_root/java/cur/bin/java'
 alias gr='$opt_root/gradle/cur/bin/gradle'
 

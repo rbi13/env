@@ -64,3 +64,26 @@ function deb {
 	else echo "'$debFile' does not exist"; 
 	fi
 }
+
+# untar to a directory to an (optional) destination
+function untar {  
+  archive="$1"
+  dest="$2"
+  # zip files
+  if [ "$archive" == *.zip ]; then
+     if [ -z "$dest" ]; then
+      unzip $archive
+    else
+      mkdir -p $dest
+      unzip $archive -d $dest
+    fi
+  # tar files
+  else
+    if [ -z "$dest" ]; then
+      tar -zxf $archive
+    else
+      mkdir -p $dest
+      tar -zxf $archive -C $dest
+    fi
+  fi
+}
