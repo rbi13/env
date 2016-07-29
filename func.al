@@ -1,5 +1,8 @@
-# smart cd
-
+## Function list
+# - scd: 'bookmarking/aliasing' (with acd) directories to jump to them by name. Note the 'scd' command ovverides 'cd'  
+# - deb: manual installation of '.deb' files
+# - untar: single command to handle decompressing of zips and tars
+#
 ## TODO 
 # - implement auto-complete
 # - implement inference to automatically suggests shortcuts for frequently accessed dirs  
@@ -17,52 +20,52 @@ alias lcd='cat $cdafile'
 alias ncd='nano $cdafile'
 
 function scd {
-	# params
-	name=${1%/} # removes trailing slash(for matching) 
+  # params
+  name=${1%/} # removes trailing slash(for matching) 
 
-	# immidiate dirs take president over shortcuts
-	# re-excute command to get ot shortcut
-	if [ -d "$name" ]; then builtin cd "$name"; return; fi
+  # immidiate dirs take president over shortcuts
+  # re-excute command to get ot shortcut
+  if [ -d "$name" ]; then builtin cd "$name"; return; fi
 
-	# check cda for shortcut id
-	found=$(grep "^$name:" $cdafile)
-	# parse out dir OR;
-	found=${found/"$name:"/""}
-	# set to $1 if not found	
-	if [ "$found" == "" ]; then found=$1; fi
-	builtin cd $found
+  # check cda for shortcut id
+  found=$(grep "^$name:" $cdafile)
+  # parse out dir OR;
+  found=${found/"$name:"/""}
+  # set to $1 if not found	
+  if [ "$found" == "" ]; then found=$1; fi
+  builtin cd $found
 }
 
 function acd {
-	#params
-	#TODO or $2 if specified
-	path=$(pwd)
-	name=$1
-	
-	#TODO if [ "$name" == "" ]; then name=lastDirName; fi
-	# check cda for shortcut id
-	found=$(grep "^$name:" $cdafile)		
-	# write or replace shortcut depending if it already exists	
-	if [ "$found" == "" ]; then
-		echo "$name:$path" >> $cdafile 
-	else sed -i '/^name:/c\$name:$path' $cdafile;
-	fi
+  #params
+  #TODO or $2 if specified
+  path=$(pwd)
+  name=$1
+
+  #TODO if [ "$name" == "" ]; then name=lastDirName; fi
+  # check cda for shortcut id
+  found=$(grep "^$name:" $cdafile)		
+  # write or replace shortcut depending if it already exists	
+  if [ "$found" == "" ]; then
+    echo "$name:$path" >> $cdafile 
+  else sed -i '/^name:/c\$name:$path' $cdafile;
+  fi
 }
 
 ## other functions
 
 # install from deb files
 function deb {
-	# abort on any error
-	# eval to resolve
-	eval debFile=$1
-	# validate file
-	if [ -f "$debFile" ]; then
-		# dpkg and install, return on failure 
-		sudo dpkg -i $debFile || return;
-		sudo apt-get install -f
-	else echo "'$debFile' does not exist"; 
-	fi
+  # abort on any error
+  # eval to resolve
+  eval debFile=$1
+  # validate file
+  if [ -f "$debFile" ]; then
+    # dpkg and install, return on failure 
+    sudo dpkg -i $debFile || return;
+    sudo apt-get install -f
+  else echo "'$debFile' does not exist"; 
+  fi
 }
 
 # untar to a directory to an (optional) destination
@@ -70,8 +73,8 @@ function untar {
   archive="$1"
   dest="$2"
   # zip files
-  if [ "$archive" == *.zip ]; then
-     if [ -z "$dest" ]; then
+  if [ "$archive" == *.zip ]; then 
+    if [ -z "$dest" ]; then
       unzip $archive
     else
       mkdir -p $dest
