@@ -6,6 +6,13 @@
 ## TODO 
 ##
 
+alias hd='hadoop dfs'
+alias hl='hd -hl'
+alias hmv='hd -mv'
+alias hcp='hd -cp'
+alias hput='hd -put'
+alias hcput='hd -copyFromLocal'
+
 apps_root='/opt'
 
 ## KAFKA
