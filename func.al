@@ -68,7 +68,7 @@ function deb {
   fi
 }
 
-# untar to a directory to an (optional) destination
+# untar to an (optional) destination
 function untar {  
   archive="$1"
   dest="$2"
