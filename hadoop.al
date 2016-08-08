@@ -20,7 +20,35 @@ alias hcput='hd -copyFromLocal'
 ## KAFKA
 export confluent_root="$apps_root/confluent/cur"
 
-alias kafka_topics='curl "http://localhost:8082/topics"'
+khost='10.6.161.105'
+inst='rbond'
+cons='rbond'
+topic='MAIVR2'
+
+alias kafka_topics="curl -X GET http://$khost:8082/topics"
+
+function kcreate {
+  curl -X POST -H "Content-Type: application/vnd.kafka.v1+json" \
+    --data "{\"name\": \"$inst\", \"format\": \"json\", \"auto.offset.reset\": \"smallest\"}" \
+    http://$khost:8082/consumers/$cons
+}
+
+function kconsume {
+  curl -X GET -H "Accept: application/vnd.kafka.json.v1+json" \
+    http://$khost:8082/consumers/$cons/instances/$inst/topics/$topic
+}
+
+function kdelete {
+  curl -X DELETE \
+    http://$khost:8082/consumers/$cons/instances/$inst
+}
+
+#rfunction all{
+#  kcreate()
+#  kconsume()
+#  kdelete()
+#}
+
 
 function ckafka {
   if [ $1 = "start" ]; then

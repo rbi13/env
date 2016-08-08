@@ -5,12 +5,14 @@ alias nrco='nano ~/env/opt.al'
 alias nrcf='nano ~/env/func.al'
 alias nrcg='nano ~/env/git.al'
 alias nrch='nano ~/env/hadoop.al'
+alias nrcs='nano ~/env/hadoop.al'
 alias nrc='nano ~/.bashrc'
 alias grca='gedit ~/env/aliases &'
 alias grco='gedit ~/env/opt.al &'
 alias grcf='gedit ~/env/func.al &'
 alias grcg='gedit ~/env/git.al &'
 alias grch='gedit ~/env/hadoop.al &'
+alias grcs='gedit ~/env/system.al &'
 alias grc='gedit ~/.bashrc &'
 alias src='source ~/.bashrc'
 alias r='clear'
@@ -29,7 +31,7 @@ alias .2='cd ../..'
 alias .3='cd ../../../'
 
 # env installation
-alias sag='sudo apt-get install'
+alias sag='sudo apt-get'
 alias envapply='sh ~/env/apply.sh'
 
 # source all '.al', used as plugin system for env
