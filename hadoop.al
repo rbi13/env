@@ -11,7 +11,8 @@ apps_root='/opt'
 
 # HDFS
 alias hd='hadoop fs'
-alias hl='hd -hl'
+alias hl='hd -ls'
+alias hmkdir='hd -mkdir'
 alias hmv='hd -mv'
 alias hcp='hd -cp'
 alias hput='hd -put'

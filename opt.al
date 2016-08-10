@@ -30,3 +30,7 @@ function mkdiropt {
 function verset {
 	ln -nfs $1 cur
 }
+
+# links
+# pandoc
+# https://github.com/jgm/pandoc/releases/download/1.17.2/pandoc-1.17.2-1-amd64.deb

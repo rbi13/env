@@ -90,3 +90,11 @@ function untar {
     fi
   fi
 }
+
+
+# file and string manipulation
+function to_csv {
+  libreoffice --headless --convert-to csv "$1"
+}
+
+
