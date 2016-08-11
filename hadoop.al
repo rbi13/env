@@ -13,10 +13,12 @@ apps_root='/opt'
 alias hd='hadoop fs'
 alias hl='hd -ls'
 alias hmkdir='hd -mkdir'
+alias hcat='hd -cat'
 alias hmv='hd -mv'
 alias hcp='hd -cp'
 alias hput='hd -put'
 alias hcput='hd -copyFromLocal'
+alias hcget='hd -copyToLocal'
 
 ## KAFKA
 export confluent_root="$apps_root/confluent/cur"
