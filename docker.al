@@ -20,6 +20,9 @@ function ins-docker {
 	wget 'https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz'
 	tar -xvzf docker-latest.tgz
 	sudo mv docker/* /usr/bin/
+	# create docker group
+	sudo groupadd docker
+	sudo usermod -aG docker $USER
 	rmdir docker
 	# add systemd scripts for docker deamon
 	sudo wget https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service -P /etc/systemd/system
