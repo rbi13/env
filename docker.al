@@ -5,12 +5,37 @@
 ##
 
 alias dk='docker'
+alias di='dk images'
+alias dc='dk ps -a'
+alias dl='dk logs'
+alias dstats='dk stats'
+alias dastats='dk stats --all'
+alias dtop='dk top'
+alias dport='dk ports'
+alias ddiff='dk diff'
 alias du='dk pull'
 alias dp='dk push'
-alias dr='dk restart'
+alias dcm='dk commit'
+alias dsearch='dk search'
+alias dr='dk run'
+alias drd='dr -d'
+alias dri='dr -itd'
+alias da='dk attach'
+alias ds='dk start'
+alias dst='dk stop'
+alias dsta='dk stop $(dk ps -a -q)'
+alias drst='dk restart'
 alias dkk='dk kill'
-alias drc='dk rm'
-alias dri='dk rmi'
+alias drmc='dk rm'
+alias drmca='dk rm $(dk ps -a -q)'
+alias drmi='dk rmi'
+alias de='dk exec'
+alias db='dk build'
+
+# run and attach in one command
+function dra {
+	da $(dri $1)
+}
 
 # NOTE: 
 # - deamon does not work (fails on docker.socket). TODO: try creating user group 'docker'.
