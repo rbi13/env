@@ -14,10 +14,6 @@ alias gradle='$GRADLE_HOME/bin/gradle'
 alias gr='gradle'
 alias squirrel='java -jar $opt_root/squirrel/cur/squirrel-sql.jar'
 
-# extras
-# gradle-deamon
-touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
-
 #functions
 # make a public directory for a new app in opt_root 
 function mkdiropt {

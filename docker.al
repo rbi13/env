@@ -48,9 +48,18 @@ function ins-docker {
 	# create docker group
 	sudo groupadd docker
 	sudo usermod -aG docker $USER
-	rmdir docker
+	rmdir docker-latest.tgz
 	# add systemd scripts for docker deamon
-	sudo wget https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service -P /etc/systemd/system
-	sudo wget https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket -P /etc/systemd/system
+	sudo wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service' -P /etc/systemd/system
+	sudo wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket' -P /etc/systemd/system
 	sudo systemctl enable docker
+	# install docker-compose
+	curl -L "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m`" > docker-compose
+	sudo mv docker-compose /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+	# verify
+	docker --version
+	docker-compose --version
 }
+
+
