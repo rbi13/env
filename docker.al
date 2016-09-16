@@ -43,9 +43,6 @@ function dra {
 	da $(dri $1)
 }
 
-# NOTE: 
-# - deamon does not work (fails on docker.socket). TODO: try creating user group 'docker'.
-# - user has to be added to docker group: 'sudo usermod -aG docker <user>'
 function ins-docker {
 	# download and install docker into '/usr/bin'
 	wget 'https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz'
