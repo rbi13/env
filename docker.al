@@ -4,8 +4,14 @@
 ## TODO 
 ##
 
+# docker run 
+#	-d:detach(background) 
+#	-i:interactive(kee STDIN open) 
+#	-t:throw away container  
+#
+
 alias dk='docker'
-alias di='dk images'
+alias di='dk imagesnrc'
 alias dc='dk ps -a'
 alias dl='dk logs'
 alias dstats='dk stats'
