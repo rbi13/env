@@ -11,7 +11,7 @@
 #
 
 alias dk='docker'
-alias di='dk imagesnrc'
+alias di='dk images'
 alias dc='dk ps -a'
 alias dl='dk logs'
 alias dstats='dk stats'
@@ -40,7 +40,7 @@ alias db='dk build'
 
 # run and attach in one command
 function dra {
-	da $(dri $1)
+	da $(dri "$@")
 }
 
 function ins-docker {
