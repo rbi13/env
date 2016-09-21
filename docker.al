@@ -37,6 +37,8 @@ alias drmca='dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
 alias de='dk exec'
 alias db='dk build'
+alias dip='dk inspect'
+alias dcu='docker-compose up'
 
 # run and attach in one command
 function dra {
@@ -66,3 +68,16 @@ function ins-docker {
 }
 
 
+# cp to rc if behind a proxy for higher-level tools like docker compose
+#build_proxy_args="--build-arg http_proxy=http://10.254.12.71:8000 --build-arg #https_proxy=https://10.254.12.71:8000 --build-arg HTTP_PROXY=http://10.254.12.71:8000 --build-arg #HTTPS_PROXY=https://10.254.12.71:8000"
+#run_proxy_args="--env http_proxy=http://10.254.12.71:8000 --env #https_proxy=https://10.254.12.71:8000 --env HTTP_PROXY=http://10.254.12.71:8000 --env #HTTPS_PROXY=https://10.254.12.71:8000"
+
+#function docker {
+#	if [[ "$1" = "build" ]]; then
+#		/usr/bin/docker build $build_proxy_args "${@:2}"
+#	elif [[ "$1" = "run" ]]; then
+#		/usr/bin/docker run $run_proxy_args "${@:2}"
+#	else
+#		/usr/bin/docker "${@:1}"
+#	fi
+#}
