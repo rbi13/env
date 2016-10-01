@@ -47,8 +47,9 @@ function acd {
   found=$(grep "^$name:" $cdafile)		
   # write or replace shortcut depending if it already exists	
   if [ "$found" == "" ]; then
-    echo "$name:$path" >> $cdafile 
-  else sed -i '/^name:/c\$name:$path' $cdafile;
+    echo "$name:$path" >> $cdafile
+	# includes 'colon' for full tag match 
+  else sed -i "/^$name:/c$name:$path" $cdafile;
   fi
 }
 

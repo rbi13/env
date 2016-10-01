@@ -12,4 +12,4 @@ java:/opt/java/cur
 confluent:/opt/confluent/cur
 scala:/opt/scala/cur
 ap:/opt
-cur:/home/ron/ws/spark-template
+cur:/home/ron/ws/awsplates
