@@ -1,5 +1,5 @@
 # git alias
-alias gcl=='git clone'
+alias gcl='git clone'
 alias ga='git add'
 alias gaa='git add .'
 alias gs='git status'
