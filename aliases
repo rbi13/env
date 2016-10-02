@@ -38,8 +38,7 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
 # env installation
-alias sag='sudo apt-get'
-alias envapply='sh ~/env/apply.sh'
+#alias envapply='sh ~/env/apply.sh'
 
 # source all '.al', used as plugin system for env
 function srcCustom {

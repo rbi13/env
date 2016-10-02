@@ -33,13 +33,13 @@ function scd {
   found=${found/"$name:"/""}
   # set to $1 if not found	
   if [ "$found" == "" ]; then found=$1; fi
-  builtin cd $found
+  eval "builtin cd $found"
 }
 
 function acd {
   #params
   #TODO or $2 if specified
-  path=$(pwd)
+  path=$("dirs")
   name=$1
 
   #TODO if [ "$name" == "" ]; then name=lastDirName; fi

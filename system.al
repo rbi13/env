@@ -26,3 +26,5 @@ scat() {
 # ssh-keygen -t rsa
 # cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> .ssh/authorized_keys'
 
+# package managers
+alias sag='sudo apt-get'
