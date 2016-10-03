@@ -69,15 +69,15 @@ function ins-docker {
 
 
 # cp to rc if behind a proxy for higher-level tools like docker compose
-#build_proxy_args="--build-arg http_proxy=http://10.254.12.71:8000 --build-arg #https_proxy=https://10.254.12.71:8000 --build-arg HTTP_PROXY=http://10.254.12.71:8000 --build-arg #HTTPS_PROXY=https://10.254.12.71:8000"
-#run_proxy_args="--env http_proxy=http://10.254.12.71:8000 --env #https_proxy=https://10.254.12.71:8000 --env HTTP_PROXY=http://10.254.12.71:8000 --env #HTTPS_PROXY=https://10.254.12.71:8000"
+#proxy_ip="10.254.12.71:8000"
+#proxy_ip="192.168.174.250:8000"
+#build_proxy_args="--build-arg http_proxy=http://$proxy_ip --build-arg https_proxy=https://$proxy_ip --build-arg HTTP_PROXY=http://$proxy_ip --build-arg HTTPS_PROXY=https://$proxy_ip"
+#run_proxy_args="--env http_proxy=http://$proxy_ip --env https_proxy=https://$proxy_ip --env HTTP_PROXY=http://$proxy_ip --env HTTPS_PROXY=https://$proxy_ip"
 
 #function docker {
-#	if [[ "$1" = "build" ]]; then
-#		/usr/bin/docker build $build_proxy_args "${@:2}"
-#	elif [[ "$1" = "run" ]]; then
-#		/usr/bin/docker run $run_proxy_args "${@:2}"
-#	else
+#        if [[ "$1" = "build" ]]; then
+#                /usr/bin/docker build $build_proxy_args "${@:2}"
+#        else
 #		/usr/bin/docker "${@:1}"
-#	fi
+#        fi
 #}

@@ -5,10 +5,14 @@
 ##
 
 alias ctl='sudo systemctl'
+alias restartctl='ctl daemon-reload'
 alias kernel-version='uname -mrs'
 alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
+
+alias groupuser='sudo usermod user -a -G' # <group> <user>
+function groupshow { grep $1 /etc/group ;}
 
 # clipboard
 alias cbcopy='xclip -selection c'
