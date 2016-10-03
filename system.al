@@ -13,6 +13,7 @@ alias poweroff='sudo shutdown -h now'
 # clipboard
 alias cbcopy='xclip -selection c'
 alias cbpaste='xclip -selection clipboard -o'
+clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
 
 # ssh
 alias skeys='ls -al ~/.ssh'

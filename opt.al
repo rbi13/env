@@ -13,6 +13,7 @@ alias scala="$SCALA_HOME/bin/scala"
 alias gradle='$GRADLE_HOME/bin/gradle'
 alias gr='gradle'
 alias squirrel='java -jar $opt_root/squirrel/cur/squirrel-sql.jar'
+alias sublim='$opt_root/sublime/cur/sublime_text'
 
 #functions
 # make a public directory for a new app in opt_root 

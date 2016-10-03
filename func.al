@@ -84,10 +84,10 @@ function untar {
   # tar files
   else
     if [ -z "$dest" ]; then
-      [[ "$archive" == *bz2 ]] && bzip2 -dk $archive || tar -zxf $archive
+      [[ "$archive" == *bz2 ]] && tar vxjf $archive || tar -zxf $archive
     else 
       mkdir -p $dest
-      [[ "$archive" == *bz2 ]] && bzip2 -dk $archive || tar -zxf $archive -C $dest
+      [[ "$archive" == *bz2 ]] && tar vxjf $archive || tar -zxf $archive -C $dest
       tar -zxf $archive -C $dest
     fi
   fi
