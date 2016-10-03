@@ -33,13 +33,13 @@ function scd {
   found=${found/"$name:"/""}
   # set to $1 if not found	
   if [ "$found" == "" ]; then found=$1; fi
-  builtin cd $found
+  eval "builtin cd $found"
 }
 
 function acd {
   #params
   #TODO or $2 if specified
-  path=$(pwd)
+  path=$("dirs")
   name=$1
 
   #TODO if [ "$name" == "" ]; then name=lastDirName; fi
@@ -47,8 +47,9 @@ function acd {
   found=$(grep "^$name:" $cdafile)		
   # write or replace shortcut depending if it already exists	
   if [ "$found" == "" ]; then
-    echo "$name:$path" >> $cdafile 
-  else sed -i '/^name:/c\$name:$path' $cdafile;
+    echo "$name:$path" >> $cdafile
+	# includes 'colon' for full tag match 
+  else sed -i "/^$name:/c$name:$path" $cdafile;
   fi
 }
 
@@ -83,10 +84,10 @@ function untar {
   # tar files
   else
     if [ -z "$dest" ]; then
-      [[ "$archive" == *bz2 ]] && bzip2 -dk $archive || tar -zxf $archive
+      [[ "$archive" == *bz2 ]] && tar vxjf $archive || tar -zxf $archive
     else 
       mkdir -p $dest
-      [[ "$archive" == *bz2 ]] && bzip2 -dk $archive || tar -zxf $archive -C $dest
+      [[ "$archive" == *bz2 ]] && tar vxjf $archive || tar -zxf $archive -C $dest
       tar -zxf $archive -C $dest
     fi
   fi

@@ -17,6 +17,7 @@ function groupshow { grep $1 /etc/group ;}
 # clipboard
 alias cbcopy='xclip -selection c'
 alias cbpaste='xclip -selection clipboard -o'
+clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
 
 # ssh
 alias skeys='ls -al ~/.ssh'
@@ -30,3 +31,5 @@ scat() {
 # ssh-keygen -t rsa
 # cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> .ssh/authorized_keys'
 
+# package managers
+alias sag='sudo apt-get'

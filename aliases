@@ -10,6 +10,7 @@ alias nrcgr='n ~/env/gradle.al'
 alias nrch='n ~/env/hadoop.al'
 alias nrcs='n ~/env/system.al'
 alias nrcd='n ~/env/docker.al'
+alias nrcaw='n ~/env/aws.al'
 alias nrc='n ~/.bashrc'
 alias grca='g ~/env/aliases &'
 alias grco='g ~/env/opt.al &'
@@ -19,6 +20,7 @@ alias grcgr='g ~/env/gradle.al'
 alias grch='g ~/env/hadoop.al &'
 alias grcs='g ~/env/system.al &'
 alias grcd='g ~/env/docker.al &'
+alias grcaw='g ~/env/aws.al &'
 alias grc='g ~/.bashrc &'
 alias src='source ~/.bashrc'
 alias r='clear'
@@ -37,8 +39,7 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
 # env installation
-alias sag='sudo apt-get'
-alias envapply='sh ~/env/apply.sh'
+#alias envapply='sh ~/env/apply.sh'
 
 # source all '.al', used as plugin system for env
 function srcCustom {
