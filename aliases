@@ -54,7 +54,7 @@ alias lsrc='ll ~/env/tmp'
 srcCustom() {
 	mkdir -p ~/env/tmp
   	for al in $(find ~/env -name '*.al'); do source $al; done
-  	#for al in ~/env/tmp/*; do source $al; done
+  	for al in ~/env/tmp/*; do source $al; done
 }
 # activated on source call
 srcCustom
