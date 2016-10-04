@@ -1,6 +1,6 @@
 # general alias
 alias n='nano'
-alias g='gedit'
+alias g='sublim'
 alias al='alias | grep "^alias"'
 alias nrca='n ~/env/aliases'
 alias nrco='n ~/env/opt.al'
@@ -38,17 +38,28 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
+# add temp-source (non-tracked) files to source with 'src' command
+asrc() { ln -fs "$(pwd)/$1" "$HOME/env/tmp" ;}
+# remove a temp-source file
+rsrc() { rm "~/env/tmp/$1" ;}
+# clear all temp-source files
+clsrc() { for al in ~/env/tmp/*; do rm $al; done ;}
+# list temp source files
+alias lsrc='ll ~/env/tmp'
+
 # env installation
 #alias envapply='sh ~/env/apply.sh'
 
 # source all '.al', used as plugin system for env
-function srcCustom {
-  for al in $(find ~/env -name '*.al'); do source $al; done
+srcCustom() {
+	mkdir -p ~/env/tmp
+  	for al in $(find ~/env -name '*.al'); do source $al; done
+  	#for al in ~/env/tmp/*; do source $al; done
 }
 # activated on source call
 srcCustom
 
-function add_profile {
+add_profile() {
   if [ ! -f ~/.profile ]; then
     echo "if [ ! -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi" >> ~/.profile
   fi	
