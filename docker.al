@@ -24,8 +24,9 @@ alias dp='dk push'
 alias dcm='dk commit'
 alias dsearch='dk search'
 alias dr='dk run'
+alias drc='dr --rm'
 alias drd='dr -d'
-alias dri='dr -itd'
+alias dri='dr -it'
 alias da='dk attach'
 alias ds='dk stats'
 alias dst='dk stop'
@@ -41,9 +42,10 @@ alias dip='dk inspect'
 alias dcu='docker-compose up'
 
 # run and attach in one command
-function dra {
-	da $(dri "$@")
-}
+dra() { da $(dri -d "$@") ;}
+# not working
+#drca() { id=$(dra "$@"); wait $id; drmc id; }
+
 
 function ins-docker {
 	# download and install docker into '/usr/bin'

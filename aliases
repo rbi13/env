@@ -56,11 +56,13 @@ srcCustom() {
   	for al in $(find ~/env -name '*.al'); do source $al; done
   	for al in ~/env/tmp/*; do source $al; done
 }
-# activated on source call
-srcCustom
 
 add_profile() {
   if [ ! -f ~/.profile ]; then
     echo "if [ ! -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi" >> ~/.profile
   fi	
 }
+
+# Exec
+# activated on source call
+srcCustom

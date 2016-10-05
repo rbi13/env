@@ -14,6 +14,10 @@ alias poweroff='sudo shutdown -h now'
 alias groupuser='sudo usermod user -a -G' # <group> <user>
 function groupshow { grep $1 /etc/group ;}
 
+# Define a timestamp function
+timestamp() { date +%s%3N ;}
+timestamp64() { timestamp | base64 ;}
+
 # clipboard
 alias cbcopy='xclip -selection c'
 alias cbpaste='xclip -selection clipboard -o'
