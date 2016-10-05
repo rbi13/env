@@ -53,8 +53,8 @@ alias lsrc='ll ~/env/tmp'
 # source all '.al', used as plugin system for env
 srcCustom() {
 	mkdir -p ~/env/tmp
-  	for al in $(find ~/env -name '*.al'); do source $al; done
-  	for al in ~/env/tmp/*; do source $al; done
+	for al in $(find ~/env -name '*.al'); do source $al; done
+	for al in "$HOME/env/tmp/*"; do source $al; done
 }
 
 add_profile() {
