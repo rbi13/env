@@ -46,6 +46,11 @@ dra() { da $(dri -d "$@") ;}
 # not working
 #drca() { id=$(dra "$@"); wait $id; drmc id; }
 
+# import/export
+diexport(){
+	echo "${$1/\\//.}"
+	#docker save -o "${$1/\//.}" $1
+}
 
 function ins-docker {
 	# download and install docker into '/usr/bin'

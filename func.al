@@ -19,7 +19,7 @@ alias cd='scd'
 alias lcd='cat $cdafile'
 alias ncd='nano $cdafile'
 
-function scd {
+scd(){
   # params
   name=${1%/} # removes trailing slash(for matching) 
 
@@ -36,7 +36,7 @@ function scd {
   eval "builtin cd $found"
 }
 
-function acd {
+acd(){
   #params
   #TODO or $2 if specified
   path=$("dirs")
@@ -56,7 +56,7 @@ function acd {
 ## other functions
 
 # install from deb files
-function deb {
+deb(){
   # abort on any error
   # eval to resolve
   eval debFile=$1
@@ -70,7 +70,7 @@ function deb {
 }
 
 # untar to an (optional) destination
-function untar {  
+untar(){  
   archive="$1"
   dest="$2"
   # zip files
@@ -95,7 +95,7 @@ function untar {
 
 
 # file and string manipulation
-function to_csv {
+to_csv(){
   libreoffice --headless --convert-to csv "$1"
 }
 

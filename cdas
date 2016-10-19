@@ -1,8 +1,11 @@
 apps:/opt
 ap:/opt
 ws:~/ws
-c:~/ws/awsplates/batch
+c:~/ws/awsplates
 e:~/env
 d:~/Downloads
 down:~/Downloads
-tmp:/tmp/files
+au:~/Downloads/KaldiDocker/in_audio
+tm:~/tmp
+t:~/deepQA
+aw:~/ws/awsplates
