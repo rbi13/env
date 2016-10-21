@@ -1,7 +1,7 @@
 apps:/opt
 ap:/opt
 ws:~/ws
-c:~/ws/awsplates
+c:~/ws/dcos_bootstrap
 e:~/env
 d:~/Downloads
 down:~/Downloads

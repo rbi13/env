@@ -52,9 +52,10 @@ diexport(){
 	#docker save -o "${$1/\//.}" $1
 }
 
+docker-version='latest'
 function ins-docker {
 	# download and install docker into '/usr/bin'
-	wget 'https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz'
+	wget "https://get.docker.com/builds/Linux/x86_64/docker-${docker-version}.tgz"
 	tar -xvzf docker-latest.tgz
 	sudo mv docker/* /usr/bin/
 	# create docker group
