@@ -52,8 +52,8 @@ diexport(){
 	#docker save -o "${$1/\//.}" $1
 }
 
-docker-version='latest'
-function ins-docker {
+ins-docker(){
+	docker_version='latest'
 	# download and install docker into '/usr/bin'
 	wget "https://get.docker.com/builds/Linux/x86_64/docker-${docker-version}.tgz"
 	tar -xvzf docker-latest.tgz
