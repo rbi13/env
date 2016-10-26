@@ -31,7 +31,17 @@ alias gclean='git remote prune origin'
 
 
 
+
 # functions
+
+# github
+github_create(){
+	repo_name="$1"
+	curl -u $(mapget github_user) https://api.github.com/user/repos -d "{\"name\":\"$repo_name\"}"
+}
+github_clone(){
+	gcl "git@github.com:$(mapget github_user)/$1.git"
+}
 
 # generate gitignore files using templates
 #function gi {

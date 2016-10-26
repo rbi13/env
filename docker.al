@@ -46,10 +46,16 @@ dra() { da $(dri -d "$@") ;}
 # not working
 #drca() { id=$(dra "$@"); wait $id; drmc id; }
 
+# import/export
+diexport(){
+	echo "${$1/\\//.}"
+	#docker save -o "${$1/\//.}" $1
+}
 
-function ins-docker {
+ins-docker(){
+	version='latest'
 	# download and install docker into '/usr/bin'
-	wget 'https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz'
+	wget "https://get.docker.com/builds/Linux/x86_64/docker-${version}.tgz"
 	tar -xvzf docker-latest.tgz
 	sudo mv docker/* /usr/bin/
 	# create docker group
