@@ -27,7 +27,9 @@ alias gf='git fetch'
 alias gclean='git remote prune origin'
 
 # PS1 prompt (shows branch on git dirs)
-[ -f /etc/bash_completion.d/git-prompt  ] && source /etc/bash_completion.d/git-prompt || echo "no bash_completion"
+[ -f /etc/bash_completion.d/git-prompt  ] && source /etc/bash_completion.d/git-prompt
+
+
 
 # functions
 
