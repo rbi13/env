@@ -77,7 +77,7 @@ ins-docker(){
 
 
 # cp to rc if behind a proxy for higher-level tools like docker compose
-# proxy_ip="10.254.12.71:8000"
+# proxy_ip="<PROXY>:<PORT>"
 # build_proxy_args="--build-arg http_proxy=http://$proxy_ip \ 
 # 	--build-arg https_proxy=https://$proxy_ip \
 # 	--build-arg HTTP_PROXY=http://$proxy_ip \
