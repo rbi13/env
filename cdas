@@ -9,3 +9,7 @@ au:~/Downloads/KaldiDocker/in_audio
 tm:~/tmp
 t:~/deepQA
 aw:~/ws/awsplates
+k:~/ws/KaldiDocker/KaldiCommon
+kd:~/Downloads/docker_scotia
+data:~/Downloads/data/kaldi
+wifi:~/ws/IoT_wifi
