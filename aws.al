@@ -8,7 +8,7 @@ cli_image='cgswong/aws:latest'
 
 alias nawsconf='sudo nano ~/.aws/config'
 alias nawscred='sudo nano ~/.aws/credentials'
-alias aaws="dra -v ~/.aws:/root/.aws $cli_image aws"
+alias aaws="dra -v ~/.aws:/root/.aws $cli_image"
 alias aws='drc \
 	-v ~/.aws:/root/.aws \
 	-v `pwd`:`pwd` -w `pwd` \

@@ -5,8 +5,7 @@ c:~/ws/dcos_bootstrap
 e:~/env
 d:~/Downloads
 down:~/Downloads
-au:~/Downloads/KaldiDocker/in_audio
-tm:~/tmp
-t:~/deepQA
 aw:~/ws/awsplates
-plates:~/ws/gradleplates
+k:~/ws/KaldiDocker/KaldiCommon
+kd:~/Downloads/docker_scotia
+data:~/Downloads/data/kaldi

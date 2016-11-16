@@ -3,6 +3,7 @@
 #
 ## TODO
 ##
+# ddl=grep docker /var/log/messages
 
 # docker run
 #	-d:detach(background)
@@ -40,6 +41,12 @@ alias drmi='dk rmi'
 alias de='dk exec'
 alias db='dk build'
 alias dip='dk inspect'
+alias dv='dk volume ls'
+alias dvd='dv -f dangling=true'
+alias dvc='dk volume create --name'
+alias drmv='dk volume rm'
+alias drmva='drmv $(dv -q)'
+alias drmvd='drmv $(dvd -q)'
 alias dcu='docker-compose up'
 
 # run and attach in one command
@@ -52,6 +59,9 @@ diexport(){
 	echo "${$1/\\//.}"
 	#docker save -o "${$1/\//.}" $1
 }
+
+#TODO: alias for image removal from registry
+#curl -u<user:password> -X DELETE "<Artifactory URL>/<Docker v2 repository name>/<namespace>:<tag>"
 
 ins-docker(){
 	version='latest'

@@ -3,6 +3,9 @@
 #
 ## TODO
 ##
+# list-dns(){ nmcli device show <interfacename> | grep IP4.DNS ;}
+# file-count='ls -l | wc -l'
+# uuid='uuidgen' OR 'cat /proc/sys/kernel/random/uuid'
 
 alias ctl='sudo systemctl'
 alias restartctl='ctl daemon-reload'
@@ -11,6 +14,12 @@ alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
 
+ipaddr(){
+	[[ -z "$1" ]] && iface='eth0' || iface=$1
+	echo $(ip addr show ${iface} | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+}
+
+alias users='cut -d: -f1 /etc/passwd'
 alias groupuser='sudo usermod user -a -G' # <group> <user>
 function groupshow { grep $1 /etc/group ;}
 
@@ -43,3 +52,6 @@ trustme(){
 
 # package managers
 alias sag='sudo apt-get'
+
+# networking
+alias ports='netstat -plnt'
