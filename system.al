@@ -43,9 +43,11 @@ scat() {
 # TODO: add command for public key distribution
 # ssh-keygen -t rsa
 
+# adds ssh pub key to specified host server
 trustme(){
 	host=$1
-	cat ~/.ssh/id_rsa.pub | ssh ${host} 'cat >> .ssh/authorized_keys && \
+	cat ~/.ssh/id_rsa.pub | ssh ${host} 'mkdir .ssh && \
+	cat >> .ssh/authorized_keys && \
 	chmod 700 .ssh && \
 	chmod 640 .ssh/authorized_keys'
 }
