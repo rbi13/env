@@ -3,7 +3,7 @@
 default_config='.envconf'
 
 alias n='nano'
-alias g='sublim'
+alias g='gedit'
 alias al='alias | grep "^alias"'
 alias nrca='n ~/env/aliases'
 alias nrco='n ~/env/opt.al'

@@ -1,13 +1,13 @@
 ## Function list
 # Docker
 #
-## TODO 
+## TODO
 ##
 
-# docker run 
-#	-d:detach(background) 
-#	-i:interactive(kee STDIN open) 
-#	-t:throw away container  
+# docker run
+#	-d:detach(background)
+#	-i:interactive(kee STDIN open)
+#	-t:throw away container
 #
 
 alias dk='docker'
@@ -25,6 +25,7 @@ alias dcm='dk commit'
 alias dsearch='dk search'
 alias dr='dk run'
 alias drc='dr --rm'
+alias drn='drc -v `pwd`:`pwd` -w `pwd`'
 alias drd='dr -d'
 alias dri='dr -it'
 alias da='dk attach'
@@ -78,14 +79,14 @@ ins-docker(){
 
 # cp to rc if behind a proxy for higher-level tools like docker compose
 # proxy_ip="<PROXY>:<PORT>"
-# build_proxy_args="--build-arg http_proxy=http://$proxy_ip \ 
+# build_proxy_args="--build-arg http_proxy=http://$proxy_ip \
 # 	--build-arg https_proxy=https://$proxy_ip \
 # 	--build-arg HTTP_PROXY=http://$proxy_ip \
 # 	--build-arg HTTPS_PROXY=https://$proxy_ip"
 # function docker {
 # 	if [[ "$1" = "build" ]]; then
-# 		/usr/bin/docker build $build_proxy_args "${@:2}"
+# 		command docker build $build_proxy_args "${@:2}"
 # 	else
-# 		/usr/bin/docker "${@:1}"
+# 		command docker "${@:1}"
 # 	fi
 # }
