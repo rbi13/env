@@ -3,7 +3,7 @@
 default_config='.envconf'
 
 alias n='nano'
-alias g='gedit'
+alias g='sublim'
 alias al='alias | grep "^alias"'
 alias nrca='n ~/env/aliases'
 alias nrco='n ~/env/opt.al'
@@ -57,7 +57,7 @@ alias lsrc='ll ~/env/tmp'
 srcCustom() {
 	mkdir -p ~/env/tmp
 	for al in $(find ~/env -name '*.al'); do source $al; done
-	for al in "$HOME/env/tmp/*"; do source $al; done
+	for al in $(find ~/env/tmp/ -type f -name '*' ); do source $al ; done
 }
 
 add_profile() {
