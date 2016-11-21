@@ -1,7 +1,7 @@
 apps:/opt
 ap:/opt
 ws:~/ws
-c:~/ws/dcos_bootstrap
+c:~/ws/dockers/kafka
 e:~/env
 d:~/Downloads
 down:~/Downloads
@@ -9,4 +9,4 @@ aw:~/ws/awsplates
 k:~/ws/KaldiDocker/KaldiCommon
 kd:~/Downloads/docker_scotia
 data:~/Downloads/data/kaldi
-dk:~/ws/TheDockers
+dk:~/ws/dockers
