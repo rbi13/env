@@ -47,12 +47,11 @@ alias dvc='dk volume create --name'
 alias drmv='dk volume rm'
 alias drmva='drmv $(dv -q)'
 alias drmvd='drmv $(dvd -q)'
-alias dcu='docker-compose up'
+dcu(){ docker-compose ${@:1} up ;}
 
 # run and attach in one command
 dra() { da $(dri -d "$@") ;}
-# not working
-#drca() { id=$(dra "$@"); wait $id; drmc id; }
+drab() { dra $1 /bin/sh ;}
 
 # import/export
 diexport(){

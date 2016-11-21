@@ -26,11 +26,12 @@ alias grv='git remote -v'
 alias gf='git fetch'
 alias gclean='git remote prune origin'
 
+gsa(){ git subtree add --prefix $2 $1 master --squash; }
+gsu(){ git subtree pull --prefix $2 $1 master --squash; }
+# TODO: add subtree url tracking
+
 # PS1 prompt (shows branch on git dirs)
 [ -f /etc/bash_completion.d/git-prompt  ] && source /etc/bash_completion.d/git-prompt
-
-
-
 
 # functions
 
@@ -50,12 +51,12 @@ github_clone(){
 
 # accept 'types' as arguments 'gi java gradle ...'
 
-# look these up in the current gitignore file 
+# look these up in the current gitignore file
 ## (use awk to list types used in current file 'gi java gradle')
 
 # grab the content from the gitignore/ project for types missing from the previous step
 
 # insert content into gitignore file and updated 'gi ...' line (use sed)
 
-# future: potentially infer types;  have a refresh method  
+# future: potentially infer types;  have a refresh method
 #}
