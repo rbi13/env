@@ -57,3 +57,13 @@ alias sag='sudo apt-get'
 
 # networking
 alias ports='netstat -plnt'
+
+wallpaper(){
+	if [ -z $1 ]; then
+		gsettings get org.gnome.desktop.background picture-uri
+	else
+		[ "$1" == "-r" ] && image="$HOME/Pictures/$(ls ~/Pictures | shuf -n 1)" || image=$1
+		image=$(realpath $image)
+		gsettings set org.gnome.desktop.background picture-uri "file://${image}"
+	fi
+}
