@@ -20,3 +20,10 @@
 	- spectacle (window positioning)
 	- hyperswitch (alt-tab)
 # TODO: export keyboard setting here
+
+# ovverides  (.bashrc)
+unalias java
+unalias sublime
+
+alias op='open -a'
+g(){ touch "$1"; op Atom $1 ;}
