@@ -21,7 +21,7 @@ alias dastats='dk stats --all'
 alias dtop='dk top'
 alias dport='dk ports'
 alias ddiff='dk diff'
-alias du='dk pull'
+#alias du='dk pull'
 alias dp='dk push'
 alias dcm='dk commit'
 alias dsearch='dk search'
@@ -39,6 +39,7 @@ alias dkk='dk kill'
 alias drmc='dk rm'
 alias drmca='dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
+#todo  docker rmi -f $(docker images -q -a -f dangling=true)
 dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}
 alias de='dk exec'
 db(){

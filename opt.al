@@ -5,6 +5,8 @@ export SCALA_HOME="$opt_root/scala/cur"
 export GRADLE_HOME="$opt_root/gradle/cur"
 
 # launchers
+alias atom='$opt_root/atom/cur/atom'
+alias sublime='$opt_root/sublime/cur/sublime_text'
 alias teli='$opt_root/teli/cur/bin/idea.sh &'
 alias charm='$opt_root/pycharm/cur/bin/pycharm.sh &'
 alias eclipse='$opt_root/eclipse/cur/eclipse &'

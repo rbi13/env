@@ -13,6 +13,7 @@ alias kernel-version='uname -mrs'
 alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
+alias disk='du -hd'
 
 ipaddr(){
 	[[ -z "$1" ]] && iface='eth0' || iface=$1
@@ -57,3 +58,13 @@ alias sag='sudo apt-get'
 
 # networking
 alias ports='netstat -plnt'
+
+wallpaper(){
+	if [ -z $1 ]; then
+		gsettings get org.gnome.desktop.background picture-uri
+	else
+		[ "$1" == "-r" ] && image="$HOME/Pictures/$(ls ~/Pictures | shuf -n 1)" || image=$1
+		image=$(realpath $image)
+		gsettings set org.gnome.desktop.background picture-uri "file://${image}"
+	fi
+}
