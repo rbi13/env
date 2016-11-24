@@ -41,7 +41,13 @@ alias drmca='dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
 dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}
 alias de='dk exec'
-alias db='dk build'
+db(){
+	if [ -z $2 ]; then
+		dk build -t $1 .
+	else
+		dk build -t ${@:1}
+	fi
+}
 alias dip='dk inspect'
 alias dv='dk volume ls'
 alias dvd='dv -f dangling=true'
