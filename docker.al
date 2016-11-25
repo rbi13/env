@@ -29,7 +29,6 @@ alias dr='dk run'
 alias drc='dr --rm'
 alias drn='drc -v `pwd`:`pwd` -w `pwd`'
 alias drd='dr -d'
-alias dri='dr -it'
 alias da='dk attach'
 alias ds='dk stats'
 alias dst='dk stop'
@@ -58,7 +57,8 @@ alias drmva='drmv $(dv -q)'
 alias drmvd='drmv $(dvd -q)'
 dcu(){ docker-compose ${@:1} up ;}
 
-# run and attach in one command
+dri(){ dr -it --rm ${@:1} /bin/sh ;}
+# run and attach
 dra() { da $(dri -d "$@") ;}
 drab() { dra $1 /bin/sh ;}
 

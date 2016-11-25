@@ -41,6 +41,7 @@ github_create(){
 	curl -u $(mapget github_user) https://api.github.com/user/repos -d "{\"name\":\"$repo_name\"}"
 }
 github_clone(){
+	echo "git@github.com:$(mapget github_user)/$1.git"
 	gcl "git@github.com:$(mapget github_user)/$1.git"
 }
 
