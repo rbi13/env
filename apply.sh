@@ -7,5 +7,5 @@
 # add aliases to user's rc
 echo "source ~/env/aliases" >> ~/.bashrc
 
-# setup host
-sudo cp ~/env/hosts /etc/hosts
+# setup host (not in use yet... need to setup profiles)
+#sudo cp ~/env/hosts /etc/hosts
