@@ -13,6 +13,7 @@ alias kernel-version='uname -mrs'
 alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
+alias disk='du -hd'
 
 ipaddr(){
 	[[ -z "$1" ]] && iface='eth0' || iface=$1

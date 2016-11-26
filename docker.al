@@ -21,7 +21,7 @@ alias dastats='dk stats --all'
 alias dtop='dk top'
 alias dport='dk ports'
 alias ddiff='dk diff'
-alias du='dk pull'
+#alias du='dk pull'
 alias dp='dk push'
 alias dcm='dk commit'
 alias dsearch='dk search'
@@ -29,7 +29,6 @@ alias dr='dk run'
 alias drc='dr --rm'
 alias drn='drc -v `pwd`:`pwd` -w `pwd`'
 alias drd='dr -d'
-alias dri='dr -it'
 alias da='dk attach'
 alias ds='dk stats'
 alias dst='dk stop'
@@ -39,9 +38,16 @@ alias dkk='dk kill'
 alias drmc='dk rm'
 alias drmca='dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
+#todo  docker rmi -f $(docker images -q -a -f dangling=true)
 dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}
 alias de='dk exec'
-alias db='dk build'
+db(){
+	if [ -z $2 ]; then
+		dk build -t $1 .
+	else
+		dk build -t ${@:1}
+	fi
+}
 alias dip='dk inspect'
 alias dv='dk volume ls'
 alias dvd='dv -f dangling=true'
@@ -51,7 +57,8 @@ alias drmva='drmv $(dv -q)'
 alias drmvd='drmv $(dvd -q)'
 dcu(){ docker-compose ${@:1} up ;}
 
-# run and attach in one command
+dri(){ dr -it --rm ${@:1} /bin/sh ;}
+# run and attach
 dra() { da $(dri -d "$@") ;}
 drab() { dra $1 /bin/sh ;}
 
