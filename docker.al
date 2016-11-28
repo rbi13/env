@@ -6,7 +6,7 @@
 # ddl=grep docker /var/log/messages
 
 alias dk='docker'
-
+alias dr='dk run'
 # run single command
 alias drc='dr --rm'
 alias drn='drc -v `pwd`:`pwd` -w `pwd`'
@@ -14,13 +14,13 @@ alias drn='drc -v `pwd`:`pwd` -w `pwd`'
 # run as shell
 alias dri='dr -it --rm'
 drib(){ dri ${@:1} /bin/sh ;}
+dribn(){ dri --net host ${@:1} /bin/sh ;}
 
 # run background and attach
 dra() { da $(dri -d "$@") ;}
 drab() { dra ${@:1} /bin/sh ;}
 
 # exec
-alias dr='dk run'
 alias drd='dr -d'
 alias da='dk attach'
 alias dst='dk stop'
