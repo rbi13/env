@@ -13,8 +13,8 @@ alias drn='drc -v `pwd`:`pwd` -w `pwd`'
 
 # run as shell
 alias dri='dr -it --rm'
-drib(){ dri ${@:1} /bin/sh ;}
-dribn(){ dri --net host ${@:1} /bin/sh ;}
+drb(){ dri ${@:1} /bin/sh ;}
+drbn(){ dri --net host ${@:1} /bin/sh ;}
 
 # run background and attach
 dra() { da $(dri -d "$@") ;}
@@ -28,7 +28,10 @@ alias dsta='dk stop $(dk ps -a -q)'
 alias drst='dk restart'
 alias dkk='dk kill'
 alias de='dk exec'
+alias dcd='docker-compose down'
 dcu(){ docker-compose ${@:1} up ;}
+dcud(){ docker-compose ${@:1} up -d ;}
+dcs(){ docker-compose scale ${@:1} ;}
 
 # building
 alias dt='dk tag'
@@ -43,7 +46,7 @@ db(){
 	fi
 }
 
-# cleanup 
+# cleanup
 alias drmc='dk rm'
 alias drmca='dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
@@ -68,6 +71,11 @@ alias dstats='dk stats --all'
 alias dtop='dk top'
 alias dport='dk ports'
 alias ddiff='dk diff'
+
+# networking
+alias dn='dk network ls'
+alias drmn='dk network rm'
+alias dni='dk network inspect'
 
 # import/export
 diexport(){
