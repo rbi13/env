@@ -47,7 +47,7 @@ scat() {
 # adds ssh pub key to specified host server
 trustme(){
 	host=$1
-	cat ~/.ssh/id_rsa.pub | ssh ${host} 'mkdir .ssh && \
+	cat ~/.ssh/id_rsa.pub | ssh ${host} 'mkdir -p .ssh && \
 	cat >> .ssh/authorized_keys && \
 	chmod 700 .ssh && \
 	chmod 640 .ssh/authorized_keys'
@@ -59,6 +59,14 @@ alias sag='sudo apt-get'
 # networking
 alias ports='netstat -plnt'
 
+# TODO: make network .al
+#TODO: create functions for different net-iface managers
+## dhcpcd
+#interface eth0
+#  static ip_address=192.168.0.180/24
+#  static routers=192.168.0.1
+#  static domain_name_servers=192.168.0.1
+
 wallpaper(){
 	if [ -z $1 ]; then
 		gsettings get org.gnome.desktop.background picture-uri
@@ -68,3 +76,4 @@ wallpaper(){
 		gsettings set org.gnome.desktop.background picture-uri "file://${image}"
 	fi
 }
+

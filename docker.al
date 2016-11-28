@@ -5,42 +5,36 @@
 ##
 # ddl=grep docker /var/log/messages
 
-# docker run
-#	-d:detach(background)
-#	-i:interactive(kee STDIN open)
-#	-t:throw away container
-#
-
 alias dk='docker'
-alias di='dk images'
-alias dc='dk ps -a'
-alias dl='dk logs'
-alias dt='dk tag'
-alias dstats='dk stats'
-alias dastats='dk stats --all'
-alias dtop='dk top'
-alias dport='dk ports'
-alias ddiff='dk diff'
-#alias du='dk pull'
-alias dp='dk push'
-alias dcm='dk commit'
-alias dsearch='dk search'
-alias dr='dk run'
+
+# run single command
 alias drc='dr --rm'
 alias drn='drc -v `pwd`:`pwd` -w `pwd`'
+
+# run as shell
+alias dri='dr -it --rm'
+drib(){ dri ${@:1} /bin/sh ;}
+
+# run background and attach
+dra() { da $(dri -d "$@") ;}
+drab() { dra ${@:1} /bin/sh ;}
+
+# exec
+alias dr='dk run'
 alias drd='dr -d'
 alias da='dk attach'
-alias ds='dk stats'
 alias dst='dk stop'
 alias dsta='dk stop $(dk ps -a -q)'
 alias drst='dk restart'
 alias dkk='dk kill'
-alias drmc='dk rm'
-alias drmca='dk rm $(dk ps -a -q)'
-alias drmi='dk rmi'
-#todo  docker rmi -f $(docker images -q -a -f dangling=true)
-dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}
 alias de='dk exec'
+dcu(){ docker-compose ${@:1} up ;}
+
+# building
+alias dt='dk tag'
+alias dhub='dk search'
+alias dp='dk push'
+alias dcm='dk commit'
 db(){
 	if [ -z $2 ]; then
 		dk build -t $1 .
@@ -48,19 +42,32 @@ db(){
 		dk build -t ${@:1}
 	fi
 }
-alias dip='dk inspect'
+
+# cleanup 
+alias drmc='dk rm'
+alias drmca='dk rm $(dk ps -a -q)'
+alias drmi='dk rmi'
+#todo  docker rmi -f $(docker images -q -a -f dangling=true)
+dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}
+
+# volumes
 alias dv='dk volume ls'
 alias dvd='dv -f dangling=true'
 alias dvc='dk volume create --name'
 alias drmv='dk volume rm'
 alias drmva='drmv $(dv -q)'
 alias drmvd='drmv $(dvd -q)'
-dcu(){ docker-compose ${@:1} up ;}
 
-dri(){ dr -it --rm ${@:1} /bin/sh ;}
-# run and attach
-dra() { da $(dri -d "$@") ;}
-drab() { dra $1 /bin/sh ;}
+# monitoring
+alias di='dk images'
+alias dc='dk ps -a'
+alias dl='dk logs'
+alias dip='dk inspect'
+alias ds='dk stats'
+alias dstats='dk stats --all'
+alias dtop='dk top'
+alias dport='dk ports'
+alias ddiff='dk diff'
 
 # import/export
 diexport(){

@@ -14,6 +14,8 @@ alias nrch='n ~/env/hadoop.al'
 alias nrcs='n ~/env/system.al'
 alias nrcd='n ~/env/docker.al'
 alias nrcaw='n ~/env/aws.al'
+alias nrcp='n ~/env/pi.al'
+alias nrck='n ~/env/k8s.al'
 alias nrc='n ~/.bashrc'
 alias grca='g ~/env/aliases &'
 alias grco='g ~/env/opt.al &'
@@ -24,6 +26,8 @@ alias grch='g ~/env/hadoop.al &'
 alias grcs='g ~/env/system.al &'
 alias grcd='g ~/env/docker.al &'
 alias grcaw='g ~/env/aws.al &'
+alias grcp='g ~/env/pi.al'
+alias grck='g ~/env/k8s.al'
 alias grc='g ~/.bashrc &'
 alias src='source ~/.bashrc'
 alias r='clear'
@@ -89,6 +93,12 @@ mapset(){
     echo "$key:$value" >> $file
   else sed -i "/^$key:/c$key:$value" $file;
   fi
+}
+
+env-ins(){ 
+  line='curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh'
+  echo $line | cbcopy
+  echo $line
 }
 
 # Exec
