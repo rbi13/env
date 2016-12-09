@@ -9,12 +9,14 @@ alias dk='docker'
 alias dr='dk run'
 # run single command
 alias drc='dr --rm'
-alias drn='drc -v `pwd`:`pwd` -w `pwd`'
+alias drp='drc -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
 
 # run as shell
-alias dri='dr -it --rm'
+alias dri='drc -it'
+alias drip='dri -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
 drb(){ dri ${@:1} /bin/sh ;}
-drbn(){ dri --net host ${@:1} /bin/sh ;}
+drbp(){ drip ${@:1} /bin/sh ;}
+drbn(){ dri --net ${@:1} /bin/sh ;}
 
 # run background and attach
 dra() { da $(dri -d "$@") ;}

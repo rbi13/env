@@ -10,3 +10,7 @@ k:~/ws/KaldiDocker/KaldiCommon
 kd:~/Downloads/docker_scotia
 data:~/Downloads/data/kaldi
 dk:~/ws/dockers
+dc:~/ws/dsdcos-pipeline
+cl:~/ws/cloudtransfer
+dp:~/ws/deepQA
+ct:~/ws/cloudtransfer
