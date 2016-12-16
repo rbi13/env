@@ -103,7 +103,8 @@ diexport(){
 #TODO: alias for image removal from registry
 #curl -u<user:password> -X DELETE "<Artifactory URL>/<Docker v2 repository name>/<namespace>:<tag>"
 
-ins-docker(){
+# TODO: add macos install
+i-docker(){
 	version='latest'
 	# download and install docker into '/usr/bin'
 	wget "https://get.docker.com/builds/Linux/x86_64/docker-${version}.tgz"

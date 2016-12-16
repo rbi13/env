@@ -62,6 +62,7 @@ skeyscan(){
 # system-detection
 ismac(){ [ "$(uname)" == "Darwin" ] ;}
 #islinux(){ [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ;}
+getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
 
 # overrides 'open' to make it cross platform
 open(){ ismac && command open ${@:1} || xdg-open ${@:1} ;}
