@@ -10,12 +10,13 @@ Use install script:
 curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh
 ```
 
-which will perform the following:
+which will checkout this repo into the user's home folder and perform the following:
 
-##aliases
 ```sh
 echo "source ~/env/aliases" >> ~/.bashrc
 ```
+
+NOTE: if the aliases aren't available on shell re-launch, check to see if your .bashrc is being sourced by your .profile. 
 
 ## Current .al files list
 ### opt.al
