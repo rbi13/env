@@ -1,3 +1,4 @@
+#!/bin/sh
 ## Function list
 # System calls and information
 #
@@ -53,6 +54,18 @@ trustme(){
 	chmod 640 .ssh/authorized_keys'
 }
 
+skeyscan(){
+	host=$1
+	ssh-keyscan -H ${host} >> ~/.ssh/known_hosts
+}
+
+# system-detection
+ismac(){ [ "$(uname)" == "Darwin" ] ;}
+#islinux(){ [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ;}
+
+# overrides 'open' to make it cross platform
+open(){ ismac && command open ${@:1} || xdg-open ${@:1} ;}
+
 # package managers
 alias sag='sudo apt-get'
 
@@ -76,4 +89,3 @@ wallpaper(){
 		gsettings set org.gnome.desktop.background picture-uri "file://${image}"
 	fi
 }
-

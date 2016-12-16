@@ -1,3 +1,4 @@
+#!/bin/sh
 ## Function list
 # Docker
 #
@@ -10,13 +11,14 @@ alias dr='dk run'
 # run single command
 alias drc='dr --rm'
 alias drp='drc -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
+alias drph='drp -v $HOME:"/root/"'
 
 # run as shell
 alias dri='drc -it'
 alias drip='dri -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
-drb(){ dri ${@:1} /bin/sh ;}
-drbp(){ drip ${@:1} /bin/sh ;}
-drbn(){ dri --net ${@:1} /bin/sh ;}
+drb(){ dri ${@:1} /bin/bash ;}
+drbp(){ drip ${@:1} /bin/bash ;}
+drbn(){ dri --net ${@:1} /bin/bash ;}
 
 # run background and attach
 dra() { da $(dri -d "$@") ;}
@@ -78,6 +80,19 @@ alias ddiff='dk diff'
 alias dn='dk network ls'
 alias drmn='dk network rm'
 alias dni='dk network inspect'
+
+# registry
+alias dsearch='dk search'
+# TODO
+#dtsearch(){ curl "https://hub.docker.com/v2/$1/tags/list" }
+# docker hub
+hubsearch(){
+  open "https://hub.docker.com/search/?q=$1&isAutomated=0&isOfficial=0&page=1&pullCount=0&starCount=0"
+}
+hubtags(){
+  [[ "$1" == *"/"* ]] && repo=$1 || repo="library/$1"
+  open "https://hub.docker.com/r/${repo}/tags/"
+}
 
 # import/export
 diexport(){
