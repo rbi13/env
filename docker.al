@@ -81,6 +81,20 @@ alias dn='dk network ls'
 alias drmn='dk network rm'
 alias dni='dk network inspect'
 
+# machine
+alias dm='docker-machine'
+alias dmc='dm create'
+dmcg(){
+	host=$1
+	[ -z "$2" ] && user="root" || user=$2
+	[ -z "$3" ] && key="~/.ssh/id_rsa" || key=$3
+	dmc --driver generic \
+	--generic-ssh-user ${user} \
+	--generic-ip-address ${host} \
+	--generic-ssh-key ${key} \
+	${@:3}
+}
+
 # registry
 alias dsearch='dk search'
 # TODO
@@ -113,10 +127,11 @@ i-docker(){
 	# create docker group
 	sudo groupadd docker
 	sudo usermod -aG docker $USER
-	rmdir docker-latest.tgz
+	rm docker-latest.tgz
 	# add systemd scripts for docker deamon
-	sudo wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service' -P /etc/systemd/system
-	sudo wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket' -P /etc/systemd/system
+	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service'
+	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket'
+	sudo mv docker.service docker.socket /etc/systemd/system/
 	sudo systemctl enable docker
 	# install docker-compose
 	curl -L "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m`" > docker-compose

@@ -7,6 +7,11 @@
 # list-dns(){ nmcli device show <interfacename> | grep IP4.DNS ;}
 # file-count='ls -l | wc -l'
 # uuid='uuidgen' OR 'cat /proc/sys/kernel/random/uuid'
+#
+# global proxy config (curl, wget, etc.)
+#  - curlrc: proxy=<proxy_host>:<proxy_port>
+#	 - wgetrc: use_proxy=yes \n http_proxy=127.0.0.1:8080
+#  - yum: proxy=http://mycache.mydomain.com:3128
 
 alias ctl='sudo systemctl'
 alias restartctl='ctl daemon-reload'

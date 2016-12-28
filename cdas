@@ -6,8 +6,6 @@ e:~/env
 d:~/Downloads
 down:~/Downloads
 aw:~/ws/awsplates
-k:~/ws/KaldiDocker/KaldiCommon
-kd:~/Downloads/docker_scotia
 data:~/Downloads/data/kaldi
 dk:~/ws/dockers
 dc:~/ws/dsdcos-pipeline
@@ -16,3 +14,4 @@ dp:~/ws/deepQA
 ct:~/ws/cloudtransfer
 go:~/ws/gotry
 gp:~/ws/gradleplates
+k:~/ws/kubernetes-bootstrap

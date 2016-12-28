@@ -7,7 +7,7 @@
 kctl_img='rbi13/kubectl'
 binpath='/usr/local/bin/'
 
-# TODO: test NOTE: not working for minikube (use i-kubectl) 
+# TODO: test NOTE: not working for minikube (use i-kubectl)
 xkubectl(){
 	drc --net=host \
 		-v ~/.minikube:/root/.minikube \
@@ -19,6 +19,9 @@ alias kctl='kubectl'
 # default overrides:
 #  - driver injection (macos)
 #  - connect dk host client to minikube dk daemon
+# TODO: proxy
+# minikube start --docker-env HTTP_PROXY=http://$YOURPROXY:PORT \
+#                 --docker-env HTTPS_PROXY=https://$YOURPROXY:PORT
 minikube(){
 	ex=$(which minikube)
 	# driver injection
@@ -30,7 +33,7 @@ minikube(){
 	if [[ "$1" == "start" ]]; then
 		eval $(minikube docker-env)
 		echo "shell docker configured to use minikube daemon"
-		echo "\t(restart your terminal to undo this)"
+		echo "  (restart your terminal to undo this)"
 	fi
 }
 
