@@ -1,11 +1,18 @@
 #!/bin/sh
 ## Function list
-# System calls and information
 #
 ## TODO
 ##
 
+GOPATH="${HOME}/ws/go"
 go_img='golang'
 
-go(){ drip ${go_img} go ${@:1} ;}
+# mount GOPATH and set workdir (current)
+go_b(){
+  dri \
+    -v ${GOPATH}:/go \
+    -w "/go$(pwd | awk -F 'go' '{print $2}')" \
+    ${go_img} ${@:1}
+}
+go(){ go_b go ${@:1} ;}
 gor(){ go run ${@:1} ;}
