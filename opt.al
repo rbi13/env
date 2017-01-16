@@ -1,7 +1,7 @@
 # environment variables
 export opt_root='/opt'
 export SCALA_HOME="$opt_root/scala/cur"
-#export JAVA_HOME="$opt_root/java/cur"
+export JAVA_HOME="$opt_root/java/cur"
 export GRADLE_HOME="$opt_root/gradle/cur"
 
 # launchers
@@ -14,6 +14,9 @@ alias java='$JAVA_HOME/bin/java'
 alias scala="$SCALA_HOME/bin/scala"
 alias gradle='$GRADLE_HOME/bin/gradle'
 #alias gradle='drn frekele/gradle pwd'
+alias node='$opt_root/node/cur/bin/node'
+alias npm='$opt_root/node/cur/bin/npm'
+alias mvn='$opt_root/mvn/cur/bin/mvn'
 alias gr='gradle'
 alias squirrel='java -jar $opt_root/squirrel/cur/squirrel-sql.jar'
 

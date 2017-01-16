@@ -7,6 +7,7 @@
 # list-dns(){ nmcli device show <interfacename> | grep IP4.DNS ;}
 # file-count='ls -l | wc -l'
 # uuid='uuidgen' OR 'cat /proc/sys/kernel/random/uuid'
+# passwords-complexity  /etc/pam.d/common-password
 #
 # global proxy config (curl, wget, etc.)
 #  - curlrc: proxy=<proxy_host>:<proxy_port>

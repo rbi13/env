@@ -1,12 +1,15 @@
 #!/bin/bash
 #
-# rpi stuff 
+# rpi stuff
 #
-#
+# df -h
+# umount
+# enable ssh
+# touch /media/$USER/boot/ssh
 
-# write to sd card: img disk 
+# write to sd card: img disk
 img-write() { sudo dd bs=4M status=progress if="$1" of="$2"; sudo sync ;}
-# clone image from card: img disk 
+# clone image from card: img disk
 img-clone() { sudo dd bs=4M status=progress if="$2" of="$1"; sudo sync ;}
 
 # pi first-boot
