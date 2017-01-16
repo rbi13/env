@@ -16,6 +16,7 @@ alias nrcd='n ~/env/docker.al'
 alias nrcaw='n ~/env/aws.al'
 alias nrcp='n ~/env/pi.al'
 alias nrck='n ~/env/k8s.al'
+alias nrcl='n ~/env/lang.al'
 alias nrc='n ~/.bashrc'
 alias grca='g ~/env/aliases &'
 alias grco='g ~/env/opt.al &'
@@ -28,6 +29,7 @@ alias grcd='g ~/env/docker.al &'
 alias grcaw='g ~/env/aws.al &'
 alias grcp='g ~/env/pi.al'
 alias grck='g ~/env/k8s.al'
+alias grcl='g ~/env/lang.al'
 alias grc='g ~/.bashrc &'
 alias src='source ~/.bashrc'
 alias r='clear'
@@ -67,7 +69,7 @@ srcCustom() {
 add_profile() {
   if [ ! -f ~/.profile ]; then
     echo "if [ ! -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi" >> ~/.profile
-  fi	
+  fi
 }
 
 # generic map storage
@@ -75,7 +77,7 @@ mapget(){
   key="$1"
   [ -z "$2" ] && file=$default_config || file="$2"
   file="$HOME/$file"
-  # find in map file 
+  # find in map file
   value=$(grep "^$key:" $file)
   # parse and return value
   echo ${value/"$key:"/""}
@@ -88,14 +90,14 @@ mapset(){
   [ ! -f "$file" ] && touch "$file"
   # lookup existing value
   oldVal=$(grep "^$key:" $file)
-  # write or replace key:value pair depending if it already exists	
+  # write or replace key:value pair depending if it already exists
   if [ "$oldVal" == "" ]; then
     echo "$key:$value" >> $file
   else sed -i "/^$key:/c$key:$value" $file;
   fi
 }
 
-env-ins(){ 
+env-ins(){
   line='curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh'
   echo $line | cbcopy
   echo $line

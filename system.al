@@ -41,6 +41,7 @@ clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
 
 # ssh
 alias skeys='ls -al ~/.ssh'
+# generate ssh keys e.g. sgen <account@email.com>
 alias sgen='ssh-keygen -t rsa -b 4096 -C'
 scat() {
 	[[ -z "$1" ]] && key=~/.ssh/id_rsa.pub || key=~/.ssh/$1.pub

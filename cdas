@@ -1,7 +1,6 @@
 apps:/opt
 ap:/opt
 ws:~/ws
-c:~/ws/dockers/kafka
 e:~/env
 d:~/Downloads
 down:~/Downloads
@@ -15,3 +14,4 @@ ct:~/ws/cloudtransfer
 go:~/ws/gotry
 gp:~/ws/gradleplates
 k:~/ws/kubernetes-bootstrap
+c:~/ws/pips

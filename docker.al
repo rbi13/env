@@ -16,9 +16,13 @@ alias drph='drp -v $HOME:"/root/"'
 # run as shell
 alias dri='drc -it'
 alias drip='dri -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
+dre(){ drc -it --entrypoint '/bin/sh' ${@:1} ;}
 drb(){ dri ${@:1} /bin/bash ;}
 drbp(){ drip ${@:1} /bin/bash ;}
 drbn(){ dri --net ${@:1} /bin/bash ;}
+drs(){ dri ${@:1} /bin/sh ;}
+drsp(){ drip ${@:1} /bin/sh ;}
+drsn(){ dri --net ${@:1} /bin/sh ;}
 
 # run background and attach
 dra() { da $(dri -d "$@") ;}
@@ -133,6 +137,7 @@ i-docker(){
 	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket'
 	sudo mv docker.service docker.socket /etc/systemd/system/
 	sudo systemctl enable docker
+	sudo systemctl start docker
 	# install docker-compose
 	curl -L "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m`" > docker-compose
 	sudo mv docker-compose /usr/local/bin/docker-compose
