@@ -5,6 +5,8 @@
 # - untar: single command to handle decompressing of zips and tars
 #
 ## TODO
+# - FIXME: 'acd overwrite' not posix
+# - implement acdp (public) to differentiate between ~/ and ~/env shortcuts
 # - implement auto-complete
 # - implement inference to automatically suggests shortcuts for frequently accessed dirs
 # - implement acd no arg which infers current dir name as shortcut name

@@ -16,3 +16,4 @@ go_b(){
 }
 go(){ go_b go ${@:1} ;}
 gor(){ go run ${@:1} ;}
+godep(){ go_b godep ${@:1} ;}

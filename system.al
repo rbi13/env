@@ -8,6 +8,9 @@
 # file-count='ls -l | wc -l'
 # uuid='uuidgen' OR 'cat /proc/sys/kernel/random/uuid'
 # passwords-complexity  /etc/pam.d/common-password
+# create-user(){ sudo adduser ${username} -m -g docker && sudo passwd ${username} ;}
+# gpu detect: lspci | grep -ci nvidia
+# find : find / -type f -name <file>
 #
 # global proxy config (curl, wget, etc.)
 #  - curlrc: proxy=<proxy_host>:<proxy_port>
@@ -79,6 +82,10 @@ alias sag='sudo apt-get'
 
 # networking
 alias ports='netstat -plnt'
+
+# random gen
+alias passgen='openssl rand -base64 32'
+alias passgend='dri debian bash -c "< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo;"'
 
 # TODO: make network .al
 #TODO: create functions for different net-iface managers

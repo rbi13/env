@@ -15,3 +15,7 @@ go:~/ws/gotry
 gp:~/ws/gradleplates
 k:~/ws/kubernetes-bootstrap
 c:~/ws/pips
+deep:~/ws/dockerfiles/deepqa/train
+di:~/ws/dcos-installer
+dcos:~/ws/az/azure-dcos-templates
+ni:~/ws/az/dcos-installer
