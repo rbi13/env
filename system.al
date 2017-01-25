@@ -39,8 +39,8 @@ timestamp() { date +%s%3N ;}
 timestamp64() { timestamp | base64 ;}
 
 # clipboard
-alias cbcopy='xclip -selection c'
-alias cbpaste='xclip -selection clipboard -o'
+[ ismac ] && alias cbcopy='pbcopy' || alias cbcopy='xclip -selection c'
+[ ismac ] && alias cbpaste='pbpaste' || alias cbpaste='xclip -selection clipboard -o'
 clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
 
 # ssh
@@ -85,7 +85,7 @@ alias ports='netstat -plnt'
 
 # random gen
 alias passgen='openssl rand -base64 32'
-alias passgend='dri debian bash -c "< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo;"'
+alias passgend='dri debian bash -c "< /dev/urandom tr -dc @_A-Z-a-z-0-9 | head -c${1:-32};" | cbcopy'
 
 # TODO: make network .al
 #TODO: create functions for different net-iface managers
