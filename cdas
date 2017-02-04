@@ -19,3 +19,5 @@ deep:~/ws/dockerfiles/deepqa/train
 di:~/ws/dcos-installer
 dcos:~/ws/az/azure-dcos-templates
 ni:~/ws/az/dcos-installer
+ci:~/ws/ci
+de:~/ws/ci/AzureChatbotTraining

@@ -19,6 +19,7 @@ alias drip='dri -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
 dre(){ drc -it --entrypoint '/bin/sh' ${@:1} ;}
 drb(){ dri ${@:1} /bin/bash ;}
 drbp(){ drip ${@:1} /bin/bash ;}
+drbph(){ drip -v ${HOME}:/root ${@:1} /bin/bash ;}
 drbn(){ dri --net ${@:1} /bin/bash ;}
 drs(){ dri ${@:1} /bin/sh ;}
 drsp(){ drip ${@:1} /bin/sh ;}
@@ -45,6 +46,7 @@ dcs(){ docker-compose scale ${@:1} ;}
 alias dt='dk tag'
 alias dhub='dk search'
 alias dp='dk push'
+alias dku='dk pull'
 alias dcm='dk commit'
 db(){
 	if [ -z $2 ]; then
