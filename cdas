@@ -10,7 +10,7 @@ dk:~/ws/dockers
 dc:~/ws/dsdcos-pipeline
 cl:~/ws/cloudtransfer
 dp:~/ws/deepQA
-ct:~/ws/cloudtransfer
+ct:~/ws/ci/cloudtransfer
 go:~/ws/gotry
 gp:~/ws/gradleplates
 k:~/ws/kubernetes-bootstrap
@@ -21,3 +21,4 @@ dcos:~/ws/az/azure-dcos-templates
 ni:~/ws/az/dcos-installer
 ci:~/ws/ci
 de:~/ws/ci/AzureChatbotTraining
+az:~/ws/az

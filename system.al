@@ -7,8 +7,9 @@
 # list-dns(){ nmcli device show <interfacename> | grep IP4.DNS ;}
 # file-count='ls -l | wc -l'
 # uuid='uuidgen' OR 'cat /proc/sys/kernel/random/uuid'
-# passwords-complexity  /etc/pam.d/common-password
-# create-user(){ sudo adduser ${username} -m -g docker && sudo passwd ${username} ;}
+# passwords-complexity:  /etc/pam.d/common-password
+# password expire:  sudo chage -d 0 ${username}
+# create-user(){ sudo adduser ${user} -m -g docker && sudo passwd ${user} && sudo chage -d 0 ${user} ;}
 # gpu detect: lspci | grep -ci nvidia
 # find : find / -type f -name <file>
 #

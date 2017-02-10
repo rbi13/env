@@ -10,7 +10,7 @@ alias dk='docker'
 alias dr='dk run'
 # run single command
 alias drc='dr --rm'
-alias drp='drc -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
+alias drp='drc -d -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
 alias drph='drp -v $HOME:"/root/"'
 
 # run as shell
@@ -20,14 +20,9 @@ dre(){ drc -it --entrypoint '/bin/sh' ${@:1} ;}
 drb(){ dri ${@:1} /bin/bash ;}
 drbp(){ drip ${@:1} /bin/bash ;}
 drbph(){ drip -v ${HOME}:/root ${@:1} /bin/bash ;}
-drbn(){ dri --net ${@:1} /bin/bash ;}
-drs(){ dri ${@:1} /bin/sh ;}
-drsp(){ drip ${@:1} /bin/sh ;}
-drsn(){ dri --net ${@:1} /bin/sh ;}
-
-# run background and attach
-dra() { da $(dri -d "$@") ;}
-drab() { dra ${@:1} /bin/sh ;}
+dhb(){ drbph ${@:1} ;}
+dhd(){ drph ${@:1} ;}
+dh(){ drip -v ${HOME}:/root ${@:1} ;}
 
 # exec
 alias drd='dr -d'
@@ -36,7 +31,7 @@ alias dst='dk stop'
 alias dsta='dk stop $(dk ps -a -q)'
 alias drst='dk restart'
 alias dkk='dk kill'
-alias de='dk exec'
+de(){ dk exec -it ${@:1} /bin/bash ;}
 alias dcd='docker-compose down'
 dcu(){ docker-compose ${@:1} up ;}
 dcud(){ docker-compose ${@:1} up -d ;}
