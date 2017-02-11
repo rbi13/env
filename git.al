@@ -38,11 +38,11 @@ gsu(){ git subtree pull --prefix $2 $1 master --squash; }
 # functions
 
 # github
-github_create(){
+github-create(){
 	repo_name="$1"
 	curl -u $(mapget github_user) https://api.github.com/user/repos -d "{\"name\":\"$repo_name\"}"
 }
-github_clone(){
+github-clone(){
 	echo "git@github.com:$(mapget github_user)/$1.git"
 	gcl "git@github.com:$(mapget github_user)/$1.git"
 }
