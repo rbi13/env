@@ -26,6 +26,7 @@ alias gbv='git branch -v -a'
 alias gbd='git branch -D'
 alias grv='git remote -v'
 alias gf='git fetch'
+alias gfp='gf --prune'
 alias gclean='git remote prune origin'
 
 gsa(){ git subtree add --prefix $2 $1 master --squash; }
