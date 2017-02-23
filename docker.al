@@ -120,15 +120,16 @@ diexport(){
 
 # TODO: add macos install
 i-docker(){
-	version='latest'
+	[[ -z $1 ]] && version='latest' || version=$1
 	# download and install docker into '/usr/bin'
 	wget "https://get.docker.com/builds/Linux/x86_64/docker-${version}.tgz"
-	tar -xvzf docker-latest.tgz
+	tar -xvzf docker-${version}.tgz
 	sudo mv docker/* /usr/bin/
 	# create docker group
 	sudo groupadd docker
 	sudo usermod -aG docker $USER
-	rm docker-latest.tgz
+	rm docker-${version}.tgz
+	rm -rf docker/
 	# add systemd scripts for docker deamon
 	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service'
 	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket'
