@@ -4,15 +4,13 @@
 ## TODO
 ##
 
-cli_image='cgswong/aws:latest'
+cli_image='rbi13/awscli'
+
+awss(){ dh ${cli_image} aws ${@:1} ;}
 
 alias nawsconf='sudo nano ~/.aws/config'
 alias nawscred='sudo nano ~/.aws/credentials'
-alias aaws="dra -v ~/.aws:/root/.aws $cli_image"
-alias aws='drc \
-	-v ~/.aws:/root/.aws \
-	-v `pwd`:`pwd` -w `pwd` \
-	$cli_image aws'
+alias aaws="dh $cli_image"
 alias taws='drc \
         -v ~/.aws:/root/.aws \
         -v `pwd`:`pwd` -w `pwd` \
