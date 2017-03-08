@@ -21,6 +21,7 @@ alias gta='git stash apply'
 gti(){ git stash apply "stash@{$1}" ;}
 alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gd='git diff --color'
+alias gdl='gd HEAD^ HEAD'
 alias grh='git reset --hard'
 alias gbv='git branch -v -a'
 alias gbd='git branch -D'
