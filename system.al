@@ -56,7 +56,7 @@ scat() {
 # TODO: add command for public key distribution
 # ssh-keygen -t rsa
 
-perms(){
+pperms(){
 	echo '
 0 == ---
 1 == --x
@@ -68,6 +68,31 @@ perms(){
 7 == rwx
 '
 }
+
+pcron(){
+	echo '
+crontab -e
+
+* * * * * <cmd> <ags...>
+* * * * * <user (only if root)> <cmd> <ags...>
+- - - - -
+| | | | |
+| | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+| | | ------- Month (1 - 12)
+| | --------- Day of month (1 - 31)
+| ----------- Hour (0 - 23)
+------------- Minute (0 - 59)
+
+list
+  crontab -l
+  crontab -u username -l
+Delete
+  crontab -r <job#>
+'
+}
+
+# automate new machine credentials setup
+
 
 # adds ssh pub key to specified host server
 trustme(){
