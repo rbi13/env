@@ -53,7 +53,7 @@ db(){
 
 # cleanup
 alias drmc='dk rm'
-alias drmca='dk rm $(dk ps -a -q)'
+alias drmca='dk stop $(dk ps -a -q) && dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
 #todo  docker rmi -f $(docker images -q -a -f dangling=true)
 dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}

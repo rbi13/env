@@ -12,6 +12,7 @@
 # create-user(){ sudo adduser ${user} -m -g docker && sudo passwd ${user} && sudo chage -d 0 ${user} ;}
 # gpu detect: lspci | grep -ci nvidia
 # find : find / -type f -name <file>
+# replace-in-file: sed -ie 's/old/new/g' file.txt
 #
 # global proxy config (curl, wget, etc.)
 #  - curlrc: proxy=<proxy_host>:<proxy_port>
@@ -92,7 +93,20 @@ Delete
 }
 
 # automate new machine credentials setup
+machineme(){
+	host=$1
+	ssh-keyscan -H $(echo ${host} | cut -d '@' -f 2) >> ~/.ssh/known_hosts
+	echo -n 'temporary password:'
+	read -s old && echo
+	echo -n 'new password:'
+	read -s new && echo
 
+	expect pass.ex $host $old $new
+
+	# while read node; do
+	# 	node-keyscan ${node}
+	# done < "${node_list}"
+}
 
 # adds ssh pub key to specified host server
 trustme(){

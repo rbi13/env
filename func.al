@@ -13,10 +13,6 @@
 # - expand shortcut to other functions mv, cp, etc... by exporting instead of funcion localized lookup
 ##
 
-expect_image='mesosphere/alpine-expect'
-alias expect='drc \
-  -v `pwd`:`pwd` -w `pwd` \
-  $expect_image expect'
 
 # eval to resolve tilde
 cdafile="~/env/cdas"

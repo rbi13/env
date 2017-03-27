@@ -21,16 +21,29 @@ gor(){ go run ${@:1} ;}
 godep(){ go_b godep ${@:1} ;}
 
 # python
-# TODO: create virtual env (for python 3 and 2)
+
+# TODO:
+# - create virtual env (for python 3 and 2)
+i-pip(){ curl https://bootstrap.pypa.io/get-pip.py | python ;}
+
 # python 3 only atm
 
+penv="${HOME}/penv/"
 # venv create
-pec(){ dh ${py_img} python -m venv env/ ;}
+pec(){
+  if [[ $1 == "2" ]]; then
+    #TODO add symlink in current dir
+    python -m venv "${penv}/2"
+  else
+    python3 -m venv ${penv}
+  fi
+
+}
 # venv install
 pei(){
   [ -z $1 ] && req='requirements.txt' || req=$1
-  dh ${py_img} pip install -r ${req}
+  dh ${py_img} source "${penv}/bin/activate" && pip install -r ${req}
 }
 # venv activate/deactivate
-pea(){ source env/bin/activate ;}
+pea(){ source "${penv}/bin/activate" ;}
 ped(){ deactivate ;}

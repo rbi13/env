@@ -21,4 +21,11 @@ dcos:~/ws/az/azure-dcos-templates
 ni:~/ws/az/dcos-installer
 ci:~/ws/ci
 de:~/ws/ci/AzureChatbotTraining
-az:~/ws/az
+az:~/ws/az/
+azi:~/ws/az/dcos-installer
+tmp:~/ws/tmp
+geo:~/ws/tmp/DMTIGeocoder
+r:~/ws/tmp
+a:~/ws/aws
+dcoscli:~/ws/ci/dcoscli
+fx:~/ws/fx
