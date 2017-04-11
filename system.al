@@ -111,7 +111,8 @@ machineme(){
 # adds ssh pub key to specified host server
 trustme(){
 	host=$1
-	cat ~/.ssh/id_rsa.pub | ssh ${host} 'mkdir -p .ssh && \
+	[[ -z "$2" ]] && key="~/.ssh/id_rsa.pub" || key=$2
+	cat ${key} | ssh ${host} 'mkdir -p .ssh && \
 	cat >> .ssh/authorized_keys && \
 	chmod 700 .ssh && \
 	chmod 640 .ssh/authorized_keys'

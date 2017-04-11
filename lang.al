@@ -4,6 +4,7 @@
 ## TODO
 ##
 
+#== golang
 GOPATH="${HOME}/ws/go"
 go_img='golang'
 
@@ -20,7 +21,7 @@ go(){ go_b go ${@:1} ;}
 gor(){ go run ${@:1} ;}
 godep(){ go_b godep ${@:1} ;}
 
-# python
+## PYTHON ##
 
 # TODO:
 # - create virtual env (for python 3 and 2)
@@ -32,12 +33,10 @@ penv="${HOME}/penv/"
 # venv create
 pec(){
   if [[ $1 == "2" ]]; then
-    #TODO add symlink in current dir
-    python -m venv "${penv}/2"
+    python -m venv "${penv}2"
   else
     python3 -m venv ${penv}
   fi
-
 }
 # venv install
 pei(){
@@ -45,5 +44,17 @@ pei(){
   dh ${py_img} source "${penv}/bin/activate" && pip install -r ${req}
 }
 # venv activate/deactivate
-pea(){ source "${penv}/bin/activate" ;}
+pea(){
+  if [[ $1 == "2" ]]; then
+    [[ ! -e "venv" ]] && ln -nfs "${penv}2" venv
+  else
+    [[ ! -e "venv" ]] && ln -nfs "${penv}" venv
+  fi
+  source "venv/bin/activate"
+}
 ped(){ deactivate ;}
+
+
+## JAVA ##
+
+alias jar-list='jar tvf'
