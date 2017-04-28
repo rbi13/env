@@ -33,7 +33,7 @@ penv="${HOME}/penv/"
 # venv create
 pec(){
   if [[ $1 == "2" ]]; then
-    python -m venv "${penv}2"
+    virtualenv "${penv}2"
   else
     python3 -m venv ${penv}
   fi
@@ -54,6 +54,9 @@ pea(){
 }
 ped(){ deactivate ;}
 
+# python build
+#pb(){ python setup.py sdist ;}
+pb(){ python setup.py sdist bdist_wheel ;}
 
 ## JAVA ##
 

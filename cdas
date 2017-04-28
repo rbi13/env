@@ -8,7 +8,7 @@ aw:~/ws/awsplates
 data:~/Downloads/data/kaldi
 dk:~/ws/dockers
 dc:~/ws/dsdcos-pipeline
-cl:~/ws/cloudtransfer
+cl:~/ws/ci/cloudlines
 dp:~/ws/deepQA
 ct:~/ws/ci/cloudtransfer
 go:~/ws/gotry

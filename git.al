@@ -23,12 +23,13 @@ alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gd='git diff --color'
 alias gdl='gd HEAD^ HEAD'
 alias grh='git reset --hard'
-alias gbv='git branch -v -a'
+alias gbv='git branch -v -a && gtag'
 alias gbd='git branch -D'
 alias grv='git remote -v'
 alias gf='git fetch'
 alias gfp='gf --prune'
 alias gclean='git remote prune origin'
+gtag(){ git tag ${@:1} ;}
 
 gsa(){ git subtree add --prefix $2 $1 master --squash; }
 gsu(){ git subtree pull --prefix $2 $1 master --squash; }
