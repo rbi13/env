@@ -33,9 +33,11 @@ penv="${HOME}/penv/"
 # venv create
 pec(){
   if [[ $1 == "2" ]]; then
-    virtualenv "${penv}2"
+    [[ -z $2 ]] && e="${penv}2" || e="$2/venv"
+    virtualenv ${e}
   else
-    python3 -m venv ${penv}
+    [[ -z $1 ]] && e=${penv} || e="$1/venv"
+    python3 -m venv ${e}
   fi
 }
 # venv install

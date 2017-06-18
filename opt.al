@@ -15,11 +15,13 @@ alias scala="$SCALA_HOME/bin/scala"
 alias gradle="$GRADLE_HOME/bin/gradle"
 alias sbt="${opt_root}/sbt/cur/bin/sbt"
 #alias gradle="drn frekele/gradle pwd"
-alias node="${opt_root}/node/cur/bin/node"
-alias npm="${opt_root}/node/cur/bin/npm"
+#alias node="${opt_root}/node/cur/bin/node"
+#alias npm="${opt_root}/node/cur/bin/npm"
 alias mvn="${opt_root}/mvn/cur/bin/mvn"
 alias gr="gradle"
 alias squirrel="java -jar ${opt_root}/squirrel/cur/squirrel-sql.jar"
+
+env-bootstrap-cmd(){ echo 'curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh' | pbcopy ;}
 
 #functions
 # make a public directory for a new app in opt_root
