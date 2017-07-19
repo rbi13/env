@@ -13,7 +13,9 @@
 # gpu detect: lspci | grep -ci nvidia
 # find : find / -type f -name <file>
 # replace-in-file: sed -ie 's/old/new/g' file.txt
-#
+# socks proxy: gcloud compute ssh --zone us-west1-a tunnel -- -N -p 22 -D localhost:5000
+# http tunnel: ssh -i -L 8080:localhost:8888 user@address
+	#
 # global proxy config (curl, wget, etc.)
 #  - curlrc: proxy=<proxy_host>:<proxy_port>
 #	 - wgetrc: use_proxy=yes \n http_proxy=127.0.0.1:8080
@@ -121,6 +123,16 @@ trustme(){
 skeyscan(){
 	host=$1
 	ssh-keyscan -H ${host} >> ~/.ssh/known_hosts
+}
+
+util-write-con(){
+	path=$1
+	touch ${path}
+	while :
+	do
+	 cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 >> ${path}
+	 sleep 0.1
+	done
 }
 
 # system-detection

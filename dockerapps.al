@@ -13,3 +13,6 @@ dk-tf(){
   adr=`dl ${id} 2>&1 | grep localhost`
   open ${adr}
 }
+gradle(){
+  dh gradle:alpine gradle ${@:1}
+}
