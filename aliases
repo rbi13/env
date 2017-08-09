@@ -1,9 +1,15 @@
+# colors
+export PS1="\h \W> "
+export LS_COLORS='di=1;33'
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
 # general alias
 
 default_config='.envconf'
 
 alias n='nano'
-alias g='sublime'
+alias g='atom'
 alias al='alias | grep "^alias"'
 alias nrca='n ~/env/aliases'
 alias nrco='n ~/env/opt.al'
@@ -36,9 +42,9 @@ alias grc='g ~/.bashrc &'
 alias src='source ~/.bashrc'
 alias r='clear'
 alias e='exit'
-alias l='ls -a'
-alias ll='ls -lha'
-alias llo='ls -haltr'
+alias l='ls -Ga'
+alias ll='l -lha'
+alias llo='l -haltr'
 alias du='du -h -d'
 alias df='df -h'
 alias s='ssh -Y'

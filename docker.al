@@ -23,16 +23,27 @@ drbph(){ drip -v ${HOME}:/root ${@:1} /bin/bash ;}
 dhb(){ drbph ${@:1} ;}
 dhd(){ drph ${@:1} ;}
 dh(){ drip -v ${HOME}:/root ${@:1} ;}
+dhe(){
+	if [[ ${@: -1} == "@" ]]; then
+		dhb ${@:1:($#-2)}
+	elif [[ ${@: -1} == "@@" ]]; then
+		dh --entrypoint '/bin/sh' ${@:1:($#-2)}
+	else
+		dh ${@:1}
+	fi
+}
 
 # exec
-alias drd='dr -d'
+drd(){ dr -d ${@:1} ;}
+drcd(){ drc -d ${@:1} ;}
 alias da='dk attach'
 alias dst='dk stop'
 alias dsta='dk stop $(dk ps -a -q)'
 alias drst='dk restart'
 alias dkk='dk kill'
-de(){ dk exec -it ${@:1} /bin/bash ;}
-alias dcd='docker-compose down'
+dx(){ dk exec -it ${@:1} ;}
+dxb(){ dk exec -it ${@:1} /bin/bash ;}
+dcd(){ docker-compose ${@:1} down ;}
 dcu(){ docker-compose ${@:1} up ;}
 dcud(){ docker-compose ${@:1} up -d ;}
 dcs(){ docker-compose scale ${@:1} ;}
@@ -57,6 +68,26 @@ alias drmca='dk rm $(dk ps -a -q)'
 alias drmi='dk rmi'
 #todo  docker rmi -f $(docker images -q -a -f dangling=true)
 dic(){ drmi $(di | grep '<none>' | awk '{print $3}') ;}
+
+# copy
+dcp(){
+	id=$1
+	src=$2
+	dst=$3
+	[ -z "$2" ] && { echo 'usage: dcpi container_id src dest'; return;}
+	[ -z "${dst}" ] && dst=`basename $src`
+	docker cp ${id}:${src} ${dst}
+}
+dcpi(){
+	img=$1
+	src=$2
+	dst=$3
+	[ -z "$2" ] && { echo 'usage: dcpi image src dest'; return;}
+	[ -z "${dst}" ] && dst=`basename $src`
+	id=$(docker create ${img})
+	docker cp ${id}:${src} ${dst}
+	docker rm ${id}
+}
 
 # volumes
 alias dv='dk volume ls'
@@ -159,4 +190,15 @@ i-docker(){
 # 	else
 # 		command docker "${@:1}"
 # 	fi
+# }
+
+# start script for init.d/systemd container apps
+# (){
+#   name=$1
+#   empty=`docker ps -a -f "name=${name}" | grep -w ${name}`
+#   if [[ -z "${empty}" ]]; then
+#     echo "docker run --name ${name} ..."
+#   else
+#     echo "docker start ..."
+#   fi
 # }
