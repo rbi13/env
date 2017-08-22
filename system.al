@@ -141,7 +141,7 @@ ismac(){ [ "$(uname)" == "Darwin" ] ;}
 getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
 
 # overrides 'open' to make it cross platform
-open(){ ismac && command open ${@:1} || xdg-open ${@:1} ;}
+open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open ${@:1} ;}
 
 # package managers
 alias sag='sudo apt-get'

@@ -11,15 +11,16 @@ dk-jenkins(){
   [ -z $1 ] && index=0 || index=$1
   name="jenk${index}"
   # data on host @ ~/jenkins/<given-name>
+  # -e "JAVA_OPTS=-Djenkins.install.runSetupWizard=false"\
   drd\
     --name ${name}\
     -p "404${index}":8080 -p "4004${index}":50000\
     -v ~/jenkins/${name}:/var/jenkins_home -v ~/.ssh:/root/.ssh\
-    jenkins/jenkins
+    jenk # temp -> jenkins/jenkins
   # extract initial password to clipboard
   echo "waiting for admin user creation..."
   sleep 20 # wait for password to be populated (TODO: poll instead)
-  pass=`dex ${name} cat /var/jenkins_home/secrets/initialAdminPassword`
+  pass=`dx ${name} cat /var/jenkins_home/secrets/initialAdminPassword`
   echo ${pass} | cbcopy
 }
 

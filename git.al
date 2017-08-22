@@ -1,10 +1,11 @@
 # git alias
 alias gcl='git clone'
-alias ga='git add'
-alias gaa='git add .'
 alias gs='git status'
-alias gc='git commit -m'
-alias gac='gaa; gc'
+ga(){ git add ${@:1} ;}
+gaa(){ git add . ${@:1} ;}
+gc(){ git commit -m "${@:1}" ;}
+gaac(){ gaa; gc "$1" ;}
+gac(){ ga ${@:2} && gc "$1" ;}
 alias gp='git push -u origin'
 alias gpm='git push origin master'
 alias gpi='git push internal master'
@@ -21,7 +22,10 @@ alias gta='git stash apply'
 alias grm='git reset HEAD --'
 gti(){ git stash apply "stash@{$1}" ;}
 alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
-alias gd='git diff --color'
+gd(){ git diff --color ${@:1} ;}
+gdc(){ git show $1 ;}
+gdf(){ git show --name-only $1 ;}
+gdff(){ git show $1:$2 ;}
 alias gdl='gd HEAD^ HEAD'
 alias grh='git reset --hard'
 alias gbv='git branch -v -a && gtag'
@@ -33,6 +37,7 @@ alias gcherry='git cherry-pick'
 alias gfp='gf --prune'
 alias gclean='git remote prune origin'
 gtag(){ git tag ${@:1} ;}
+glast-commit(){ git log -1 --format="%ad" ${@:1} ;}
 
 gsa(){ git subtree add --prefix $2 $1 master --squash; }
 gsu(){ git subtree pull --prefix $2 $1 master --squash; }
