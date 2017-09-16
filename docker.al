@@ -177,12 +177,16 @@ i-docker(){
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	# install docker-compose
-	curl -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m`" > docker-compose
-	sudo mv docker-compose /usr/local/bin/docker-compose
-	sudo chmod +x /usr/local/bin/docker-compose
+	i-docker-compose
 	# verify
 	docker --version
 	docker-compose --version
+}
+
+i-docker-compose(){
+	curl -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m`" > docker-compose
+	sudo mv docker-compose /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
 }
 
 
