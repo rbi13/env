@@ -59,6 +59,12 @@ scat() {
 # TODO: add command for public key distribution
 # ssh-keygen -t rsa
 
+killbyport(){
+	port=$1
+	[ $2 == '-u' ] && protocol='udp' || protocol='tcp'
+	kill -9 $(lsof -i ${protocol}:${port} -t)
+}
+
 pperms(){
 	echo '
 0 == ---

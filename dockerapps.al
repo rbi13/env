@@ -48,4 +48,6 @@ gradle(){ dhe gradle:alpine gradle ${@:1} ;}
 # terraform
 trf(){ dhe hashicorp/terraform:light ${@:1} ;}
 # aws cli
-aws(){ dhe xueshanf/awscli aws ${@:1} ;}
+awss(){ dhe xueshanf/awscli aws ${@:1} ;}
+
+nodee(){ dhb node:6.11.1 ;}

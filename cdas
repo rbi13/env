@@ -15,3 +15,11 @@ front:~/ws/hubba/frontend
 back:~/ws/hubba/backend
 fr:~/ws/hubba/frontend
 hj:~/ws/hubba/hubba-jenkins
+inf:~/ws/hubba/hubba-infrastructure
+fork:~/ws/hubba/hubba-discovery
+jenk:~/ws/hubba/hubba-jenkins
+scratch:~/ws/tmp/terra/scratch
+sc:~/ws/tmp/terra/scratch
+inf2:~/ws/hubba/hubba-infrastructure2
+en:~/ws/myenergyxpert
+npm:~/ws/tmp/npm

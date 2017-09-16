@@ -44,8 +44,16 @@ alias dkk='dk kill'
 dx(){ dk exec -it ${@:1} ;}
 dxb(){ dk exec -it ${@:1} /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
+dcb(){ docker-compose build ;}
+dcr(){ docker-compose run ${@:1} ;}
+dcrs(){ docker-compose restart ${@:1} ;}
+dcl(){ docker-compose logs ${@:1} ;}
+dcl(){ docker-compose logs -f ${@:1} ;}
 dcu(){ docker-compose ${@:1} up ;}
 dcud(){ docker-compose ${@:1} up -d ;}
+dcprm(){ docker-compose rm ${@:1} ;}
+dcx(){ docker-compose exec ${@:1} ;}
+dcxb(){ docker-compose exec ${@:1} /bin/bash ;}
 dcs(){ docker-compose scale ${@:1} ;}
 
 # building
@@ -169,7 +177,7 @@ i-docker(){
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	# install docker-compose
-	curl -L "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m`" > docker-compose
+	curl -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m`" > docker-compose
 	sudo mv docker-compose /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
 	# verify

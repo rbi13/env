@@ -28,6 +28,7 @@ gdf(){ git show --name-only $1 ;}
 gdff(){ git show $1:$2 ;}
 alias gdl='gd HEAD^ HEAD'
 alias grh='git reset --hard'
+alias gb='git branch'
 alias gbv='git branch -v -a && gtag'
 alias gbd='git branch -D'
 alias grv='git remote -v'
@@ -36,12 +37,20 @@ alias gm='git merge'
 alias gcherry='git cherry-pick'
 alias gfp='gf --prune'
 alias gclean='git remote prune origin'
+alias ginfo='git log --diff-filter=A --'
 gtag(){ git tag ${@:1} ;}
 glast-commit(){ git log -1 --format="%ad" ${@:1} ;}
 
-gsa(){ git subtree add --prefix $2 $1 master --squash; }
-gsu(){ git subtree pull --prefix $2 $1 master --squash; }
+# subtree
 # TODO: add subtree url tracking
+gsub(){
+	[ -z $3 ] && ref='master' || ref=$3
+	git subtree add --prefix $1 $2 ${ref} --squash
+}
+gsubup(){
+	[ -z $3 ] && ref='master' || ref=$3
+	git subtree pull --prefix $1 $2 ${ref}
+}
 
 # PS1 prompt (shows branch on git dirs)
 [ -f /etc/bash_completion.d/git-prompt  ] && source /etc/bash_completion.d/git-prompt
