@@ -2,7 +2,8 @@
 export PS1="\h \W> "
 export LS_COLORS='di=1;33'
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+#export LSCOLORS=GxFxCxDxBxegedabagaced
+alias ls='ls --color'
 
 # general alias
 
@@ -23,8 +24,10 @@ alias nrcaw='n ~/env/aws.al'
 alias nrcp='n ~/env/pi.al'
 alias nrck='n ~/env/k8s.al'
 alias nrcl='n ~/env/lang.al'
+alias nrct='n ~/env/terraform.al'
 alias nrcda='n ~/env/dockerapps.al'
 alias nrc='n ~/.bashrc'
+alias nrcu='n ~/env/ubuntu.al'
 alias grca='g ~/env/aliases &'
 alias grco='g ~/env/opt.al &'
 alias grcf='g ~/env/func.al &'
@@ -33,6 +36,7 @@ alias grcgr='g ~/env/gradle.al'
 alias grch='g ~/env/hadoop.al &'
 alias grcs='g ~/env/system.al &'
 alias grcd='g ~/env/docker.al &'
+alias grct='g ~/env/terraform.al &'
 alias grcda='g ~/env/dockerapps.al'
 alias grcaw='g ~/env/aws.al &'
 alias grcp='g ~/env/pi.al'

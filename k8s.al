@@ -25,7 +25,7 @@ alias kctl='kubectl'
 minikube(){
 	ex=$(which minikube)
 	# driver injection
-	[ ismac ] && [[ "$1" == "start" ]] \
+	ismac && [[ "$1" == "start" ]] \
 		&& driver_arg='--vm-driver=xhyve' || driver_arg=''
 	# run commmand
 	eval ${ex} ${@:1} ${driver_arg}

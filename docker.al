@@ -45,7 +45,8 @@ dx(){ dk exec -it ${@:1} ;}
 dxb(){ dk exec -it ${@:1} /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
 dcb(){ docker-compose build ;}
-dcr(){ docker-compose run ${@:1} ;}
+dcr(){ docker-compose run --rm ${@:1} ;}
+dcrb(){ docker-compose run --rm ${@:1} /bin/bash ;}
 dcrs(){ docker-compose restart ${@:1} ;}
 dcl(){ docker-compose logs ${@:1} ;}
 dcl(){ docker-compose logs -f ${@:1} ;}
@@ -110,7 +111,7 @@ alias di='dk images'
 alias dc='dk ps -a'
 alias dl='dk logs'
 alias dlf='dk logs -f'
-alias dip='dk inspect'
+alias dki='dk inspect'
 alias ds='dk stats'
 alias dstats='dk stats --all'
 alias dtop='dk top'

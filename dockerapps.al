@@ -51,3 +51,5 @@ trf(){ dhe hashicorp/terraform:light ${@:1} ;}
 awss(){ dhe xueshanf/awscli aws ${@:1} ;}
 
 nodee(){ dhb node:6.11.1 ;}
+
+traviscli(){ dhe tianon/travis-cli travis ${@:1} ;}

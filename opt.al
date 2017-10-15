@@ -3,6 +3,8 @@ export opt_root='/opt'
 export SCALA_HOME="${opt_root}/scala/cur"
 #export JAVA_HOME="${opt_root}/java/cur"
 export GRADLE_HOME="${opt_root}/gradle/cur"
+export NODE_HOME="${opt_root}/node/cur/bin"
+export PATH=$PATH:$NODE_HOME
 
 # launchers
 #alias atom="${opt_root}/atom/cur/atom"
@@ -15,13 +17,11 @@ alias scala="$SCALA_HOME/bin/scala"
 alias gradle="$GRADLE_HOME/bin/gradle"
 alias sbt="${opt_root}/sbt/cur/bin/sbt"
 #alias gradle="drn frekele/gradle pwd"
-#alias node="${opt_root}/node/cur/bin/node"
-#alias npm="${opt_root}/node/cur/bin/npm"
 alias mvn="${opt_root}/mvn/cur/bin/mvn"
 alias gr="gradle"
 alias squirrel="java -jar ${opt_root}/squirrel/cur/squirrel-sql.jar"
 
-env-bootstrap-cmd(){ echo 'curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh' | pbcopy ;}
+env_bootstrap_cmd(){ echo 'curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh && source ~/.bashrc' | cbcopy ;}
 
 #functions
 # make a public directory for a new app in opt_root

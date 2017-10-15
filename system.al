@@ -42,11 +42,6 @@ function groupshow { grep $1 /etc/group ;}
 timestamp() { date +%s%3N ;}
 timestamp64() { timestamp | base64 ;}
 
-# clipboard
-[ ismac ] && alias cbcopy='pbcopy' || alias cbcopy='xclip -selection c'
-[ ismac ] && alias cbpaste='pbpaste' || alias cbpaste='xclip -selection clipboard -o'
-clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
-
 # ssh
 alias skeys='ls -al ~/.ssh'
 # generate ssh keys e.g. sgen <account@email.com>
@@ -166,6 +161,11 @@ alias passgend='dri debian bash -c "< /dev/urandom tr -dc @_A-Z-a-z-0-9 | head -
 #  static ip_address=192.168.0.180/24
 #  static routers=192.168.0.1
 #  static domain_name_servers=192.168.0.1
+
+# clipboard
+ismac && alias cbcopy='pbcopy' || alias cbcopy='xclip -selection c'
+ismac && alias cbpaste='pbpaste' || alias cbpaste='xclip -selection clipboard -o'
+clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
 
 wallpaper(){
 	if [ -z $1 ]; then
