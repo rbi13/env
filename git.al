@@ -5,8 +5,11 @@ ga(){ git add ${@:1} ;}
 gaa(){ git add . ${@:1} ;}
 gc(){ git commit -m "${@:1}" ;}
 gaac(){ gaa; gc "$1" ;}
+gaacp(){ gaac "$1" && gpc ;}
 gac(){ ga ${@:2} && gc "$1" ;}
 alias gp='git push -u origin'
+alias gpu='git push -u upstream'
+gpc(){ gp $(gbc) ;}
 alias gpm='git push origin master'
 alias gpi='git push internal master'
 alias gpmi='gpm; gpi;'
@@ -15,12 +18,13 @@ alias gui='git pull internal'
 alias gum='git pull origin master'
 alias gk='git checkout'
 alias gkb='git checkout -b'
+gkbp(){ gkb $1 && gp $(gbc) ;}
 alias gkk='git checkout --'
 alias gt='git stash'
 alias gtl='git stash list'
 alias gta='git stash apply'
 alias grm='git reset HEAD --'
-gti(){ git stash apply "stash@{$1}" ;}
+gtai(){ git stash apply "stash@{$1}" ;}
 alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
 gd(){ git diff --color ${@:1} ;}
 gdc(){ git show $1 ;}
@@ -32,6 +36,7 @@ alias gb='git branch'
 alias gbv='git branch -v -a && gtag'
 alias gbd='git branch -D'
 alias grv='git remote -v'
+alias gbc='git rev-parse --abbrev-ref HEAD'
 alias gf='git fetch'
 alias gm='git merge'
 alias gcherry='git cherry-pick'

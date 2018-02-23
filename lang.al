@@ -8,7 +8,7 @@
 GOPATH="${HOME}/ws/go"
 go_img='golang'
 
-py_img='python'
+py_img='python:2'
 
 # mount GOPATH and set workdir (current)
 go_b(){

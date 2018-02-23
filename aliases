@@ -51,11 +51,10 @@ alias ll='l -lha'
 alias llo='l -haltr'
 alias du='du -h -d'
 alias df='df -h'
-alias s='ssh -Y'
 alias nt='nautilus'
 alias ho='cat /etc/hosts'
 alias nho='sudo nano /etc/hosts'
-alias gho='sudo gedit /etc/hosts'
+alias gho='sudo atom /etc/hosts'
 alias nko='n ~/.ssh/known_hosts'
 alias gko='g ~/.ssh/known_hosts'
 alias chc='ping 8.8.8.8'
@@ -63,6 +62,8 @@ alias ..='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
+
+s(){ ssh -Y ${@:1} ;}
 
 # add temp-source (non-tracked) files to source with 'src' command
 asrc() { ln -fs "$(pwd)/$1" "$HOME/env/tmp" ;}

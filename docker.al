@@ -48,6 +48,7 @@ dcb(){ docker-compose build ;}
 dcr(){ docker-compose run --rm ${@:1} ;}
 dcrb(){ docker-compose run --rm ${@:1} /bin/bash ;}
 dcrs(){ docker-compose restart ${@:1} ;}
+dck(){ docker-compose kill ${@:1} && docker-compose rm -f ${@:1} ;}
 dcl(){ docker-compose logs ${@:1} ;}
 dcl(){ docker-compose logs -f ${@:1} ;}
 dcu(){ docker-compose ${@:1} up ;}
@@ -66,6 +67,8 @@ alias dcm='dk commit'
 db(){
 	if [ -z $2 ]; then
 		dk build -t $1 .
+	elif [ -z $3 ]; then
+		dk build -t $1 -f $2 .
 	else
 		dk build -t ${@:1}
 	fi

@@ -114,7 +114,7 @@ machineme(){
 # adds ssh pub key to specified host server
 trustme(){
 	host=$1
-	[[ -z "$2" ]] && key="~/.ssh/id_rsa.pub" || key=$2
+	[[ -z "$2" ]] && key=~/.ssh/id_rsa.pub || key=$2
 	cat ${key} | ssh ${host} 'mkdir -p .ssh && \
 	cat >> .ssh/authorized_keys && \
 	chmod 700 .ssh && \
@@ -142,7 +142,7 @@ ismac(){ [ "$(uname)" == "Darwin" ] ;}
 getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
 
 # overrides 'open' to make it cross platform
-open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open ${@:1} ;}
+open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open "${@:1}" ;}
 
 # package managers
 alias sag='sudo apt-get'

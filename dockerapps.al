@@ -14,9 +14,10 @@ dk-jenkins(){
   # -e "JAVA_OPTS=-Djenkins.install.runSetupWizard=false"\
   drd\
     --name ${name}\
+    -u root\
     -p "404${index}":8080 -p "4004${index}":50000\
     -v ~/jenkins/${name}:/var/jenkins_home -v ~/.ssh:/root/.ssh\
-    jenk # temp -> jenkins/jenkins
+    jenkins/jenkins
   # extract initial password to clipboard
   echo "waiting for admin user creation..."
   sleep 20 # wait for password to be populated (TODO: poll instead)
@@ -36,7 +37,8 @@ dk-nxhost(){
 
 # run a tensorflow notebook
 dk-tf(){
-  id=`drp -p 8888:8888 tensorflow/tensorflow`
+  [ -z $1 ] && image='tensorflow/tensorflow' || image=$1
+  id=`drp -p 8888:8888 ${image}`
   sleep 2
   adr=`dl ${id} 2>&1 | grep localhost`
   open ${adr}
@@ -48,8 +50,11 @@ gradle(){ dhe gradle:alpine gradle ${@:1} ;}
 # terraform
 trf(){ dhe hashicorp/terraform:light ${@:1} ;}
 # aws cli
-awss(){ dhe xueshanf/awscli aws ${@:1} ;}
+awss(){ dhe rbi13/aws aws ${@:1} ;}
+awsb(){ dhe rbi13/aws ${@:1} /bin/bash ;}
+ebb(){ dhe coxauto/aws-ebcli eb ${@:1} ;}
+atools(){ dhe rbi13/awstools ${@:1} ;}
 
 nodee(){ dhb node:6.11.1 ;}
 
-traviscli(){ dhe tianon/travis-cli travis ${@:1} ;}
+traviscli(){ dhe -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID tianon/travis-cli travis ${@:1} ;}
