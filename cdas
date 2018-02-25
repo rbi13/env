@@ -16,10 +16,9 @@ not:~/ws/hubba/tmp/back/hubba-notifications
 users:~/ws/hubba/tmp/back/hubba-users
 node:~/ws/hubba/tmp/back/hubba-node
 sur:~/ws/hubba/tmp/back/hubba-surveys
-mesf:~/ws/hubba/tmp/front/hubba-messages
-notf:~/ws/hubba/tmp/front/hubba-notifications
-disf:~/ws/hubba/tmp/front/hubba-discovery
-usersf:~/ws/hubba/tmp/front/hubba-users
+disf:~/ws/hubba/tmp/front/hubba-discovery-frontend
+usersf:~/ws/hubba/tmp/front/hubba-users-frontend
+nodef:~/ws/hubba/tmp/front/hubba-node-frontend
 ld:~/ws/hubba/hubba-launchpad-docker
 
 en:~/ws/enx/myenergyxpert

@@ -7,6 +7,10 @@
 kctl_img='rbi13/kubectl'
 binpath='/usr/local/bin/'
 
+alias kb='kubectl'
+kbcomplete(){ source <(kubectl completion bash) ;}
+kbinfo(){ kubectl cluster-info ;}
+
 # TODO: test NOTE: not working for minikube (use i-kubectl)
 xkubectl(){
 	drc --net=host \
@@ -14,7 +18,6 @@ xkubectl(){
 		-v ~/.kube:${HOME}/.kube \
 		${kctl_img} kubectl ${@:1}
 }
-alias kctl='kubectl'
 
 # default overrides:
 #  - driver injection (macos)
