@@ -46,6 +46,7 @@ dxb(){ dk exec -it ${@:1} /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
 dcb(){ docker-compose build ;}
 dcr(){ docker-compose run --rm ${@:1} ;}
+dcst(){ docker-compose stop ${@:1} ;}
 dcrb(){ docker-compose run --rm ${@:1} /bin/bash ;}
 dcrs(){ docker-compose restart ${@:1} ;}
 dck(){ docker-compose kill ${@:1} && docker-compose rm -f ${@:1} ;}
@@ -124,6 +125,7 @@ alias ddiff='dk diff'
 # networking
 alias dn='dk network ls'
 alias drmn='dk network rm'
+alias drmna='drmn `dn -q`'
 alias dni='dk network inspect'
 
 # machine

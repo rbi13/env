@@ -56,5 +56,6 @@ ebb(){ dhe coxauto/aws-ebcli eb ${@:1} ;}
 atools(){ dhe rbi13/awstools ${@:1} ;}
 
 nodee(){ dhb node:6.11.1 ;}
+mongoo(){ dhb mongo ;}
 
 traviscli(){ dhe -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID tianon/travis-cli travis ${@:1} ;}
