@@ -49,6 +49,7 @@ dk-tf(){
 gradle(){ dhe gradle:alpine gradle ${@:1} ;}
 # terraform
 trf(){ dhe hashicorp/terraform:light ${@:1} ;}
+trfb(){ dhe hashicorp/terraform:light ${@:1} /bin/sh @@ ;}
 # aws cli
 awss(){ dhe rbi13/aws aws ${@:1} ;}
 awsb(){ dhe rbi13/aws ${@:1} /bin/bash ;}
@@ -57,5 +58,8 @@ atools(){ dhe rbi13/awstools ${@:1} ;}
 
 nodee(){ dhb node:6.11.1 ;}
 mongoo(){ dhb mongo ;}
+gcpp(){ drbp -v ~/.bashrc:/root/.bashrc -v ~/env:/root/env -v ~/.config/gcloud:/root/.config/gcloud ${@:1} gae ;} #google/cloud-sdk ;}
+gcppa(){ gcpp -p 8000:8000 -p 8080:8080 ;}
+flow(){ drbp -p 8000:8000 -p 8080:8080 -v ~/.m2:/root/.m2 -v ~/.bashrc:/root/.bashrc -v ~/env:/root/env -v ~/.config/gcloud:/root/.config/gcloud flow ;}
 
 traviscli(){ dhe -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID tianon/travis-cli travis ${@:1} ;}

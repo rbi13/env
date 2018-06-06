@@ -47,3 +47,13 @@ over:~/ws/hubba/overrides
 pay:~/ws/hubba/tmp/back/hubba-payments
 trf:~/ws/hubba/trf
 frontend:~/ws/hubba/tmp/front/hubba-frontend
+data:~/ws/data
+dave:~/ws/hubba/lib/davepi
+inj:~/ws/aws-param-inject
+goo:~/ws/goo
+ivew:~/ws/goo
+iv:~/ws/goo/interview/traffic
+gbd:~/ws/hubba/bd/gcp
+inf5:~/ws/hubba/hubba-infrastructure5
+tmp:~/ws/tmp
+gidyup:~/ws/hubba/tmp/back/hubba-payments

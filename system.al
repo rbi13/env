@@ -73,6 +73,10 @@ pperms(){
 '
 }
 
+replaceAll(){
+	find . -name $1 -print0 | xargs -0 sed -i "s/$2/$3/g"
+}
+
 pcron(){
 	echo '
 crontab -e
@@ -143,6 +147,8 @@ getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
 
 # overrides 'open' to make it cross platform
 open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open "${@:1}" ;}
+
+keyspeed(){  xset r rate 200 60 ;}
 
 # package managers
 alias sag='sudo apt-get'
