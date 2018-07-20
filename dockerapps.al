@@ -58,7 +58,7 @@ atools(){ dhe rbi13/awstools ${@:1} ;}
 
 nodee(){ dhb node:6.11.1 ;}
 mongoo(){ dhb mongo ;}
-gcpp(){ drbp -v ~/.bashrc:/root/.bashrc -v ~/env:/root/env -v ~/.config/gcloud:/root/.config/gcloud ${@:1} gae ;} #google/cloud-sdk ;}
+gcpp(){ drbp -v ~/.bashrc:/root/.bashrc -v ~/env:/root/env -v ~/.config/gcloud:/root/.config/gcloud -e GOOGLE_APPLICATION_CREDENTIALS=/`basename $PWD`/key.json ${@:1} google/cloud-sdk ;} #google/cloud-sdk ;}
 gcppa(){ gcpp -p 8000:8000 -p 8080:8080 ;}
 flow(){ drbp -p 8000:8000 -p 8080:8080 -v ~/.m2:/root/.m2 -v ~/.bashrc:/root/.bashrc -v ~/env:/root/env -v ~/.config/gcloud:/root/.config/gcloud flow ;}
 

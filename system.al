@@ -28,6 +28,8 @@ alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
 alias disk='du -hd'
+alias ii='command -v >/dev/null 2>&1'
+iie(){ ii $1 && `$@` ;}
 
 ipaddr(){
 	[[ -z "$1" ]] && iface='eth0' || iface=$1
@@ -37,6 +39,17 @@ ipaddr(){
 alias users='cut -d: -f1 /etc/passwd'
 alias groupuser='sudo usermod user -a -G' # <group> <user>
 function groupshow { grep $1 /etc/group ;}
+
+newdisk(){
+	[ -z $1 ] && lsblk && return 0
+	device=$1
+	dir=$2
+	sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/${device}\
+	&& sudo mkdir -p /mnt/disks/${dir}\
+	&& sudo mount -o discard,defaults /dev/${device} /mnt/disks/${dir}\
+	&& sudo chmod a+w /mnt/disks/${dir}
+
+}
 
 # Define a timestamp function
 timestamp() { date +%s%3N ;}
@@ -140,6 +153,8 @@ util-write-con(){
 	done
 }
 
+day(){ open https://calendar.google.com/calendar/r?tab=mc && open https://mail.google.com/mail/u/0/ ;}
+
 # system-detection
 ismac(){ [ "$(uname)" == "Darwin" ] ;}
 #islinux(){ [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ;}
@@ -147,8 +162,9 @@ getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
 
 # overrides 'open' to make it cross platform
 open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open "${@:1}" ;}
+md(){ [ -z $1 ]  && google-chrome 'README.md' || google-chrome ${@:1} ;}
 
-keyspeed(){  xset r rate 200 60 ;}
+keyspeed(){ iie xset r rate 200 60 ;}
 
 # package managers
 alias sag='sudo apt-get'

@@ -37,7 +37,7 @@ inf3:~/ws/hubba/hubba-infrastructure3
 zif:~/ws/hubba/tmp/back/hubba-zif
 zifb:~/ws/hubba/hubba-zifbot
 zifbot:~/ws/hubba/tmp/back/hubba-zifbot
-log:~/ws/hubba/hubba-logger
+log:~/ws/goo/logingest
 inf4:~/ws/hubba/hubba-infrastructure4
 orders:~/ws/hubba/tmp/back/hubba-orders
 jenkt:~/ws/hubba/jenkins-testing
@@ -57,3 +57,6 @@ gbd:~/ws/hubba/bd/gcp
 inf5:~/ws/hubba/hubba-infrastructure5
 tmp:~/ws/tmp
 gidyup:~/ws/hubba/tmp/back/hubba-payments
+dp:~/ws/dproc
+i:~/ws/goo/iot
+sco:~/ws/goo/scotia

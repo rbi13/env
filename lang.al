@@ -56,6 +56,8 @@ pea(){
 }
 ped(){ deactivate ;}
 
+ppi(){ pip install -r requirements.txt ;}
+
 # python build
 #pb(){ python setup.py sdist ;}
 pb(){ python setup.py sdist bdist_wheel ;}

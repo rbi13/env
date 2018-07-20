@@ -2,12 +2,19 @@
 
 alias gg='gcloud'
 alias ggi='gcloud init'
+alias ggisa='gcloud auth activate-service-account --key-file'
 alias ggl='gcloud config list'
 alias ggc='gcloud beta compute'
 alias ggci='ggc instances'
 alias ggcd='ggc disks'
+alias ggg='gg alpha interactive'
 ggcil(){ ggci list ${@:1} ;}
 ggcdl(){ ggcd list ${@:1} ;}
+ggkey(){
+  acct=$1
+  gcloud iam service-accounts keys create ./key.json \
+    --iam-account ${acct}
+}
 
 ggcic(){
   name=$1
@@ -24,3 +31,6 @@ ggcic(){
     # --min-cpu-platform "Automatic"\
     # --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring.write","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append"
 }
+
+# https://pantheon.corp.google.com/home/dashboard?project=google.com:bondrdev
+# https://console.cloud.google.com/code/develop/browse/cloudtemp/master?project=interviewgl-199716&authuser=1&organizationId=324726664201
