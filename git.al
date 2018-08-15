@@ -1,3 +1,4 @@
+#!/bin/bash
 # git alias
 alias gcl='git clone'
 alias gs='git status'
@@ -44,6 +45,7 @@ alias gfp='gf --prune'
 alias gclean='git remote prune origin'
 alias ginfo='git log --diff-filter=A --'
 gtag(){ git tag ${@:1} ;}
+gptag(){ gtag ${@:1}; gp ${@:1} ;}
 glast-commit(){ git log -1 --format="%ad" ${@:1} ;}
 
 # subtree
@@ -71,6 +73,8 @@ github-clone(){
 	echo "git@github.com:$(mapget github_user)/$1.git"
 	gcl "git@github.com:$(mapget github_user)/$1.git"
 }
+
+gi(){ curl https://www.gitignore.io/api/$1 | cbcopy ;}
 
 # generate gitignore files using templates
 #function gi {

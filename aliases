@@ -1,9 +1,11 @@
+#!/bin/sh
 # colors
 export PS1="\h \W> "
 export LS_COLORS='di=1;33'
 export CLICOLOR=1
 #export LSCOLORS=GxFxCxDxBxegedabagaced
 alias ls='ls --color'
+alias gr="gradle"
 
 # general alias
 
@@ -11,6 +13,7 @@ default_config='.envconf'
 
 alias n='nano'
 alias g='atom'
+ide(){ idea ${@:1} & }
 alias al='alias | grep "^alias"'
 alias nrca='n ~/env/aliases'
 alias nrco='n ~/env/opt.al'
@@ -23,7 +26,6 @@ alias nrcd='n ~/env/docker.al'
 alias nrcaw='n ~/env/aws.al'
 alias nrcp='n ~/env/pi.al'
 alias nrck='n ~/env/k8s.al'
-alias nrcl='n ~/env/lang.al'
 alias nrct='n ~/env/terraform.al'
 alias nrcda='n ~/env/dockerapps.al'
 alias nrcgcp='n ~/env/gcp.al'
@@ -43,7 +45,7 @@ alias grcgcp='g ~/env/gcp.al'
 alias grcaw='g ~/env/aws.al &'
 alias grcp='g ~/env/pi.al'
 alias grck='g ~/env/k8s.al'
-alias grcl='g ~/env/lang.al'
+grcn(){ g ~/env/$1.al ;}
 alias grc='g ~/.bashrc &'
 alias src='source ~/.bashrc'
 alias r='clear'

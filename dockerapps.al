@@ -38,15 +38,12 @@ dk-nxhost(){
 # run a tensorflow notebook
 dk-tf(){
   [ -z $1 ] && image='tensorflow/tensorflow' || image=$1
-  id=`drp -p 8888:8888 ${image}`
+  id=`drp -p 8888:8888 -e JUPYTER_TOKEN=abcd  ${image}`
   sleep 2
   adr=`dl ${id} 2>&1 | grep localhost`
   open ${adr}
 }
 
-# gradle
-# TODO: consider using named container for gradle-daemon benefits
-gradle(){ dhe gradle:alpine gradle ${@:1} ;}
 # terraform
 trf(){ dhe hashicorp/terraform:light ${@:1} ;}
 trfb(){ dhe hashicorp/terraform:light ${@:1} /bin/sh @@ ;}
