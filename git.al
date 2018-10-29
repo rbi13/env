@@ -33,6 +33,7 @@ gdf(){ git show --name-only $1 ;}
 gdff(){ git show $1:$2 ;}
 alias gdl='gd HEAD^ HEAD'
 alias grh='git reset --hard'
+alias grhh='grh && git clean -dfx'
 alias gb='git branch'
 alias gbv='git branch -v -a && gtag'
 alias gbd='git branch -D'
@@ -73,8 +74,19 @@ github-clone(){
 	echo "git@github.com:$(mapget github_user)/$1.git"
 	gcl "git@github.com:$(mapget github_user)/$1.git"
 }
+gi(){
+	if [ -z $2 ]; then
+		curl -s https://www.gitignore.io/api/$1 | cbcopy
+	else
+		curl -s https://www.gitignore.io/api/$1 >> $2
+	fi
+}
 
-gi(){ curl https://www.gitignore.io/api/$1 | cbcopy ;}
+github-raw(){
+	[ -z $1 ] && url=$(cbpaste) || url=$1
+	converted=$(echo ${url} | sed "s/github.com/raw.githubusercontent.com/g" | sed "s/\/blob\//\//g")
+	curl -s ${converted} | cbcopy
+}
 
 # generate gitignore files using templates
 #function gi {

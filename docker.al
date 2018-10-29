@@ -99,7 +99,7 @@ dcpi(){
 	[ -z "$2" ] && { echo 'usage: dcpi image src dest'; return;}
 	[ -z "${dst}" ] && dst=`basename $src`
 	id=$(docker create ${img})
-	docker cp ${id}:${src} ${dst}
+	docker cp -L ${id}:${src} ${dst}
 	docker rm ${id}
 }
 

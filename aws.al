@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## Function list
 # Amazon Web Services
 #

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## String and file manipulations
 #
 # sed functions combined with ';'
@@ -16,4 +18,3 @@ function sappend {
 function sprepend {
 	sed "s/^/$1/" $2
 }
-

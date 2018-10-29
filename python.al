@@ -48,6 +48,11 @@ ped(){ deactivate ;}
 
 ppi(){ pip install -r requirements.txt ;}
 
+mkpimodule(){
+  mkdir $1
+  touch $1/__init.py
+}
+
 # python build
 #pb(){ python setup.py sdist ;}
 pb(){ python setup.py sdist bdist_wheel ;}

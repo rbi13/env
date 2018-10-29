@@ -1,11 +1,12 @@
 #!/bin/sh
 # colors
+source ~/env/system.al # has become necessary, maybe combine system and this
+
 export PS1="\h \W> "
 export LS_COLORS='di=1;33'
 export CLICOLOR=1
 #export LSCOLORS=GxFxCxDxBxegedabagaced
 alias ls='ls --color'
-alias gr="gradle"
 
 # general alias
 

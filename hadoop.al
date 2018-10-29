@@ -1,9 +1,11 @@
+#!/bin/bash
+
 ## Function list
 # hadoop related software
 # - kafka (via confluent platform)
-#  
 #
-## TODO 
+#
+## TODO
 # - find a better way to deal with multi-script starts than sleep
 ##
 
@@ -19,6 +21,8 @@ alias hcp='hd -cp'
 alias hput='hd -put'
 alias hcput='hd -copyFromLocal'
 alias hcget='hd -copyToLocal'
+
+# beeline -u "jdbc:hive2://localhost:10000"
 
 ## KAFKA
 export confluent_root="$apps_root/confluent/cur"
@@ -61,7 +65,7 @@ function ckafka {
     sleep 3
     # kafka
     echo "CKAFKA: starting kafka"
-    $confluent_root/bin/kafka-server-start $confluent_root/etc/kafka/server.properties & 
+    $confluent_root/bin/kafka-server-start $confluent_root/etc/kafka/server.properties &
     sleep 4
     #schema-registry
     echo "CKAFKA: starting schema-registry"

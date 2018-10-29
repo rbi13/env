@@ -27,7 +27,7 @@ boil:~/ws/hubba/boilerplate
 col:~/ws/col/collage-web
 eb:~/ws/tmp/eb
 arne:~/ws/arne
-a:~/ws/arne
+a:~/ws/atom
 aws:~/ws/awstools
 dockers:~/ws/dockers
 bd:~/ws/hubba/bd
@@ -60,7 +60,7 @@ gidyup:~/ws/hubba/tmp/back/hubba-payments
 dp:~/ws/dproc
 i:~/ws/goo/iot
 sco:~/ws/goo/scotia
-c:~/ws/goo/tmp/cloudml-dist-mnist-example
+c:~/ws/goo/scotia/edl/dlp-pipes
 scotia:~/ws/goo/scotia
 ds:~/ws/goo/scotia/ds
 fl:~/ws/goo/scotia/logingest
@@ -70,3 +70,14 @@ tok:~/ws/goo/scotia/token/dftoken
 tol:~/ws/goo/scotia/token/dftoken
 enc:~/ws/goo/scotia/token/encrypt
 flu:~/ws/goo/scotia/logingest
+go:~/ws/go
+cur:~/ws/goo/scotia/dsdata/jv
+scanner:~/ws/goo/scotia/gitlab/gitlab-scanner
+jv:~/ws/goo/scotia/dsdata/jv
+apa:~/ws/apache
+edl:~/ws/goo/scotia/edl
+mirrors:~/ws/goo/scotia/mirrors
+df:~/ws/goo/DataflowTemplates
+basename:~/ws/goo/scotia/edl
+canpost:~/ws/goo/canpost
+cj:~/ws/cj/proof-manager

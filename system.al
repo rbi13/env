@@ -28,8 +28,10 @@ alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
 alias disk='du -hd'
-alias ii='command -v >/dev/null 2>&1'
+ii(){ command -v >/dev/null 2>&1 ${@:1} ;}
+neg(){ ${@:1} && return 1 || return 0 ;}
 iie(){ ii $1 && `$@` ;}
+iscontainer(){ neg ii host ;}
 
 ipaddr(){
 	[[ -z "$1" ]] && iface='eth0' || iface=$1
@@ -49,6 +51,12 @@ newdisk(){
 	&& sudo mount -o discard,defaults /dev/${device} /mnt/disks/${dir}\
 	&& sudo chmod a+w /mnt/disks/${dir}
 
+}
+
+myip(){
+	addr=$(curl -s ifconfig.co -4)
+	echo ${addr} | cbcopy
+	echo ${addr}
 }
 
 # Define a timestamp function
@@ -153,7 +161,11 @@ util-write-con(){
 	done
 }
 
-day(){ open https://calendar.google.com/calendar/r?tab=mc && open https://mail.google.com/mail/u/0/ ;}
+day(){
+	open 'https://calendar.google.com/calendar/r?tab=mc'
+	open 'https://mail.google.com/mail/u/0/'
+	open 'https://keep.google.com/u/0/#home'
+}
 
 # system-detection
 ismac(){ [ "$(uname)" == "Darwin" ] ;}
