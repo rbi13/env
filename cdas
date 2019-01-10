@@ -60,7 +60,7 @@ gidyup:~/ws/hubba/tmp/back/hubba-payments
 dp:~/ws/dproc
 i:~/ws/goo/iot
 sco:~/ws/goo/scotia
-c:~/ws/goo/scotia/edl/dlp-pipes
+c:~/ws/goo/scotia/edl/untitled
 scotia:~/ws/goo/scotia
 ds:~/ws/goo/scotia/ds
 fl:~/ws/goo/scotia/logingest
@@ -81,3 +81,10 @@ df:~/ws/goo/DataflowTemplates
 basename:~/ws/goo/scotia/edl
 canpost:~/ws/goo/canpost
 cj:~/ws/cj/proof-manager
+dlp:~/ws/goo/scotia/edl/dlp-pipes
+scan:~/ws/goo/scotia/edl/dlp-pipes
+fx:~/ws/cj/forex
+forex:~/ws/cj/forex
+faa:~/ws/goo/scotia/faa/faa
+template:~/ws/goo/scotia/faa/template
+mirror:~/ws/goo/scotia/mirrors

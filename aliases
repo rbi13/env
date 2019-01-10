@@ -125,6 +125,9 @@ env-ins(){
   echo $line | cbcopy
   echo $line
 }
+bootstrapcmd(){
+  echo 'curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh && source ~/.bashrc' | cbcopy
+}
 
 # Exec
 # activated on source call

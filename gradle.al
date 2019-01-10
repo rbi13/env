@@ -1,6 +1,18 @@
 #!/bin/bash
 
 alias gr='gradle'
+grswitch(){
+  alt='./build.gradle.alt'
+  use='build.gradle'
+  default='build.gradle.default'
+  if [ -f ${alt} ]; then
+    mv ${use} ${default}
+    mv ${alt} ${use}
+  else
+    mv ${use} ${alt}
+    mv ${default} ${use}
+  fi
+}
 gw(){
   alt='./build.gradle.alt'
   if [ -f ${alt} ] && [ -z ${NO_ALT} ]; then

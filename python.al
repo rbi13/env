@@ -4,8 +4,6 @@
 ## TODO
 ##
 
-py_img='python:2'
-
 # TODO:
 # - create virtual env (for python 3 and 2)
 i-pip(){
@@ -17,36 +15,23 @@ i-pip(){
   fi
 }
 
-# python 3 only atm
-
-penv="${HOME}/penv/"
-# venv create
-pec(){
-  if [[ $1 == "2" ]]; then
-    [[ -z $2 ]] && e="${penv}2" || e="$2/venv"
-    virtualenv ${e}
-  else
-    [[ -z $1 ]] && e=${penv} || e="$1/venv"
-    python3 -m venv ${e}
-  fi
-}
-# venv install
-pei(){
-  [ -z $1 ] && req='requirements.txt' || req=$1
-  dh ${py_img} source "${penv}/bin/activate" && pip install -r ${req}
-}
-# venv activate/deactivate
-pea(){
-  if [[ $1 == "2" ]]; then
-    [[ ! -e "venv" ]] && ln -nfs "${penv}2" venv
-  else
-    [[ ! -e "venv" ]] && ln -nfs "${penv}" venv
+# python virtual environment (docker boot-stratpped)
+pyenv(){
+  if [ ! -e ./venv  ]; then
+    if [[ $1 == "2" ]]; then
+      dripf python:2 virtualenv ./venv
+    else
+      dripf python:3 python3 -m venv ./venv
+    fi
   fi
   source "venv/bin/activate"
 }
-ped(){ deactivate ;}
+pyenvd(){ deactivate ;}
+pyenvdd(){ rm -rf venv ;}
 
 ppi(){ pip install -r requirements.txt ;}
+ppf(){ pip freeze > requirements.txt ;}
+pydir(){ touch __init__.py ;}
 
 mkpimodule(){
   mkdir $1

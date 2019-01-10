@@ -20,7 +20,12 @@
 #  - curlrc: proxy=<proxy_host>:<proxy_port>
 #	 - wgetrc: use_proxy=yes \n http_proxy=127.0.0.1:8080
 #  - yum: proxy=http://mycache.mydomain.com:3128
+	#
+# list installed packeages
+# dpkg-query -l 'name*'
 
+
+alias xsh='open https://explainshell.com/'
 alias ctl='sudo systemctl'
 alias restartctl='ctl daemon-reload'
 alias kernel-version='uname -mrs'
@@ -32,6 +37,8 @@ ii(){ command -v >/dev/null 2>&1 ${@:1} ;}
 neg(){ ${@:1} && return 1 || return 0 ;}
 iie(){ ii $1 && `$@` ;}
 iscontainer(){ neg ii host ;}
+
+own(){ me=`whoami`; sudo chown -R ${me} ./ ;}
 
 ipaddr(){
 	[[ -z "$1" ]] && iface='eth0' || iface=$1

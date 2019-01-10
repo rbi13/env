@@ -5,6 +5,7 @@
 ## TODO
 ##
 # ddl=grep docker /var/log/messages
+# user --user=$(id -u)
 
 alias dk='docker'
 alias dr='dk run'
@@ -16,9 +17,11 @@ alias drph='drp -v $HOME:"/root/"'
 # run as shell
 alias dri='drc -it'
 alias drip='dri -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
+alias dripf='dri -v `pwd`:`pwd` -w `pwd`'
 dre(){ drc -it --entrypoint '/bin/sh' ${@:1} ;}
 drb(){ dri ${@:1} /bin/bash ;}
 drbp(){ drip ${@:1} /bin/bash ;}
+drbf(){ dripf ${@:1} /bin/bash ;}
 drbph(){ drip -v ${HOME}:/root ${@:1} /bin/bash ;}
 dhb(){ drbph ${@:1} ;}
 dhd(){ drph ${@:1} ;}
