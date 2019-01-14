@@ -11,6 +11,15 @@ ggkey(){
 ggupdate(){ gcloud components update ;}
 ggquota(){ gcloud compute project-info describe ;}
 
+ggnewproject(){
+  pid=$1
+  gcloud projects create ${pid}\
+    --organization=${GCP_ORG}\
+    --set-as-default
+  gcloud beta billing projects link ${pid}\
+    --billing-account=${GCP_BILLING}
+}
+
 ggsa(){ gcloud iam service-accounts list ;}
 ggsad(){ gcloud iam service-accounts delete ${@:1} ;}
 ggsac(){
