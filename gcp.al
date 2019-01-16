@@ -167,7 +167,7 @@ gswrite(){
   cbpaste > ${context}
   gsutil cp ${context} ${gs_path}
 }
-gsread(){ gscat | cbcopy ;}
+gsread(){ gscat ${@:1} | cbcopy ;}
 gscat(){
   gs_path=$1
   gsutil cat ${gs_path}
