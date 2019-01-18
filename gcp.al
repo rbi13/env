@@ -61,14 +61,14 @@ ggip(){
     --format='get(networkInterfaces[0].accessConfigs.natIP)'
 }
 
+gguser(){ gcloud config get-value account ;}
+gguserset(){ gcloud auth login ;}
+
+ggprojects(){ [ -z $1 ] && gcloud projects list || gcloud projects list | grep $1 ;}
+ggproject(){ gcloud config get-value project ;}
 ggprojectset(){
   [ -z $1 ] && prj=${GCP_DEFAULT_PROJECT} || prj=$1
   gcloud config set project ${prj}
-}
-ggproject(){ gcloud config get-value project ;}
-gguser(){ gcloud config get-value account ;}
-ggprojectlist(){
-  [ -z $1 ] && gcloud projects list || gcloud projects list | grep $1
 }
 
 gglogs(){
@@ -161,7 +161,7 @@ snpcat(){ gscat ${GCP_SNIP_URL}/$1 ;}
 snpd(){ gsutil rm ${GCP_SNIP_URL}/$1 ;}
 gswrite(){
   gs_path=$1
-  tmp_path="${HOME}/.wrt/"
+  tmp_path="${HOME}/tmp/.wrt/"
   mkdir -p ${tmp_path}
   [ -z $2 ] && context="${tmp_path}/default" || context="${tmp_path}/$2"
   cbpaste > ${context}
