@@ -87,7 +87,7 @@ ggce(){
 ggcec(){ gcloud compute instances create ${@:1} ;}
 ggceccontainer(){ gcloud compute instances create ${@:1} ;}
 ggced(){ gcloud compute instances delete ${@:1} ;}
-ggcestart(){ gcloud compute instances stop ${@:1} ;}
+ggcestart(){ gcloud compute instances start ${@:1} ;}
 ggcestop(){ gcloud compute instances stop ${@:1} ;}
 ggssh(){ gcloud compute ssh $1 ;}
 ggtunnel(){
