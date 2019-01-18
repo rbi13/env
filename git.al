@@ -82,6 +82,12 @@ gi(){
 	fi
 }
 
+github(){
+	base='https://github.com'
+	[ -z $1 ] && url=${base}/rbi13/env || url=${base}/search?q=$1
+	open ${url}
+}
+
 github-raw(){
 	[ -z $1 ] && url=$(cbpaste) || url=$1
 	converted=$(echo ${url} | sed "s/github.com/raw.githubusercontent.com/g" | sed "s/\/blob\//\//g")
