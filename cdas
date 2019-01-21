@@ -88,3 +88,5 @@ forex:~/ws/cj/forex
 faa:~/ws/goo/scotia/faa/faa
 template:~/ws/goo/scotia/faa/template
 mirror:~/ws/goo/scotia/mirrors
+k:~/ws/kylin
+kylin:~/ws/kylin

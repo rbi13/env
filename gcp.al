@@ -213,6 +213,9 @@ ggris(){
   gcloud source repos set-iam-policy ${repo} --project=${GCP_REPO_PROJECT}  iam.policy
   rm iam.policy
 }
+ggrclone(){
+  gcloud source repos clone $1 --project=${GCP_REPO_PROJECT} && cd $1
+}
 ggra(){
   name=$1
   [ -z "$2" ] && gcloud source repos create ${name}
@@ -398,55 +401,3 @@ i-gcloud(){
   mv google-cloud-sdk ~/
   ~/google-cloud-sdk/install.sh
 }
-
-# curl "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token" -H "Metadata-Flavor: Google"
-#
-# curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
-#   'https://iam.googleapis.com/v1/projects/postybot-218520/serviceAccounts/dialogflow-vumflw@postybot-218520.iam.gserviceaccount.com/keys'
-#
-# TOKEN_RESP=curl "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token" -H "Metadata-Flavor: Google"
-# curl -H 'Authorization: Bearer 'ya29.c.EmY0BsfFicr6ofLWbCzZkvrkxHTRcBsccEw6wAnTo87xEmvmBs-Shwvc5z9Nz7RoiLag8azKbK6RH3W45cPXwDsQq6BXYacaIZWPLH7uitKll4VVtGXfLzn-KKnKrpANuUVN0SvZI30 \
-# -H 'Content-Type: application/json; charset=utf-8' \
-# --data "{
-#    'email': 'dialogflow-vumflw@postybot-218520.iam.gserviceaccount.com',
-#    'scopes': [
-#      'https://www.googleapis.com/auth/cloud-platform'
-#   ]
-#  }" 'https://www.googleapis.com/compute/v1/projects/postybot-218520/zones/us-east1-b/instances/innovapost-chat/setServiceAccount'
-
-# https://pantheon.corp.google.com/home/dashboard?project=google.com:bondrdev
-# https://console.cloud.google.com/code/develop/browse/cloudtemp/master?project=interviewgl-199716&authuser=1&organizationId=324726664201
-
-#  /usr/bin/google_metadata_script_runner --script-type startup
-# CentOS and RHEL: /var/log/messages
-# Debian: /var/log/daemon.log
-# Ubuntu 14.04, 16.04, and 16.10: /var/log/syslog
-# SLES 11 and 12: /var/log/messages
-# curl "http://metadata.google.internal/computeMetadata/v1/instance/tags?wait_for_change=true" -H "Metadata-Flavor: Google"
-
-# curl "http://metadata.google.internal/computeMetadata/v1/instance/disks/" -H "Metadata-Flavor: Google"
-
-
-
-## Example startup-script
-#! /bin/bash
-# VALUE_OF_FOO=$(curl http://metadata.google.internal/computeMetadata/v1/instance/attributes/foo -H "Metadata-Flavor: Google")
-# apt-get update
-# apt-get install -y apache2
-# cat <<EOF > /var/www/html/index.html
-# <html><body><h1>Hello World</h1>
-# <p>The value of foo: $VALUE_OF_FOO</p>
-# </body></html>
-# EOF
-
-# #! /bin/bash
-# apt-get update
-# apt-get install -y git
-# curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh && source ~/.bashrc
-
-
-# Rerun startup script
-# sudo google_metadata_script_runner --script-type startup
-
-# gcloud logging read “resource.type=global AND jsonPayload.container.name=/fluent1 AND logName=projects/[PROJECT_ID]/logs/gcplogs-docker-driver” \
-#     --limit 10
