@@ -329,6 +329,8 @@ ggcic(){
 
 
 goog(){
+  # TODO: https://source.cloud.google.com/landfill
+  # TODO: ?authuser=1 (default)
   base="https://console.cloud.google.com"
   [ -z $2 ] && p="project=$(ggproject)" || p="project=$2"
   case $1 in
@@ -376,6 +378,9 @@ goog(){
       ;;
     ps | pub | pubs* )
       path=cloudpubsub
+      ;;
+    bt | bigt* )
+      path=bigtable
       ;;
     * )
       path=$1

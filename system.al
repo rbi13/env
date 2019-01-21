@@ -40,6 +40,9 @@ iscontainer(){ neg ii host ;}
 
 own(){ me=`whoami`; sudo chown -R ${me} ./ ;}
 
+fd(){ find ${PWD} -type f -name ${@:1} ;}
+fdr(){ sudo find ${PWD} -type f -name ${@:1} ;}
+
 ipaddr(){
 	[[ -z "$1" ]] && iface='eth0' || iface=$1
 	echo $(ip addr show ${iface} | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
