@@ -3,6 +3,7 @@ alias gg='gcloud'
 alias ggi='gcloud init'
 alias ggisa='gcloud auth activate-service-account --key-file'
 alias ggg='gg alpha interactive'
+ggconf(){ vi ~/.config/gcloud/configurations/config_default ;}
 ggkey(){
   acct=$1
   gcloud iam service-accounts keys create ./secret.json \
@@ -89,7 +90,7 @@ ggceccontainer(){ gcloud compute instances create ${@:1} ;}
 ggced(){ gcloud compute instances delete ${@:1} ;}
 ggcestart(){ gcloud compute instances start ${@:1} ;}
 ggcestop(){ gcloud compute instances stop ${@:1} ;}
-ggssh(){ gcloud compute ssh $1 ;}
+ggssh(){ gcloud compute ssh ${@:1} ;}
 ggtunnel(){
   hostname=$1
   port=$2
