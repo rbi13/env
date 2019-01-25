@@ -10,6 +10,13 @@ gijava(){
   gi eclipse .gitignore
 }
 
+fdjavaclasspath(){
+  for jar in `find ${PWD} -type f -name \*.jar`; do
+    ret=${ret}:${jar}
+  done
+  echo ${ret}
+}
+
 mkjavasrc(){
   src=$(echo $1 | sed "s/\./\\//g")
   mkdir -p "src/main/java/${src}"

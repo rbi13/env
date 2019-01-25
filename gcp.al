@@ -116,6 +116,13 @@ ggfire(){
       --source-ranges=${ip}
   fi
 }
+ggfired(){ gcloud compute firewall-rules delete ${@:1} ;}
+
+# datarpoc
+ggdp(){ gcloud dataproc clusters list ${@:1} ;}
+ggdpc(){ gcloud dataproc clusters create ${@:1} ;}
+ggdpd(){ gcloud dataproc clusters delete ${@:1} ;}
+#ggprocj
 
 # pubsub
 ggpsub(){ gcloud pubsub subscriptions list --format="value(name)" ;}
@@ -160,9 +167,15 @@ snp(){
 snpw(){ gswrite ${GCP_SNIP_URL}/$1 ;}
 snpcat(){ gscat ${GCP_SNIP_URL}/$1 ;}
 snpd(){ gsutil rm ${GCP_SNIP_URL}/$1 ;}
+gsnp(){
+  tmp_path="/tmp/${HOME}/" && mkdir -p ${tmp_path}
+  context="${tmp_path}/gsnp"
+  gsutil cp ${GCP_SNIP_URL}/$1 ${context}
+  g ${context}
+}
 gswrite(){
   gs_path=$1
-  tmp_path="${HOME}/tmp/.wrt/"
+  tmp_path="/tmp/${HOME}/.wrt/"
   mkdir -p ${tmp_path}
   [ -z $2 ] && context="${tmp_path}/default" || context="${tmp_path}/$2"
   cbpaste > ${context}
