@@ -363,6 +363,9 @@ goog(){
     df | dataflow )
       path=dataflow
       ;;
+    dp | datap* )
+      path=dataproc
+      ;;
     iam )
       path=iam-admin/iam
       ;;

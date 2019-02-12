@@ -45,8 +45,8 @@ dk-tf(){
 }
 
 # terraform
-trf(){ dhe hashicorp/terraform:light ${@:1} ;}
-trfb(){ dhe hashicorp/terraform:light ${@:1} /bin/sh @@ ;}
+trf(){ dhe `trfimg` ${@:1} ;}
+trfb(){ trf /bin/sh @@ ;}
 # aws cli
 awss(){ dhe rbi13/aws aws ${@:1} ;}
 awsb(){ dhe rbi13/aws ${@:1} /bin/bash ;}
