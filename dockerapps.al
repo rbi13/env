@@ -44,9 +44,6 @@ dk-tf(){
   open ${adr}
 }
 
-# terraform
-trf(){ dhe `trfimg` ${@:1} ;}
-trfb(){ trf /bin/sh @@ ;}
 # aws cli
 awss(){ dhe rbi13/aws aws ${@:1} ;}
 awsb(){ dhe rbi13/aws ${@:1} /bin/bash ;}

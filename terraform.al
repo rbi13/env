@@ -5,6 +5,9 @@ trfimg(){
   echo hashicorp/terraform:${version}
 }
 
+trf(){ dhe `trfimg` ${@:1} ;}
+trfb(){ trf /bin/sh @@ ;}
+
 tout(){ trf output -module=${@:1} ;}
 tv(){ trf validate ${@:1} ;}
 tp(){ trf plan ${@:1} ;}

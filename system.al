@@ -33,6 +33,7 @@ alias distro-info='cat /etc/*-release'
 alias distro-base='lsb_release -a'
 alias poweroff='sudo shutdown -h now'
 alias disk='du -hd'
+alias getredirect='curl -Ls -o /dev/null -w %{url_effective}'
 ii(){ command -v >/dev/null 2>&1 ${@:1} ;}
 neg(){ ${@:1} && return 1 || return 0 ;}
 iie(){ ii $1 && `$@` ;}

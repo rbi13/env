@@ -1,6 +1,10 @@
 #!/bin/bash
 alias gg='gcloud'
 alias ggi='gcloud init'
+ggprofile(){
+  [ -z $1 ] && profile=default || profile=$1
+  gcloud config configurations activate ${profile}
+}
 alias ggisa='gcloud auth activate-service-account --key-file'
 alias ggg='gg alpha interactive'
 ggconf(){ vi ~/.config/gcloud/configurations/config_default ;}
@@ -143,6 +147,17 @@ ggptopicd(){ gcloud pubsub topics delete ${@:1} ;}
 ggptopicsub(){ gcloud pubsub topics list-subscriptions ${@:1} ;}
 # ggptopicsubd(){ gcloud pubsub topics list-subscriptions $1 ;}
 
+#flows
+ggbucketnotify(){
+  bucket="gs://$1"
+  topic=$1
+  sub=$1
+  gsutil mb ${bucket}
+  # topic created in this call (if not exists)
+  gsutil notification create -t ${topic} -f json ${bucket}
+  ggpsubc ${sub} ${topic}
+}
+
 #templates
 tpl(){
   if [ -z $1 ]; then
@@ -153,7 +168,7 @@ tpl(){
 }
 tplw(){
   gsutil rsync -r ./ ${GCP_TPL_URL}/$1
-  gswrite ${GCP_SNIP_URL}/$1
+  rite ${GCP_SNIP_URL}/$1
 }
 
 # snippets
@@ -205,6 +220,12 @@ ggdfkillsubs(){
 # bq
 bqschema(){
   bq show --format=prettyjson --schema $1 > schema.json
+}
+bqmkschema(){
+  bq mk --schema schema.json $1
+}
+bqclear(){
+  bq rm $1 && bq mk --schema schema.json $1
 }
 
 ## Source repos
@@ -319,12 +340,16 @@ saw(){
 ggdev(){
   export GOOGLE_CLOUD_PROJECT=`ggproject`
   export GOOGLE_APPLICATION_CREDENTIALS=$PWD/secret.json
-  export GOOGLE_APPLICATION_CREDENTIALS_DK=/app/secret.json
+  export GOOGLE_APPLICATION_CREDENTIALS_DKC=/app/secret.json
+  export GOOGLE_APPLICATION_CREDENTIALS_DK=/`basename $PWD`/secret.json
+  export GOOGLE_PROJECT=`ggproject`
 }
 ggudev(){
   unset GOOGLE_CLOUD_PROJECT
   unset GOOGLE_APPLICATION_CREDENTIALS
   unset GOOGLE_APPLICATION_CREDENTIALS_DK
+  unset GOOGLE_APPLICATION_CREDENTIALS_DKC
+  unset GOOGLE_PROJECT
 }
 
 ggcic(){
@@ -375,6 +400,9 @@ goog(){
     gce )
       path=compute/instances
       ;;
+    gke | k8 | k8s )
+      path=kubernetes
+      ;;
     peering )
       path=networking/peering
       ;;
@@ -391,7 +419,7 @@ goog(){
       path=mlengine
       ;;
     cf | func* )
-      path=fuctions
+      path=functions
       ;;
     ae | gae | appe* )
       path=appengine
