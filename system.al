@@ -207,6 +207,8 @@ alias passgend='dri debian bash -c "< /dev/urandom tr -dc @_A-Z-a-z-0-9 | head -
 #  static routers=192.168.0.1
 #  static domain_name_servers=192.168.0.1
 
+alias mkcert="openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -days 365 -subj '/CN=localhost'"
+alias mkcert2="openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.crt"
 # clipboard
 ismac && alias cbcopy='pbcopy' || alias cbcopy='xclip -selection c'
 ismac && alias cbpaste='pbpaste' || alias cbpaste='xclip -selection clipboard -o'

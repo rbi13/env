@@ -439,10 +439,10 @@ goog(){
 
 i-gcloud(){
   tarname='gcloudpkg.tar.gz'
-  version='209.0.0'
+  version='253.0.0'
   url="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz"
   curl -o ${tarname} ${url}
   untar ${tarname} && rm ${tarname}
-  mv google-cloud-sdk ~/
+  rsync -r google-cloud-sdk ~/
   ~/google-cloud-sdk/install.sh
 }

@@ -49,8 +49,10 @@ dxb(){ dk exec -it ${@:1} /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
 dcb(){ docker-compose build ;}
 dcr(){ docker-compose run --rm ${@:1} ;}
+dcrn(){ docker-compose run --rm --service-ports ${@:1} ;}
 dcst(){ docker-compose stop ${@:1} ;}
 dcrb(){ docker-compose run --rm ${@:1} /bin/bash ;}
+dcrbn(){ dcrn ${@:1} /bin/bash ;}
 dcrs(){ docker-compose restart ${@:1} ;}
 dck(){ docker-compose kill ${@:1} && docker-compose rm -f ${@:1} ;}
 dcl(){ docker-compose logs ${@:1} ;}
@@ -190,7 +192,7 @@ i-docker(){
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	# install docker-compose
-	# i-docker-compose
+	i-docker-compose
 	# verify
 	docker --version
 	docker-compose --version

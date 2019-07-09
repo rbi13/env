@@ -99,3 +99,4 @@ events:~/Downloads/events
 gos:~/go/src
 t:~/Downloads/tmp
 p:~/ws/proxy
+o:~/ws/proxy/oauth2_proxy
