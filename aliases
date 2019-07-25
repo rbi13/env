@@ -1,98 +1,80 @@
 #!/bin/sh
-# colors
-source ~/env/system.al # has become necessary, maybe combine system and this
-
-export PS1="\h \W> "
-export LS_COLORS='di=1;33'
-export CLICOLOR=1
-#export LSCOLORS=GxFxCxDxBxegedabagaced
-alias ls='ls --color'
-
-# general alias
+# 
+# Bash Helpers
+#
 
 default_config='.envconf'
 
+i-env(){
+  line='curl https://raw.githubusercontent.com/chris-jaques/env/master/install.sh | sh'
+  echo $line | cbcopy
+  echo $line
+}
+bootstrapcmd(){
+  echo 'curl https://raw.githubusercontent.com/chris-jaques/env/master/install.sh | sh && source ~/.bashrc' | cbcopy
+}
+
+# Is Mac?
+ismac(){ [ "$(uname)" == "Darwin" ] ;}
+
+# overrides 'open' to make it cross platform
+open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open "${@:1}" ;}
+
+# Copy to Clipboard { text }
+ismac && alias cbcopy='pbcopy' || alias cbcopy='xclip -selection c'
+
+# Paste from Clipboard
+ismac && alias cbpaste='pbpaste' || alias cbpaste='xclip -selection clipboard -o'
+
+# Initialize Desktop, navigate to LIFT dir and open Slack
+alias init="nitrogen --restore; lift; slack &"
+
+# override ls to always show hidden files.
+alias ls='ls -a --color'
+
+# ls list
+alias lsl='ls -la'
+
+# grep recursive, case-insensitive, filename only
+alias g='grep -ril'
+
+# clear the console
+alias c='clear'
+
+# reselt the console
+alias r="reset"
+
+# What's my ip addr?
+myip(){
+	addr=$(curl -s ifconfig.co -4)
+	echo ${addr}
+}
+
+# generate ssh keys { email }
+alias sgen='ssh-keygen -t rsa -b 4096 -C'
+
+# String Replace { filename } { from } { to }
+replaceAll(){
+	find . -name $1 -print0 | xargs -0 sed -i "s/$2/$3/g"
+}
+
+# package managers
+alias sag='sudo apt-get'
+
+
 alias n='nano'
-alias g='atom'
-ide(){ idea ${@:1} & }
-alias al='alias | grep "^alias"'
-alias nrca='n ~/env/aliases'
-alias nrco='n ~/env/opt.al'
-alias nrcf='n ~/env/func.al'
-alias nrcg='n ~/env/git.al'
-alias nrcgr='n ~/env/gradle.al'
-alias nrch='n ~/env/hadoop.al'
-alias nrcs='n ~/env/system.al'
-alias nrcd='n ~/env/docker.al'
-alias nrcaw='n ~/env/aws.al'
-alias nrcp='n ~/env/pi.al'
-alias nrck='n ~/env/k8s.al'
-alias nrct='n ~/env/terraform.al'
-alias nrcda='n ~/env/dockerapps.al'
-alias nrcgcp='n ~/env/gcp.al'
-alias nrc='n ~/.bashrc'
-alias nrcu='n ~/env/ubuntu.al'
-alias grca='g ~/env/aliases &'
-alias grco='g ~/env/opt.al &'
-alias grcf='g ~/env/func.al &'
-alias grcg='g ~/env/git.al &'
-alias grcgr='g ~/env/gradle.al'
-alias grch='g ~/env/hadoop.al &'
-alias grcs='g ~/env/system.al &'
-alias grcd='g ~/env/docker.al &'
-alias grct='g ~/env/terraform.al &'
-alias grcda='g ~/env/dockerapps.al'
-alias grcgcp='g ~/env/gcp.al'
-alias grcaw='g ~/env/aws.al &'
-alias grcp='g ~/env/pi.al'
-alias grck='g ~/env/k8s.al'
-grcn(){ g ~/env/$1.al ;}
-alias grc='g ~/.bashrc &'
-alias src='source ~/.bashrc'
-alias r='clear'
-alias e='exit'
-alias l='ls -Ga'
-alias ll='l -lha'
-alias llo='l -haltr'
-alias du='du -h -d'
-alias df='df -h'
-alias nt='nautilus'
-alias ho='cat /etc/hosts'
-alias nho='sudo nano /etc/hosts'
-alias gho='sudo atom /etc/hosts'
-alias nko='n ~/.ssh/known_hosts'
-alias gko='g ~/.ssh/known_hosts'
-alias chc='ping 8.8.8.8'
+
 alias ..='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
-s(){ ssh -Y ${@:1} ;}
-
-# add temp-source (non-tracked) files to source with 'src' command
-asrc() { ln -fs "$(pwd)/$1" "$HOME/env/tmp" ;}
-# remove a temp-source file
-rsrc() { rm "~/env/tmp/$1" ;}
-# clear all temp-source files
-clsrc() { for al in ~/env/tmp/*; do rm $al; done ;}
-# list temp source files
-alias lsrc='ll ~/env/tmp'
-
-# env installation
-#alias envapply='sh ~/env/apply.sh'
 
 # source all '.al', used as plugin system for env
 srcCustom() {
 	mkdir -p ~/env/tmp
 	for al in $(find ~/env -name '*.al'); do source $al; done
 	for al in $(find ~/env/tmp/ -type f -name '*' ); do source $al ; done
-}
-
-add_profile() {
-  if [ ! -f ~/.profile ]; then
-    echo "if [ ! -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi" >> ~/.profile
-  fi
 }
 
 # generic map storage
@@ -118,15 +100,6 @@ mapset(){
     echo "$key:$value" >> $file
   else sed -i "/^$key:/c$key:$value" $file;
   fi
-}
-
-env-ins(){
-  line='curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh'
-  echo $line | cbcopy
-  echo $line
-}
-bootstrapcmd(){
-  echo 'curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh && source ~/.bashrc' | cbcopy
 }
 
 # Exec
