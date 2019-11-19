@@ -47,7 +47,7 @@ alias dkk='dk kill'
 dx(){ dk exec -it ${@:1} ;}
 dxb(){ dk exec -it ${@:1} /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
-dcb(){ docker-compose build ;}
+dcb(){ docker-compose build ${@:1} ;}
 dcr(){ docker-compose run --rm ${@:1} ;}
 dcrn(){ docker-compose run --rm --service-ports ${@:1} ;}
 dcst(){ docker-compose stop ${@:1} ;}

@@ -47,7 +47,7 @@ over:~/ws/hubba/overrides
 pay:~/ws/hubba/tmp/back/hubba-payments
 trf:~/ws/hubba/trf
 frontend:~/ws/hubba/tmp/front/hubba-frontend
-data:~/ws/data
+data:~/ws/datasand
 dave:~/ws/hubba/lib/davepi
 inj:~/ws/aws-param-inject
 goo:~/ws/goo
@@ -100,3 +100,8 @@ gos:~/go/src
 t:~/Downloads/tmp
 p:~/ws/proxy
 o:~/ws/proxy/oauth2_proxy
+grid:~/ws/grid/grid
+q:~/ws/quant
+datasand:~/ws/datasand
+sand:~/ws/datasand
+orm:~/ws/grid/python-spanner-orm

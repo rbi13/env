@@ -1,13 +1,19 @@
 #!/bin/bash
 alias gg='gcloud'
 alias ggi='gcloud init'
-ggprofile(){
+ggprofileset(){
   [ -z $1 ] && profile=default || profile=$1
   gcloud config configurations activate ${profile}
 }
+ggprofile(){
+  gcloud config configurations list
+}
 alias ggisa='gcloud auth activate-service-account --key-file'
 alias ggg='gg alpha interactive'
-ggconf(){ vi ~/.config/gcloud/configurations/config_default ;}
+ggconf(){
+  [ -z $1 ] && conf='config_default' || conf=$1
+  vi ~/.config/gcloud/configurations/config_${conf}
+}
 ggkey(){
   acct=$1
   gcloud iam service-accounts keys create ./secret.json \
@@ -43,8 +49,9 @@ ggsac(){
     --iam-account=${sa}
 }
 
-ggservices(){ gcloud services enable $1.googleapis.com ;}
-ggservicesd(){ gcloud services disable $1.googleapis.com ;}
+ggservices(){ gcloud services list ;}
+ggservicesenable(){ gcloud services enable $1.googleapis.com ;}
+ggservicesdisable(){ gcloud services disable $1.googleapis.com ;}
 
 jupyterLab(){
   IMAGE_FAMILY="tf-latest-cpu"
@@ -121,6 +128,18 @@ ggfire(){
   fi
 }
 ggfired(){ gcloud compute firewall-rules delete ${@:1} ;}
+
+# images
+ggimagec(){
+  name=$1
+  source=$2
+  gcloud beta compute images create ${name} \
+    --source-disk=${source} \
+    --storage-location=us
+    # --source-disk-zone= \
+    # --project= \
+}
+
 
 # datarpoc
 ggdp(){ gcloud dataproc clusters list ${@:1} ;}
@@ -229,36 +248,48 @@ bqclear(){
 }
 
 ## Source repos
-ggr(){ gcloud source repos list --project=${GCP_REPO_PROJECT} ;}
+# service acct checkouts
+# git config --global credential.helper gcloud.sh
+ggr(){
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
+  gcloud source repos list ${prj}
+}
 ggrd(){
   [ -z $1 ] && repo=$(basename ${PWD}) || repo=$1
-  gcloud source repos delete ${repo} --project=${GCP_REPO_PROJECT}
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
+  gcloud source repos delete ${repo} ${prj}
 }
 ggrc(){
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
   gcloud source repos create $1 --project=${GCP_REPO_PROJECT}
-  [ $2=='c' ] && gcloud source repos clone $1 --project=${GCP_REPO_PROJECT} && cd $1
+  [ $2=='c' ] && gcloud source repos clone $1 ${prj} && cd $1
 }
 ggri(){
   [ -z $1 ] && repo=$(basename ${PWD}) || repo=$1
-  gcloud source repos get-iam-policy ${repo} --project=${GCP_REPO_PROJECT} > iam.policy
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
+  gcloud source repos get-iam-policy ${repo} ${prj} > iam.policy
   g iam.policy
 }
 ggris(){
   [ -z $1 ] && repo=$(basename ${PWD}) || repo=$1
-  gcloud source repos set-iam-policy ${repo} --project=${GCP_REPO_PROJECT}  iam.policy
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
+  gcloud source repos set-iam-policy ${repo} ${prj}  iam.policy
   rm iam.policy
 }
 ggrclone(){
-  gcloud source repos clone $1 --project=${GCP_REPO_PROJECT} && cd $1
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
+  gcloud source repos clone $1 ${prj} && cd $1
 }
 ggra(){
+  [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
   name=$1
-  [ -z "$2" ] && gcloud source repos create ${name}
+  [ -z "$2" ] && gcloud source repos create ${name} ${prj}
   url=$(gcloud source repos describe ${name} --flatten url | tail -1)
   git remote add origin ${url}
 }
 repos(){
-  open "https://console.cloud.google.com/code/develop/repo?project=${GCP_REPO_PROJECT}"
+  [ -z ${GCP_REPO_PROJECT} ] && prj=`ggproject` || prj="--project=${GCP_REPO_PROJECT}"
+  open "https://console.cloud.google.com/code/develop/repo?project=${prj}"
 }
 repourl(){
   url=`git remote -v | grep -E 'origin.*fetch' | awk '{print $2}'`
@@ -340,7 +371,7 @@ saw(){
 ggdev(){
   export GOOGLE_CLOUD_PROJECT=`ggproject`
   export GOOGLE_APPLICATION_CREDENTIALS=$PWD/secret.json
-  export GOOGLE_APPLICATION_CREDENTIALS_DKC=/app/secret.json
+  export GOOGLE_APPLICATION_CREDENTIALS_DKC=/secret.json
   export GOOGLE_APPLICATION_CREDENTIALS_DK=/`basename $PWD`/secret.json
   export GOOGLE_PROJECT=`ggproject`
 }
@@ -429,6 +460,9 @@ goog(){
       ;;
     bt | bigt* )
       path=bigtable
+      ;;
+    span* )
+      path=spanner/instances
       ;;
     * )
       path=$1
