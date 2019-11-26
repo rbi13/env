@@ -37,6 +37,7 @@ alias grhh='grh && git clean -dfx'
 alias gb='git branch'
 alias gbv='git branch -v -a && gtag'
 alias gbd='git branch -D'
+gbdr(){ git branch -D $1 && git push -d origin $1 ;}
 alias grv='git remote -v'
 alias gbc='git rev-parse --abbrev-ref HEAD'
 alias gf='git fetch'
