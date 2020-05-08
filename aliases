@@ -132,3 +132,4 @@ bootstrapcmd(){
 # Exec
 # activated on source call
 srcCustom
+keyspeed
