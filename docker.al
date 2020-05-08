@@ -67,7 +67,6 @@ dcx(){ docker-compose exec ${@:1} ;}
 dcxb(){ docker-compose exec ${@:1} /bin/bash ;}
 dcs(){ docker-compose scale ${@:1} ;}
 dcul(){ dcd && dcud && dcl ;}
-
 # building
 alias dt='dk tag'
 alias dhub='dk search'
