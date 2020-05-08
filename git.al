@@ -46,6 +46,13 @@ alias gcherry='git cherry-pick'
 alias gfp='gf --prune'
 alias gclean='git remote prune origin'
 alias ginfo='git log --diff-filter=A --'
+gtracked(){
+	if [ -z $1 ]; then
+		git ls-tree -r master --name-only
+	else
+		git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
+	fi
+}
 gtag(){ git tag ${@:1} ;}
 gptag(){ gtag ${@:1}; gp ${@:1} ;}
 glast-commit(){ git log -1 --format="%ad" ${@:1} ;}

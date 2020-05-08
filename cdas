@@ -97,10 +97,10 @@ cbc:~/ws/cbc/cbc
 dumb:~/ws/tmp/tmp
 events:~/Downloads/events
 gos:~/go/src
-t:~/Downloads/tmp
+t:~/ws/trade
 p:~/ws/proxy
-o:~/ws/proxy/oauth2_proxy
-grid:~/ws/grid/grid
+o:~/ws/oanda-api-v20
+grid:~/ws/pygrid
 q:~/ws/quant
 datasand:~/ws/datasand
 sand:~/ws/datasand

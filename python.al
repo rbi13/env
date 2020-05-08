@@ -59,6 +59,7 @@ pyscratchtest(){ python -m unittest test.scratch.Scratch ;}
 pytest(){ python -m unittest ${@:1} ;}
 pyinttest(){ python -m unittest discover -p *int_test.py ${@:1} ;}
 pye2etest(){ python -m unittest discover --failfast -p *e2e_test.py ${@:1} ;}
+pye2etest(){ python -m unittest discover --failfast -p *man_test.py ${@:1} ;}
 
 i-python(){
   ## builds and installs python 3+ from source
