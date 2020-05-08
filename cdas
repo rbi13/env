@@ -100,8 +100,11 @@ gos:~/go/src
 t:~/Downloads/tmp
 p:~/ws/proxy
 o:~/ws/proxy/oauth2_proxy
-grid:~/ws/grid/grid
+grid:~/ws/pygrid
 q:~/ws/quant
 datasand:~/ws/datasand
 sand:~/ws/datasand
 orm:~/ws/grid/python-spanner-orm
+pygoo:~/ws/google-cloud-python
+gpy:~/ws/google-cloud-python
+mig:~/ws/migrate

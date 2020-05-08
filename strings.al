@@ -17,6 +17,10 @@ scolr(){ awk "{for(i=$1;i<=NF;++i)printf \$i\" \"; print \"\" }" ;}
 
 hist(){ history $1 | scolr 5  | cbcopy ;}
 
+cbfilter(){
+  [ -z "$2" ] && cbpaste | grep $1 | cbcopy || cbpaste | grep $1
+}
+
 # python - <<END
 
 # python << END

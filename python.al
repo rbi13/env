@@ -33,6 +33,9 @@ ppi(){ pip install -r requirements.txt ;}
 ppf(){ pip freeze > requirements.txt ;}
 pydir(){ touch __init__.py ;}
 
+# TODO pip dep-tree
+# pipdeptree
+
 mkpimodule(){
   mkdir $1
   touch $1/__init__.py
@@ -59,6 +62,7 @@ pyscratchtest(){ python -m unittest test.scratch.Scratch ;}
 pytest(){ python -m unittest ${@:1} ;}
 pyinttest(){ python -m unittest discover -p *int_test.py ${@:1} ;}
 pye2etest(){ python -m unittest discover --failfast -p *e2e_test.py ${@:1} ;}
+pymantest(){ python -m unittest discover --failfast -p *man_test.py ${@:1} ;}
 
 i-python(){
   ## builds and installs python 3+ from source

@@ -46,6 +46,7 @@ alias drst='dk restart'
 alias dkk='dk kill'
 dx(){ dk exec -it ${@:1} ;}
 dxb(){ dk exec -it ${@:1} /bin/bash ;}
+dxbonly(){ dk exec -it ${@:1} $(dk ps -a -q) /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
 dcb(){ docker-compose build ${@:1} ;}
 dcr(){ docker-compose run --rm ${@:1} ;}
@@ -64,7 +65,6 @@ dcx(){ docker-compose exec ${@:1} ;}
 dcxb(){ docker-compose exec ${@:1} /bin/bash ;}
 dcs(){ docker-compose scale ${@:1} ;}
 dcul(){ dcd && dcud && dcl ;}
-
 # building
 alias dt='dk tag'
 alias dhub='dk search'

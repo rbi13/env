@@ -9,7 +9,7 @@ gaac(){ gaa; gc "$1" ;}
 gaacp(){ gaac "$1" && gpc ;}
 gac(){ ga ${@:2} && gc "$1" ;}
 alias gp='git push -u origin'
-alias gpu='git push -u upstream'
+alias gpu='git push --set-upstream origin'
 gpc(){ gp $(gbc) ;}
 alias gpm='git push origin master'
 alias gpi='git push internal master'
@@ -37,7 +37,13 @@ alias grhh='grh && git clean -dfx'
 alias gb='git branch'
 alias gbv='git branch -v -a && gtag'
 alias gbd='git branch -D'
-gbdr(){ git branch -D $1 && git push -d origin $1 ;}
+gbdr(){
+	name=$1
+	replaced='remotes/origin/'
+	name="${name/$replaced/}"
+	git branch -D ${name}
+	git push -d origin ${name}
+}
 alias grv='git remote -v'
 alias gbc='git rev-parse --abbrev-ref HEAD'
 alias gf='git fetch'
@@ -49,6 +55,7 @@ alias ginfo='git log --diff-filter=A --'
 gtag(){ git tag ${@:1} ;}
 gptag(){ gtag ${@:1}; gp ${@:1} ;}
 glast-commit(){ git log -1 --format="%ad" ${@:1} ;}
+alias gundo='git reset --soft HEAD~1'
 
 # subtree
 # TODO: add subtree url tracking

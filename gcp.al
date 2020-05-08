@@ -261,7 +261,7 @@ ggrd(){
 }
 ggrc(){
   [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
-  gcloud source repos create $1 --project=${GCP_REPO_PROJECT}
+  gcloud source repos create $1
   [ $2=='c' ] && gcloud source repos clone $1 ${prj} && cd $1
 }
 ggri(){
