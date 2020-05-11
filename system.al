@@ -38,8 +38,8 @@ ii(){ command -v >/dev/null 2>&1 ${@:1} ;}
 neg(){ ${@:1} && return 1 || return 0 ;}
 iie(){ ii $1 && `$@` ;}
 iscontainer(){ neg ii host ;}
-
 own(){ me=`whoami`; sudo chown -R ${me} ./ ;}
+keytest(){ xev | grep --line-buffered keysym ;}
 
 fd(){ find ${PWD} -type f -name ${@:1} ;}
 fdr(){ sudo find ${PWD} -type f -name ${@:1} ;}
