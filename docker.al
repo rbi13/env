@@ -204,8 +204,8 @@ i-docker-compose(){
 	tag=`curl -Ls -o /dev/null -w %{url_effective} https://github.com/docker/compose/releases/latest`
 	tag=${tag##*/}
 	curl -L "https://github.com/docker/compose/releases/download/${tag}/docker-compose-`uname -s`-`uname -m`" > docker-compose
-	sudo mv docker-compose /usr/local/bin/docker-compose
-	sudo chmod +x /usr/local/bin/docker-compose
+	sudo mv docker-compose /usr/bin/docker-compose
+	sudo chmod +x /usr/bin/docker-compose
 }
 
 
