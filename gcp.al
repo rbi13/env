@@ -101,6 +101,30 @@ ggceccontainer(){ gcloud compute instances create ${@:1} ;}
 ggced(){ gcloud compute instances delete ${@:1} ;}
 ggcestart(){ gcloud compute instances start ${@:1} ;}
 ggcestop(){ gcloud compute instances stop ${@:1} ;}
+ggceinfo(){ gcloud compute instances describe ${@:1} ;}
+ggcesname(){
+  name=$1
+  zone=`gcloud config get-value compute/zone`
+  proj=`gcloud config get-value project`
+  echo "${name}.${zone}.${proj}"
+}
+ggrsync(){
+  name=$1
+  l=$2
+  d=$3
+  remote=`ggcesname ${name}`
+  gcloud compute config-ssh > /dev/null
+  rsync -r ${l} ${remote}:${d}
+}
+ggsexec(){
+  name=$1
+  cmd="${@:2}"
+  remote=`ggcesname ${name}`
+  gcloud compute config-ssh > /dev/null
+  ssh ${remote} ${cmd}
+  [ $? -eq 255 ] && gcloud compute ssh ${name} --command="${cmd}"
+}
+
 ggssh(){ gcloud compute ssh ${@:1} ;}
 ggtunnel(){
   hostname=$1
@@ -115,29 +139,30 @@ ggtunnelclient(){
     --proxy-server="socks5://localhost:${port}" \
     --user-data-dir=/tmp/${hostname}
 }
-ggfire(){
-  if [ -z $1 ]; then
-    gcloud compute firewall-rules list
-  else
-    name=$1
-    port=$2
-    ip=$3
-    gcloud compute firewall-rules create ${name}\
-      --allow=tcp:${port}\
-      --source-ranges=${ip}
-  fi
-}
+ggfire(){ gcloud compute firewall-rules list ;}
+ggfireinfo(){ gcloud compute firewall-rules list ;}
+ggfirec(){ gcloud compute firewall-rules create ${@:1} ;}
 ggfired(){ gcloud compute firewall-rules delete ${@:1} ;}
+ggfnoegress(){
+  gcloud compute firewall-rules create \
+    noegress \
+    --action deny \
+    --direction egress\
+    --rules tcp \
+    --priority 1000 \
+    --source-tags $1
+}
 
 # images
-ggimagec(){
+ggimage(){ gcloud beta compute images list | grep ${1:-''} ;}
+ggimagefromins(){
   name=$1
   source=$2
-  gcloud beta compute images create ${name} \
-    --source-disk=${source} \
-    --storage-location=us
-    # --source-disk-zone= \
-    # --project= \
+  v=${3:-`timestamp`}
+  ggcestop ${source}
+  gcloud beta compute images create "${name}${v}" \
+    --family ${name} \
+    --source-disk=${source}
 }
 
 

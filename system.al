@@ -25,6 +25,11 @@
 # dpkg-query -l 'name*'
 
 
+# system-detection
+ismac(){ [ "$(uname)" == "Darwin" ] ;}
+#islinux(){ [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ;}
+getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
+
 alias xsh='open https://explainshell.com/'
 alias ctl='sudo systemctl'
 alias restartctl='ctl daemon-reload'
@@ -37,6 +42,32 @@ alias getredirect='curl -Ls -o /dev/null -w %{url_effective}'
 ii(){ command -v >/dev/null 2>&1 ${@:1} ;}
 neg(){ ${@:1} && return 1 || return 0 ;}
 iie(){ ii $1 && `$@` ;}
+
+# unix/linux mapping
+if ismac
+then
+	# clipboard
+	cbcopy(){  pbcopy ;}
+	cbpaste(){ pbpaste ;}
+else
+	cbcopy(){ xclip -selection c ;}
+	cbpaste(){ xclip -selection clipboard -o ;}
+fi
+
+clip(){ [[ -f "$1" ]] && cat $1 | cbcopy || ${@:1} | cbcopy ;}
+
+allp(){ all $1 cbpaste ;}
+all(){
+	cmd=$1
+	[ -z $3 ] && elements=`$2` || elements=${@:2}
+	for e in ${elements}; do ${cmd} ${e}; done
+}
+allf(){
+	cmd=$1
+	file=$2
+	while read e; do ${cmd} ${e}; done <${file}
+}
+
 iscontainer(){ neg ii host ;}
 own(){ me=`whoami`; sudo chown -R ${me} ./ ;}
 keytest(){ xev | grep --line-buffered keysym ;}
@@ -178,11 +209,6 @@ day(){
 	open 'https://keep.google.com/u/0/#home'
 }
 
-# system-detection
-ismac(){ [ "$(uname)" == "Darwin" ] ;}
-#islinux(){ [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ;}
-getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
-
 # overrides 'open' to make it cross platform
 open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open "${@:1}" ;}
 md(){ [ -z $1 ]  && google-chrome 'README.md' || google-chrome ${@:1} ;}
@@ -194,7 +220,7 @@ alias sag='sudo apt-get'
 
 # networking
 alias ports='netstat -plnt'
-
+alias outbound='netstat -nputw'
 # random gen
 alias passgen='openssl rand -base64 32'
 alias passgend='dri debian bash -c "< /dev/urandom tr -dc @_A-Z-a-z-0-9 | head -c${1:-32};" | cbcopy'
@@ -209,10 +235,6 @@ alias passgend='dri debian bash -c "< /dev/urandom tr -dc @_A-Z-a-z-0-9 | head -
 
 alias mkcert="openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -days 365 -subj '/CN=localhost'"
 alias mkcert2="openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert.key -out cert.crt"
-# clipboard
-ismac && alias cbcopy='pbcopy' || alias cbcopy='xclip -selection c'
-ismac && alias cbpaste='pbpaste' || alias cbpaste='xclip -selection clipboard -o'
-clip() { [[ -f "$1" ]] && cat $1 | cbcopy || exec "${@:1}" | cbcopy ;}
 
 wallpaper(){
 	if [ -z $1 ]; then

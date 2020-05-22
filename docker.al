@@ -44,11 +44,11 @@ alias dst='dk stop'
 alias dsta='dk stop $(dk ps -a -q)'
 alias drst='dk restart'
 alias dkk='dk kill'
-dx(){ dk exec -it ${@:1} ;}
-dxb(){
-	[ -z "$1" ] && args=`dc -q` || args=${@:1}
-	dk exec -it ${args} /bin/bash
+dx(){
+	# [ -z "$1" ] && args=`dc -q` || args=${@:1}
+	dk exec -it `dc -q` ${@:1}
 }
+dxb(){ dx /bin/bash ;}
 dcd(){ docker-compose ${@:1} down ;}
 dcb(){ docker-compose build ${@:1} ;}
 dcr(){ docker-compose run --rm ${@:1} ;}

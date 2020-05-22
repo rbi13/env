@@ -24,6 +24,7 @@ alias gkk='git checkout --'
 alias gt='git stash'
 alias gtl='git stash list'
 alias gta='git stash apply'
+alias gtc='git stash clear'
 alias grm='git reset HEAD --'
 gtai(){ git stash apply "stash@{$1}" ;}
 alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
@@ -34,8 +35,8 @@ gdff(){ git show $1:$2 ;}
 alias gdl='gd HEAD^ HEAD'
 alias grh='git reset --hard'
 alias grhh='grh && git clean -dfx'
-alias gb='git branch'
-alias gbv='git branch -v -a && gtag'
+gb(){ git branch ${@:1} ;}
+gbv(){ git branch -v -a && gtag ;}
 alias gbd='git branch -D'
 gbdr(){
 	name=$1
