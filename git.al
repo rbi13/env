@@ -27,7 +27,14 @@ alias gta='git stash apply'
 alias gtc='git stash clear'
 alias grm='git reset HEAD --'
 gtai(){ git stash apply "stash@{$1}" ;}
-alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
+gl(){
+	if [ -z $1 ]
+	then
+		git log --oneline --abbrev-commit --all --graph --decorate --color
+	else
+		git log -p $1
+	fi
+}
 gd(){ git diff --color ${@:1} ;}
 gdc(){ git show $1 ;}
 gdf(){ git show --name-only $1 ;}
