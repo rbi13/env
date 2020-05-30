@@ -209,6 +209,11 @@ day(){
 	open 'https://keep.google.com/u/0/#home'
 }
 
+# write to sd card: img disk
+img-write() { sudo dd bs=4M status=progress if="$1" of="$2" conv=fsync ; sudo sync ;}
+# clone image from card: img disk
+img-clone() { sudo dd bs=4M status=progress if="$2" of="$1"; sudo sync ;}
+
 # overrides 'open' to make it cross platform
 open(){ echo ${@:1}; ismac && command open ${@:1} || xdg-open "${@:1}" ;}
 md(){ [ -z $1 ]  && google-chrome 'README.md' || google-chrome ${@:1} ;}
