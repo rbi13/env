@@ -19,6 +19,7 @@ alias dri='drc -it'
 alias drip='dri -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'
 alias dripf='dri -v `pwd`:`pwd` -w `pwd`'
 dre(){ drc -it --entrypoint '/bin/sh' ${@:1} ;}
+drep(){ drip -it --entrypoint '/bin/sh' ${@:1} ;}
 drb(){ dri ${@:1} /bin/bash ;}
 drbp(){ drip ${@:1} /bin/bash ;}
 drbf(){ dripf ${@:1} /bin/bash ;}
@@ -58,7 +59,6 @@ dcrb(){ docker-compose run --rm ${@:1} /bin/bash ;}
 dcrbn(){ dcrn ${@:1} /bin/bash ;}
 dcrs(){ docker-compose restart ${@:1} ;}
 dck(){ docker-compose kill ${@:1} && docker-compose rm -f ${@:1} ;}
-dcl(){ docker-compose logs ${@:1} ;}
 dcl(){ docker-compose logs -f ${@:1} ;}
 dcu(){ docker-compose ${@:1} up ;}
 dcud(){ docker-compose ${@:1} up -d ;}

@@ -6,6 +6,18 @@
 ##
 # ddl=grep docker /var/log/messages
 
+dk-transmission(){
+  docker run\
+    --name=transmission\
+    -e PUID=1000 -e PGID=1000\
+    -e USER=ron -e PASS=ron\
+    -p 9091:9091 -p 51413:51413 -p 51413:51413/udp\
+    -v ~/Downloads/torrent/d:/downloads\
+    -v ~/Downloads/torrent/w:/watch\
+    --restart unless-stopped\
+    linuxserver/transmission
+}
+
 dk-jenkins(){
   # provide index multiple instances
   [ -z $1 ] && index=0 || index=$1
