@@ -128,6 +128,18 @@ env-ins(){
 bootstrapcmd(){
   echo 'curl https://raw.githubusercontent.com/rbi13/env/master/install.sh | sh && source ~/.bashrc' | cbcopy
 }
+depsdesktop(){
+	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+  sudo apt update
+  sudo apt upgrade
+	sudo apt install curl xclip google-chrome-stable
+	sudo snap install atom --classic
+}
+homeclean(){
+	rmdir ~/Templates ~/Documents ~/Pictures ~/Music ~/Videos ~/Public
+	mkdir ws
+}
 
 # Exec
 # activated on source call
