@@ -141,6 +141,12 @@ homeclean(){
 	mkdir ws
 }
 
+devv(){
+  f=`pwd`
+  f=`basename ${f}`
+  ${f}_dev
+}
+
 # Exec
 # activated on source call
 srcCustom
