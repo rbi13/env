@@ -202,50 +202,6 @@ ggbucketnotify(){
   ggpsubc ${sub} ${topic}
 }
 
-#templates
-tpl(){
-  if [ -z $1 ]; then
-    gsutil ls ${GCP_TPL_URL}
-  else
-    gsutil cp -r ${GCP_TPL_URL}/$1 ./
-  fi
-}
-tplw(){
-  gsutil rsync -r ./ ${GCP_TPL_URL}/$1
-  rite ${GCP_SNIP_URL}/$1
-}
-
-# snippets
-snp(){
-  if [ -z $1 ]; then
-    gsutil ls ${GCP_SNIP_URL}
-  else
-    gsread ${GCP_SNIP_URL}/$1
-  fi
-}
-snpw(){ gswrite ${GCP_SNIP_URL}/$1 ;}
-snpcat(){ gscat ${GCP_SNIP_URL}/$1 ;}
-snpd(){ gsutil rm ${GCP_SNIP_URL}/$1 ;}
-gsnp(){
-  tmp_path="/tmp/${HOME}/" && mkdir -p ${tmp_path}
-  context="${tmp_path}/gsnp"
-  gsutil cp ${GCP_SNIP_URL}/$1 ${context}
-  g ${context}
-}
-gswrite(){
-  gs_path=$1
-  tmp_path="/tmp/${HOME}/.wrt/"
-  mkdir -p ${tmp_path}
-  [ -z $2 ] && context="${tmp_path}/default" || context="${tmp_path}/$2"
-  cbpaste > ${context}
-  gsutil cp ${context} ${gs_path}
-}
-gsread(){ gscat ${@:1} | cbcopy ;}
-gscat(){
-  gs_path=$1
-  gsutil cat ${gs_path}
-}
-
 # dataflow
 ggdf(){ gcloud dataflow jobs list ${@:1} ;}
 ggdfj(){ gcloud dataflow jobs describe ${@:1} ;}
@@ -414,14 +370,15 @@ ggcic(){
     --machine-type "n1-standard-4"\
     --preemptible
     # --zone "us-east1-b"\
-    # --boot-disk-size "10" --boot-disk-type "pd-standard" --boot-disk-device-name "datamigrator"\
+    # --boot-disk-size "10"\
+    # --boot-disk-type "pd-standard"\
+    # --boot-disk-device-name "datamigrator"\
     # --image "debian-9-stretch-v20180307" --image-project "debian-cloud"\
     # --subnet "default"\
     # --no-restart-on-failure\
     # --maintenance-policy "TERMINATE"\
     # --service-account ""\
     # --min-cpu-platform "Automatic"\
-    # --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring.write","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append"
 }
 
 
@@ -497,9 +454,10 @@ goog(){
 }
 
 i-gcloud(){
+  url='https://dl.google.com/dl/cloudsdk/channels/rapid/downloads'
   tarname='gcloudpkg.tar.gz'
   version='253.0.0'
-  url="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz"
+  url="${url}/google-cloud-sdk-${version}-linux-x86_64.tar.gz"
   curl -o ${tarname} ${url}
   untar ${tarname} && rm ${tarname}
   rsync -r google-cloud-sdk ~/
