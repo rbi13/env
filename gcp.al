@@ -257,7 +257,7 @@ ggris(){
   gcloud source repos set-iam-policy ${repo} ${prj}  iam.policy
   rm iam.policy
 }
-ggrclone(){
+ggclone(){
   [ -z ${GCP_REPO_PROJECT} ] && prj='' || prj="--project=${GCP_REPO_PROJECT}"
   gcloud source repos clone $1 ${prj} && cd $1
 }

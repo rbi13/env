@@ -2,6 +2,17 @@
 
 export CLI_SNIP_URL='gs://clitools/snippets'
 export CLI_ENV_URL='gs://clitools/envs'
+export CLI_LNK_URL='gs://clitools/links'
+
+# links
+lnk(){
+  if [ -z $1 ]; then
+    gsutil ls ${CLI_LNK_URL}
+  else
+    open `gscat ${CLI_LNK_URL}/$1`
+  fi
+}
+lnkw(){ gswrite ${CLI_LNK_URL}/$1 ;}
 
 # envs
 renv(){
