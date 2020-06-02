@@ -97,7 +97,7 @@ cbc:~/ws/cbc/cbc
 dumb:~/ws/tmp/tmp
 events:~/Downloads/events
 gos:~/go/src
-t:~/ws/trade
+t:~/ws/tradr
 p:~/ws/proxy
 o:~/ws/oanda-api-v20
 grid:~/ws/pygrid
