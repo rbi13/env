@@ -57,7 +57,6 @@ jupyterLab(){
   IMAGE_FAMILY="tf-latest-cpu"
   ZONE="us-east1-b"
   INSTANCE_NAME="jup"
-
   gcloud compute instances create $INSTANCE_NAME \
     --zone=$ZONE \
     --image-family=$IMAGE_FAMILY \
@@ -96,7 +95,19 @@ ggce(){
   [ "$1" == 'id' ] && args=--format="value(name)" || args=${@:1}
   gcloud compute instances list ${args}
 }
-ggcec(){ gcloud compute instances create ${@:1} ;}
+ggcec(){
+  name=$1
+  image=$2
+  type=${3:-'n1-standard-1'}
+  args=${@:4}
+  gcloud compute instances create\
+    --image=${image}\
+    --machine-type=${type}\
+    --boot-disk-size=200GB \
+    --scopes=https://www.googleapis.com/auth/cloud-platform\
+    ${args}
+}
+ggceserial(){ gcloud compute instances get-serial-port-output $1 ;}
 ggceccontainer(){ gcloud compute instances create ${@:1} ;}
 ggced(){ gcloud compute instances delete ${@:1} ;}
 ggcestart(){ gcloud compute instances start ${@:1} ;}
@@ -139,6 +150,12 @@ ggtunnelclient(){
     --proxy-server="socks5://localhost:${port}" \
     --user-data-dir=/tmp/${hostname}
 }
+
+# migs
+ggmig(){ gcloud compute instance-groups managed list ;}
+ggmigsize(){ gcloud compute instance-groups managed describe $1 ;}
+ggmigscale(){ gcloud compute instance-groups managed $1 resize ${2:-0} ;}
+
 ggfire(){ gcloud compute firewall-rules list ;}
 ggfireinfo(){ gcloud compute firewall-rules list ;}
 ggfirec(){ gcloud compute firewall-rules create ${@:1} ;}
@@ -407,24 +424,6 @@ ggudev(){
   unset GOOGLE_APPLICATION_CREDENTIALS_DKC
   unset GOOGLE_PROJECT
 }
-
-ggcic(){
-  name=$1
-  gcloud beta compute instances create ${name}\
-    --machine-type "n1-standard-4"\
-    --preemptible
-    # --zone "us-east1-b"\
-    # --boot-disk-size "10" --boot-disk-type "pd-standard" --boot-disk-device-name "datamigrator"\
-    # --image "debian-9-stretch-v20180307" --image-project "debian-cloud"\
-    # --subnet "default"\
-    # --no-restart-on-failure\
-    # --maintenance-policy "TERMINATE"\
-    # --service-account ""\
-    # --min-cpu-platform "Automatic"\
-    # --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring.write","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append"
-}
-
-
 
 goog(){
   # TODO: https://source.cloud.google.com/landfill
