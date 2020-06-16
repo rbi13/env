@@ -172,40 +172,45 @@ diexport(){
 #TODO: alias for image removal from registry
 #curl -u<user:password> -X DELETE "<Artifactory URL>/<Docker v2 repository name>/<namespace>:<tag>"
 
-# TODO: add macos install
 i-docker(){
-	#[[ -z $1 ]] && version='latest' || version=$1
-	# download and install docker into '/usr/bin'
-	tag=`curl -Ls -o /dev/null -w %{url_effective} https://github.com/docker/docker-ce/releases/latest`
+	url='https://github.com/docker/docker-ce/releases/latest'
+	tag=`curl -Ls -o /dev/null -w %{url_effective} ${url}`
 	tag=${tag##*/}
 	version=${tag:1}
-	wget "https://download.docker.com/linux/static/stable/x86_64/docker-${version}.tgz"
-	tar -xvzf docker-${version}.tgz
+	arch=`uname -m`
+	[ ${arch} = 'armv7l' ] && arch='armhf'
+	zipname=docker-${version}.tgz
+	url='https://download.docker.com/linux/static/stable'
+	curl -Ls ${url}/${arch}/${zipname} > ${zipname}
+	tar -xvzf ${zipname}
 	sudo rsync docker/* /usr/bin/
 	# create docker group
 	sudo groupadd docker
 	sudo usermod -aG docker $USER
-	rm docker-${version}.tgz
-	rm -rf docker/
+	rm -rf ${zipname} docker/
 	# add systemd scripts for docker deamon
-	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.service'
-	wget 'https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/docker.socket'
-	sudo mv docker.service docker.socket /etc/systemd/system/
+	url='https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/'
+	path=/etc/systemd/system/
+	sudo curl -Ls ${url}/docker.service > ${path}/docker.service
+	sudo curl -Ls ${url}/docker.socket > ${path}/docker.socket
 	sudo systemctl enable docker
 	sudo systemctl start docker
-	# install docker-compose
-	i-docker-compose
-	# verify
+	[ ${arch} != 'armhf' ] && i-docker-compose
 	docker --version
-	docker-compose --version
 }
 
 i-docker-compose(){
-	tag=`curl -Ls -o /dev/null -w %{url_effective} https://github.com/docker/compose/releases/latest`
-	tag=${tag##*/}
-	curl -L "https://github.com/docker/compose/releases/download/${tag}/docker-compose-`uname -s`-`uname -m`" > docker-compose
-	sudo mv docker-compose /usr/bin/docker-compose
-	sudo chmod +x /usr/bin/docker-compose
+	url='https://github.com/docker/compose/releases/latest'
+	tag=`curl -Ls -o /dev/null -w %{url_effective} ${url}`
+	version=${tag##*/}
+	osname=`uname -s`
+	arch=`uname -m`
+	exname=docker-compose-${osname}-${arch}
+	url='https://github.com/docker/compose/releases/download'
+	path=/usr/bin
+	sudo curl -Ls ${url}/${version}/${exname} > ${path}/docker-compose
+	sudo chmod +x ${path}/docker-compose
+	docker-compose --version
 }
 
 
