@@ -6,7 +6,7 @@ rpiheadless(){
   touch ${path}/ssh
 }
 
-rpi-i-docker(){
+rpi-idocker(){
   sudo apt install -y \
     apt-transport-https \
     ca-certificates \
@@ -14,7 +14,7 @@ rpi-i-docker(){
     gnupg2 \
     software-properties-common\
     python3-pip libffi-dev
-  i-docker
+  curl -sSL https://get.docker.com | sh
   pip3 install docker-compose
   docker-compose --version
 }
