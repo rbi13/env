@@ -21,26 +21,38 @@ rpidocker(){
     software-properties-common\
     python3-pip libffi-dev
   curl -sSL https://get.docker.com | sh
+  sudo usermod -aG docker pi
   pip3 install docker-compose
   docker-compose --version
+  docker --version
 }
 
-spi(){ ssh pi@$1.local ;}
+rpirenamehost(){
+  if [ $1 != '' ]
+  then
+    newname=$1
+    oldname=`hostname`
+    sudo sed -i "s/${oldname}/${newname}/g" /etc/hosts
+    sudo hostnamectl set-hostname ${newname}
+    sudo reboot
+  fi
+}
 
 rpiinit(){
-  newname=$1
-  oldname=`hostname`
 	apt install -y git curl
   url='https://raw.githubusercontent.com/rbi13/env/master/install.sh'
 	curl ${url} | sh && source ~/.bashrc
-  sudo sed -i "s/${oldname}/${newname}/g" /etc/hosts
-  sudo hostnamectl set-hostname ${newname}
-  sudo reboot
 }
 
 rpibootstrap(){
   newname=$1
   host=pi@raspberrypi.local
   trustme ${host}
-  ssh ${host} "$(typeset -f rpiinit); rpiinit ${newname}"
+  ssh ${host} "$(typeset -f rpiinit); rpiinit"
+  ssh ${host} "$(typeset -f rpirenamehost); rpirenamehost ${newname}"
+}
+
+spi(){
+  host=${1:-pi}
+  ssh pi@${host}.local
 }
