@@ -23,12 +23,8 @@ i-expressvpn(){
   # install
   deb ${debfile}
   # activation
-  renv expressvpn
-  echo ${EXPRESSVPN_ACTIVATION} | cbcopy
   expressvpn activate
   # cleanup
-  echo '' | cbcopy
-  unset EXPRESSVPN_ACTIVATION
   rm ${debfile}
   # configure
   expressvpn autoconnect true
