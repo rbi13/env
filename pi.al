@@ -12,7 +12,7 @@ rpiheadless(){
   touch ${path}/ssh
 }
 
-rpidocker(){
+rpii-docker(){
   sudo apt install -y \
     apt-transport-https \
     ca-certificates \

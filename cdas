@@ -108,5 +108,5 @@ orm:~/ws/grid/python-spanner-orm
 pygoo:~/ws/google-cloud-python
 gpy:~/ws/google-cloud-python
 mig:~/ws/migrate
-l:~/ws/lk
+l:~/ws/lakes
 w:~/ws

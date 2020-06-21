@@ -1,8 +1,19 @@
+#!/bin/sh
 # clitools
 
-export CLI_SNIP_URL='gs://clitools/snippets'
-export CLI_ENV_URL='gs://clitools/envs'
-export CLI_LNK_URL='gs://clitools/links'
+export CLI_BUCKET=gs://clitools
+export CLI_SNIP_URL=${CLI_BUCKET}/snippets
+export CLI_ENV_URL=${CLI_BUCKET}/envs
+export CLI_LNK_URL=${CLI_BUCKET}/links
+
+# clitools storage search
+clt(){
+  if [ -z $1 ]; then
+    gsutil ls -r ${CLI_BUCKET}
+  else
+    gsutil ls -r ${CLI_BUCKET} | grep $1
+  fi
+}
 
 # links
 lnk(){

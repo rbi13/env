@@ -71,6 +71,8 @@ deb(){
   fi
 }
 
+debremove(){ sudo dpkg -r $1 ;}
+
 # untar to an (optional) destination
 untar(){
   archive="$1"
