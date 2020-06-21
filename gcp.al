@@ -1,6 +1,8 @@
 #!/bin/bash
 alias gg='gcloud'
 alias ggi='gcloud init'
+alias gglogin='gcloud auth login'
+alias gglogout='gcloud auth revoke'
 ggprofileset(){
   [ -z $1 ] && profile=default || profile=$1
   gcloud config configurations activate ${profile}
