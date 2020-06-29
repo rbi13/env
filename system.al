@@ -30,6 +30,7 @@ ismac(){ [ "$(uname)" == "Darwin" ] ;}
 #islinux(){ [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ;}
 getkernel(){ ismac && echo 'darwin' || echo 'linux' ;}
 
+alias i-ssh='sudo apt install openssh-server'
 alias xsh='open https://explainshell.com/'
 alias ctl='sudo systemctl'
 alias restartctl='ctl daemon-reload'

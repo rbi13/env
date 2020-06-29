@@ -60,7 +60,7 @@ gidyup:~/ws/hubba/tmp/back/hubba-payments
 dp:~/ws/dproc
 i:~/ws/goo/iot
 sco:~/ws/goo/scotia
-c:~/go/src/pubsub-balabit-consumer
+c:~/ws/content
 scotia:~/ws/goo/scotia
 ds:~/ws/goo/scotia/ds
 fl:~/ws/goo/scotia/logingest
