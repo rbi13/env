@@ -190,9 +190,10 @@ i-docker(){
 	rm -rf ${zipname} docker/
 	# add systemd scripts for docker deamon
 	url='https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/'
-	path=/etc/systemd/system/
-	sudo curl -Ls ${url}/docker.service > ${path}/docker.service
-	sudo curl -Ls ${url}/docker.socket > ${path}/docker.socket
+	path=/etc/systemd/system
+	curl -Ls -O ${url}/docker.service
+	curl -Ls -O ${url}/docker.socket
+	sudo mv docker.service docker.socket ${path}/
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	[ ${arch} != 'armhf' ] && i-docker-compose
@@ -208,7 +209,8 @@ i-docker-compose(){
 	exname=docker-compose-${osname}-${arch}
 	url='https://github.com/docker/compose/releases/download'
 	path=/usr/bin
-	sudo curl -Ls ${url}/${version}/${exname} > ${path}/docker-compose
+	sudo curl -Ls ${url}/${version}/${exname} > docker-compose
+	sudo mv docker-compose ${path}/docker-compose
 	sudo chmod +x ${path}/docker-compose
 	docker-compose --version
 }
