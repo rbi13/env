@@ -6,6 +6,23 @@
 ##
 # ddl=grep docker /var/log/messages
 
+dk-plex(){
+  docker run -d\
+  --name=plex\
+  --net=host\
+  -e PUID=1000\
+  -e PGID=1000\
+  -e VERSION=docker\
+  -v ~/plex/config:/config\
+  -v ~/plex/tv:/tv\
+  -v ~/plex/movies:/movies\
+  -v ~/plex/youtube:/youtube\
+  --restart unless-stopped\
+  linuxserver/plex
+  # -e UMASK_SET=022 `#optional`\
+  # -e PLEX_CLAIM= `#optional`\
+}
+
 dk-transmission(){
   docker run\
     --name=transmission\
