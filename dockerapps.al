@@ -13,7 +13,7 @@ dk-plex(){
   -e PUID=1000\
   -e PGID=1000\
   -e VERSION=docker\
-  -v ~/plex/config:/config\
+  -v ~/plexconf:/config\
   -v ~/plex/tv:/tv\
   -v ~/plex/movies:/movies\
   -v ~/plex/youtube:/youtube\
