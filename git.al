@@ -83,6 +83,11 @@ gsubup(){
 	git subtree pull --prefix $1 $2 ${ref}
 }
 
+gitconf(){
+	git config --global user.email "ronbond13@gmail.com"
+  git config --global user.name "ron"
+}
+
 # PS1 prompt (shows branch on git dirs)
 [ -f /etc/bash_completion.d/git-prompt  ] && source /etc/bash_completion.d/git-prompt
 
