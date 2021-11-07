@@ -30,7 +30,7 @@ arne:~/ws/arne
 a:~/ws/atom
 aws:~/ws/awstools
 dockers:~/ws/dockers
-bd:~/ws/hubba/bd
+bd:~/ws/badal
 hack:~/ws/hack
 gym:~/ws/hack/gym
 inf3:~/ws/hubba/hubba-infrastructure3
@@ -111,3 +111,9 @@ mig:~/ws/migrate
 l:~/ws/lakes
 w:~/ws
 f:~/ws/freetv
+gr:~/ws/gr
+gl:~/env/ws/gitlab
+cida:~/ws/badal/cida-docs
+uc:~/ws/badal/uc
+tm:~/ws/badal/tenant-modules
+docs:~/ws/badal/cida-docs

@@ -143,6 +143,11 @@ homeclean(){
 	mkdir ws
 }
 
+osupdate(){
+	sudo apt update -y
+  sudo apt upgrade -y
+}
+
 devv(){
   f=`pwd`
   f=`basename ${f}`

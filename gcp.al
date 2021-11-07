@@ -3,6 +3,19 @@ alias gg='gcloud'
 alias ggi='gcloud init'
 alias gglogin='gcloud auth login'
 alias gglogout='gcloud auth revoke'
+
+ggconf(){
+  gcloud config configurations list
+}
+
+ggconfset(){
+  gcloud config configurations activate $1
+}
+
+ggroles(){
+  gcloud iam roles describe $1
+}
+
 ggprofileset(){
   [ -z $1 ] && profile=default || profile=$1
   gcloud config configurations activate ${profile}
@@ -12,10 +25,7 @@ ggprofile(){
 }
 alias ggisa='gcloud auth activate-service-account --key-file'
 alias ggg='gg alpha interactive'
-ggconf(){
-  [ -z $1 ] && conf='config_default' || conf=$1
-  vi ~/.config/gcloud/configurations/config_${conf}
-}
+
 ggkey(){
   acct=$1
   gcloud iam service-accounts keys create ./secret.json \
@@ -366,6 +376,11 @@ saw(){
       }
     ]
   }" "https://vision.googleapis.com/v1/images:annotate"
+}
+
+ggcb(){
+  cloud-build-local --dryrun=false --push $1
+  # --write-workspace=[LOCAL_DIRECTORY_PATH]
 }
 
 ggdev(){
