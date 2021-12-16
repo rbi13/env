@@ -12,8 +12,26 @@ ggconfset(){
   gcloud config configurations activate $1
 }
 
-ggroles(){
-  gcloud iam roles describe $1
+ggrole(){
+  rfile="${HOME}/.gcproles"
+  [ ! -f ${rfile} ] && gcloud iam roles list > ${rfile}
+  cat ${rfile} | grep roles/$1 | cut -f 2 -d ' '
+}
+
+ggrolep(){
+  srch=$1
+  for r in `ggrole ${srch}` ; do gcloud iam roles describe ${r} ; done
+}
+
+ggroledesc(){
+  [ -z $1 ] && role=`cbpaste` || role=$1
+  gcloud iam roles describe ${role}
+}
+
+gggcrlogin(){
+  docker login\
+    -u oauth2accesstoken\
+    -p "$(gcloud auth print-access-token)" https://gcr.io
 }
 
 ggprofileset(){
