@@ -72,6 +72,15 @@ gptag(){ gtag ${@:1}; gp ${@:1} ;}
 glast-commit(){ git log -1 --format="%ad" ${@:1} ;}
 alias gundo='git reset --soft HEAD~1'
 
+gusekey(){
+	[ -z $1 ] && unset GIT_SSH_COMMAND || export GIT_SSH_COMMAND="ssh -i ~/.ssh/${1}_rsa"
+}
+
+gitconf(){
+	git config user.name $1
+	git config user.email $2
+}
+
 # subtree
 # TODO: add subtree url tracking
 gsub(){
@@ -81,11 +90,6 @@ gsub(){
 gsubup(){
 	[ -z $3 ] && ref='master' || ref=$3
 	git subtree pull --prefix $1 $2 ${ref}
-}
-
-gitconf(){
-	git config --global user.email "ronbond13@gmail.com"
-  git config --global user.name "ron"
 }
 
 # PS1 prompt (shows branch on git dirs)

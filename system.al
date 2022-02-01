@@ -108,13 +108,18 @@ timestamp64() { timestamp | base64 ;}
 
 # ssh
 alias skeys='ls -al ~/.ssh'
-# generate ssh keys e.g. sgen <account@email.com>
-alias sgen='ssh-keygen -t rsa -b 4096 -C'
+sgen(){
+	# generate ssh keys e.g. sgen <filename> <email>
+	name=$1
+	email=$2
+	ssh-keygen -f ~/.ssh/${name}_rsa -t rsa -b 4096 -C ${email}
+}
 scat() {
-	[[ -z "$1" ]] && key=~/.ssh/id_rsa.pub || key=~/.ssh/$1.pub
+	[[ -z "$1" ]] && key=~/.ssh/id_rsa.pub || key=~/.ssh/${1}_rsa.pub
 	cat $key | cbcopy
 	cat $key
 }
+
 # TODO: add command for public key distribution
 # ssh-keygen -t rsa
 
