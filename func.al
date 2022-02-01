@@ -97,6 +97,11 @@ untar(){
   fi
 }
 
+sch(){
+  pattern=$1
+  path=${2:-'./'}
+  grep -rnw ${path} -e ${pattern} --color=never
+}
 
 # file and string manipulation
 to_csv(){
