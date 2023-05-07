@@ -117,3 +117,5 @@ cida:~/ws/badal/cida-docs
 uc:~/ws/badal/uc
 tm:~/ws/badal/tenant-modules
 docs:~/ws/badal/cida-docs
+ai:~/ws/oai
+gpt:~/ws/Auto-GPT

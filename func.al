@@ -58,20 +58,9 @@ acd(){
 ## other functions
 
 # install from deb files
-deb(){
-  # abort on any error
-  # eval to resolve
-  eval debFile=$1
-  # validate file
-  if [ -f "$debFile" ]; then
-    # dpkg and install, return on failure
-    sudo dpkg -i $debFile || return;
-    sudo apt-get install -f
-  else echo "'$debFile' does not exist";
-  fi
-}
+i-deb(){ sudo dpkg -i $1 ;}
 
-debremove(){ sudo dpkg -r $1 ;}
+r-deb(){ sudo dpkg -r $1 ;}
 
 # untar to an (optional) destination
 untar(){
@@ -106,4 +95,23 @@ sch(){
 # file and string manipulation
 to_csv(){
   libreoffice --headless --convert-to csv "$1"
+}
+
+# btab - group browser tabs 
+bo(){
+  id=$1
+  google-chrome --new-window `cat ~/.btabs/${id}` &
+}
+
+bof(){
+  id=$1
+  firefox --new-window `cat ~/.btabs/${id}` &
+}
+
+lbo(){
+  ll ~/.btabs/
+}
+
+nbo(){
+  nano ~/.btabs/$1
 }

@@ -13,7 +13,7 @@ alias ls='ls --color'
 default_config='.envconf'
 
 alias n='nano'
-alias g='atom'
+alias g='code'
 ide(){ idea ${@:1} & }
 alias al='alias | grep "^alias"'
 alias nrca='n ~/env/aliases'
