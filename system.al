@@ -55,6 +55,21 @@ else
 	cbpaste(){ xclip -selection clipboard -o ;}
 fi
 
+cbpastefile() {
+    if command -v pbpaste >/dev/null 2>&1; then
+        pbpaste > "$1"
+    elif command -v xclip >/dev/null 2>&1; then
+        xclip -selection clipboard -o > "$1"
+    elif command -v xsel >/dev/null 2>&1; then
+        xsel --clipboard --output > "$1"
+    else
+        echo "Error: Clipboard not supported on this system."
+        return 1
+    fi
+
+    echo "Clipboard contents written to $1"
+}
+
 clip(){ [[ -f "$1" ]] && cat $1 | cbcopy || ${@:1} | cbcopy ;}
 
 allp(){ all $1 cbpaste ;}

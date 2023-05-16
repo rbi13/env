@@ -9,6 +9,7 @@
 
 alias dk='docker'
 alias dr='dk run'
+
 # run single command
 alias drc='dr --rm'
 alias drp='drc -d -v `pwd`:"/`basename $(pwd)`" -w "/`basename $(pwd)`"'

@@ -47,7 +47,7 @@ over:~/ws/hubba/overrides
 pay:~/ws/hubba/tmp/back/hubba-payments
 trf:~/ws/hubba/trf
 frontend:~/ws/hubba/tmp/front/hubba-frontend
-data:~/ws/datasand
+data:~/ws/datastrat
 dave:~/ws/hubba/lib/davepi
 inj:~/ws/aws-param-inject
 goo:~/ws/goo
@@ -119,3 +119,6 @@ tm:~/ws/badal/tenant-modules
 docs:~/ws/badal/cida-docs
 ai:~/ws/oai
 gpt:~/ws/Auto-GPT
+oai:~/ws/lmtools
+lm:~/ws/lmtools
+lmt:~/ws/lmtools
