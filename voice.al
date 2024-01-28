@@ -13,6 +13,7 @@ transrec(){
   touch "$transcript_file"
   record "$recorded_file" &&\
   transcribe "$recorded_file" "$transcript_file"
+  exit 0
 }
 
 record(){

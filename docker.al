@@ -173,48 +173,7 @@ diexport(){
 #TODO: alias for image removal from registry
 #curl -u<user:password> -X DELETE "<Artifactory URL>/<Docker v2 repository name>/<namespace>:<tag>"
 
-i-docker(){
-	url='https://github.com/docker/docker-ce/releases/latest'
-	tag=`curl -Ls -o /dev/null -w %{url_effective} ${url}`
-	tag=${tag##*/}
-	version=${tag:1}
-	arch=`uname -m`
-	[ ${arch} = 'armv7l' ] && arch='armhf'
-	zipname=docker-${version}.tgz
-	url='https://download.docker.com/linux/static/stable'
-	curl -Ls ${url}/${arch}/${zipname} > ${zipname}
-	tar -xvzf ${zipname}
-	sudo rsync docker/* /usr/bin/
-	# create docker group
-	sudo groupadd docker
-	sudo usermod -aG docker $USER
-	rm -rf ${zipname} docker/
-	# add systemd scripts for docker deamon
-	url='https://raw.githubusercontent.com/docker/docker/master/contrib/init/systemd/'
-	path=/etc/systemd/system
-	curl -Ls -O ${url}/docker.service
-	curl -Ls -O ${url}/docker.socket
-	sudo mv docker.service docker.socket ${path}/
-	sudo systemctl enable docker
-	sudo systemctl start docker
-	[ ${arch} != 'armhf' ] && i-docker-compose
-	docker --version
-}
 
-i-docker-compose(){
-	url='https://github.com/docker/compose/releases/latest'
-	tag=`curl -Ls -o /dev/null -w %{url_effective} ${url}`
-	version=${tag##*/}
-	osname=`uname -s`
-	arch=`uname -m`
-	exname=docker-compose-${osname}-${arch}
-	url='https://github.com/docker/compose/releases/download'
-	path=/usr/bin
-	sudo curl -Ls ${url}/${version}/${exname} > docker-compose
-	sudo mv docker-compose ${path}/docker-compose
-	sudo chmod +x ${path}/docker-compose
-	docker-compose --version
-}
 
 
 # cp to rc if behind a proxy for higher-level tools like docker compose

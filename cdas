@@ -116,9 +116,14 @@ gl:~/env/ws/gitlab
 cida:~/ws/badal/cida-docs
 uc:~/ws/badal/uc
 tm:~/ws/badal/tenant-modules
-docs:~/ws/badal/cida-docs
+docs:~/ws/orgdocs/saurus/orgdocs
 ai:~/ws/oai
 gpt:~/ws/Auto-GPT
 oai:~/ws/lmtools
 lm:~/ws/lmtools
 lmt:~/ws/lmtools
+models:~/llmodels
+lmhost:~/ws/LocalAI
+arch:~/ws/structurizr
+doc:~/ws/orgdocs/saurus/orgdocs
+ag:~/ws/autogen
